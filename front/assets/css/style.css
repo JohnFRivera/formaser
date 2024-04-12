@@ -1,0 +1,81 @@
+@import url('./bootstrap.min.css');
+
+/** COLORS */
+.bg-verde {
+    background-color: #85C12D !important;
+}
+.text-verde {
+    color: #85C12D !important;
+}
+
+.bg-azul {
+    background-color: #0A3943 !important;
+}
+.text-azul {
+    color: #0A3943 !important;
+}
+
+/** NAVBAR */
+.nav-link.active {
+    color: #85C12D !important;
+}
+.nav-link.link-dark:hover {
+    color: #85C12D !important;
+}
+
+/** BUTTONS */
+.btn-outline-verde {
+    background-color: #86c12d00;
+    border: 2px solid #85C12D;
+    color: #79af29;
+}
+.btn-outline-verde:hover {
+    background-color: #86c12d;
+    border: 2px solid #85C12D;
+    color: #ffffff;
+}
+.btn-outline-verde.active {
+    background-color: #86c12d;
+    border: 2px solid #85C12D;
+    color: #ffffff !important;
+}
+
+.btn-verde {
+    background-color: #86c12d !important;
+    border: 2px solid #85C12D !important;
+    color: #ffffff !important;
+    filter: brightness(1);
+    transition: filter 0.3s ease-in-out 0s;
+}
+.btn-verde:hover {
+    filter: brightness(0.8);
+}
+.btn-verde.active {
+    filter: brightness(0.8);
+}
+
+.btn-outline-azul {
+    background-color: #0A394300;
+    border: 2px solid #0A3943;
+    color: #0A3943;
+}
+.btn-outline-azul:hover {
+    background-color: #0A3943;
+    border: 2px solid #0A3943;
+    color: #ffffff;
+}
+.btn-outline-azul.active {
+    background-color: #0A3943;
+    border: 2px solid #0A3943;
+    color: #ffffff !important;
+}
+
+
+.h-main {
+    min-height: 76vh;
+}
+
+/** CURSORS */
+.cursor-default {
+    cursor: default;
+}
