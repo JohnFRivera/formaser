@@ -18,7 +18,7 @@
     <main class="container-fluid">
         <div class="row">
             <!--? ASIDE -->
-            <aside class="col-12 col-sm-auto px-0 shadow" id="asideBoard">
+            <aside class="col-12 col-sm-3 col-lg-2 px-0 shadow" id="asideBoard">
                 <!--? CONTENIDO ASIDE -->
             </aside>
             <!--? SECCIÓN -->
@@ -34,7 +34,7 @@
                     <!--* OPCIONES -->
                     <ul class="nav nav-underline pe-0 gap-0 d-flex flex-column flex-sm-row mb-4 mb-sm-2">
                         <li class="nav-item">
-                            <a class="nav-link fw-semibold text-black-50 fs-5 px-3 pb-2 d-flex align-items-center" href="./pre-inscritos.php">
+                            <a class="nav-link fs-5 px-3 pb-2 active d-flex align-items-center" href="./pre-inscritos.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-1" viewBox="0 0 16 16">
                                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                     <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
@@ -43,7 +43,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fs-5 px-3 pb-2 active d-flex align-items-center" href="./inscritos.php">
+                            <a class="nav-link fw-semibold text-black-50 fs-5 px-3 pb-2 d-flex align-items-center" href="./inscritos.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-1" viewBox="0 0 16 16">
                                     <path d="M12.5 9a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7m.354 5.854 1.5-1.5a.5.5 0 0 0-.708-.708l-.646.647V10.5a.5.5 0 0 0-1 0v2.793l-.646-.647a.5.5 0 0 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                     <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
@@ -134,4 +134,4 @@
     <script src="./assets/js/main.js"></script>
 </body>
 
-</html>bobod
+</html>

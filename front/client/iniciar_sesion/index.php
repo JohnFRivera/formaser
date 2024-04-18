@@ -17,7 +17,7 @@
     <!--* CONTENIDO -->
     <main class="container-fluid">
         <div class="row justify-content-center bg-img-formaser">
-            <div class="col col-sm-6 col-md-5 col-lg-4 col-xl-3 align-content-center">
+            <div class="col col-sm-6 col-md-5 col-lg-4 col-xl-4 col-xxl-3 align-content-center">
                 <!--* INICIO DE SESIÓN -->
                 <div class="bg-white border rounded-3 p-4">
                     <h2 class="fw-bold">INICIAR <span class="text-verde">SESIÓN</span></h2>

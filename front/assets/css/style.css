@@ -70,6 +70,19 @@
     color: #ffffff !important;
 }
 
+.btn-azul {
+    background-color: #0A3943 !important;
+    border: 2px solid #0A3943 !important;
+    color: #ffffff !important;
+    filter: brightness(1);
+    transition: filter 0.3s ease-in-out 0s;
+}
+.btn-azul:hover {
+    filter: brightness(0.8);
+}
+.btn-azul.active {
+    filter: brightness(0.8);
+}
 
 .h-main {
     min-height: 76vh;

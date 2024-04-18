@@ -17,7 +17,7 @@
     <!--* CONTENIDO -->
     <main class="container-fluid">
         <div class="row justify-content-end bg-img-formaser">
-            <div class="col col-sm-7 col-md-6 col-lg-5 col-xl-4 align-content-center py-5">
+            <div class="col col-sm-7 col-md-6 col-lg-5 col-xl-5 col-xxl-4 align-content-center py-5">
                 <!--* INICIO DE SESIÓN -->
                 <div class="bg-white border rounded-3 p-4 me-5">
                     <h2 class="fw-bold">REGISTRAR<span class="text-verde">SE</span></h2>
