@@ -70,19 +70,19 @@ function setNavBar() {
     <ul class="nav align-items-center py-2 fs-6 fw-medium">
         <!--? LOGO -->
         <li class="nav-item px-5 my-3 my-sm-0">
-            <img class="img-fluid px-5 px-sm-0" src="${window.location.origin}/front/assets/pic/formaser-logo.png" alt="">
+            <img class="img-fluid px-5 px-sm-0" src="${window.location.origin}/formaser/front/assets/pic/formaser-logo.png" alt="">
         </li>
         <!--? DASHBOARD -->
         <li class="nav-item">
-            <a class="nav-link link-dark nav-option" href="${window.location.origin}/front/admin/dashboard/">DASHBOARD</a>
+            <a class="nav-link link-dark nav-option" href="${window.location.origin}/formaser/front/admin/dashboard/">DASHBOARD</a>
         </li>
         <!--? INICIAR SESIÓN -->
         <li class="nav-item ms-auto me-3">
-            <a class="btn btn-outline-verde px-3 fw-medium nav-option" href="${window.location.origin}/front/client/iniciar_sesion/">INICIAR SESIÓN</a>
+            <a class="btn btn-outline-verde px-3 fw-medium nav-option" href="${window.location.origin}/formaser/front/client/iniciar_sesion/">INICIAR SESIÓN</a>
         </li>
         <!--? REGISTRARSE -->
         <li class="nav-item me-0 me-sm-5">
-            <a class="btn btn-verde px-3 fw-medium nav-option" href="${window.location.origin}/front/client/registrarse/">REGISTRARSE</a>
+            <a class="btn btn-verde px-3 fw-medium nav-option" href="${window.location.origin}/formaser/front/client/registrarse/">REGISTRARSE</a>
         </li>
     </ul>
     `;
@@ -95,7 +95,7 @@ function setFooter() {
     <!--? INFO -->
     <div class="row p-5 bg-azul text-white">
         <div class="col-auto align-content-center">
-            <img class="img-fluid me-0 me-sm-3 mb-4 mb-sm-0" src="${window.location.origin}/front/assets/pic/formaser-logo-footer.png" alt="">
+            <img class="img-fluid me-0 me-sm-3 mb-4 mb-sm-0" src="${window.location.origin}/formaser/front/assets/pic/formaser-logo-footer.png" alt="">
         </div>
         <div class="col-auto">
             <h4 class="border-bottom border-3 p-2 ps-3">Contacto</h4>

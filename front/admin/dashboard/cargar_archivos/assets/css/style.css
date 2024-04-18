@@ -1,1 +1,9 @@
-@import url('../../../assets/css/style.css');
+@import url("../../../assets/css/style.css");
+
+.bg-azul-2 {
+  background-color: #136a7e !important;
+}
+
+.bg-azul-3 {
+  background-color: #1887a0 !important;
+}

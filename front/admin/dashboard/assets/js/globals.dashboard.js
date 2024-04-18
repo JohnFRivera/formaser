@@ -9,7 +9,7 @@ function setAsideActive() {
     });
 }
 function setAsideBoard() {
-    var folderOrigin = window.location.origin + '/front/admin/dashboard';
+    var folderOrigin = window.location.origin + '/formaser/front/admin/dashboard';
     var asideBoard = document.getElementById('asideBoard');
     asideBoard.innerHTML = `
     <ul class="nav nav-fill flex-row flex-sm-column">
