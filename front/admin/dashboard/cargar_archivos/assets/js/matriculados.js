@@ -17,10 +17,13 @@ document
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Enviar el formulario usando Fetch
-      fetch(`${window.location.origin}/formaser/back/modulos/leerExcel.php`, {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        `${window.location.origin}/formaser/back/modulos/tercerFormato.php`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           // verifico primero si en el JSON hay un Objeto llamdos "error" si lo hay es porque hubo un error y no se puede ejecutar
