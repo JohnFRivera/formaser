@@ -8,10 +8,9 @@ document
     let tblMatriculadosNoAgregados = document.getElementById(
       "tblMatriculadosNoAgregados"
     );
-    const fileInput = document.getElementById("inpArchivoMatriculados");
-    const file = fileInput.files[0]; // Obtener el primer archivo seleccionado
+    var inputFile = document.getElementById("inpArchivoMatriculados");
+    const file = inputFile.files[0]; // Obtener el primer archivo seleccionado
     console.log(file);
-
     if (file != undefined) {
       // Crear un objeto FormData y agregar el archivo a él
       let formData = new FormData();
@@ -26,55 +25,35 @@ document
       )
         .then((response) => response.json())
         .then((data) => {
-          // verifico primero si en el JSON hay un Objeto llamdos "error" si lo hay es porque hubo un error y no se puede ejecutar
-          if (data.error != undefined) {
-            console.log(data.error);
-            // aca si no a cragado el archivo le envio un Alerta
-            let alerta = `
-                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                      <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>`;
-            mensajeError.innerHTML = alerta;
-          } else {
-            if (data.registrado != undefined) {
-              console.log(data.registrado);
-              // aca voy agregarlos a la tabla registrados
-              data.registrado.forEach((element) => {
-                let descrip = `
-                          <tr>
-                              <td>${element.tipoDocumento}: ${element.cedula}</td>
-                              <td>${element.numeroFicha}</td>
-                              <td>${element.codigoEmpresa}</td>
-                              <td>${element.razones}</td>
-                          </tr>
-                          `;
-                tblMatriculadosAgregados.innerHTML += descrip;
-              });
-              // -------------------------
-            }
-            if (data.no_aceptados != undefined) {
-              console.log(data.no_aceptados);
-              // aca voy agregar a la tabla los que no se registraron
-              data.no_aceptados.forEach((element) => {
-                let descrip = `
-                          <tr>
-                              <td>${element.tipoDocumento}: ${element.cedula}</td>
-                              <td>${element.numeroFicha}</td>
-                              <td>${element.codigoEmpresa}</td>
-                              <td>${element.razones}</td>
-                          </tr>
-                          `;
-
-                tblMatriculadosNoAgregados.innerHTML += descrip;
-              });
-              // -------------------------
-            }
-            // -------------------------------
+          // aca voy a verificar si hay denegados y si hay recorrer los denegados para poner en la tabla
+          console.log(data.updateExito);
+          if (data.updateDenegado != undefined) {
+            // -----
+            data.updateDenegado.forEach((subArray) => {
+              console.log(subArray[0].cedula);
+              let descri = `<tr> <td>${subArray[0].cedula} </td> <td>${subArray[0].nombre} </td> <td>${subArray[0].codigoFicha} </td> <td>${subArray[0].estado} </td> <td>${subArray[0].descripcion} </td> </tr>`;
+              tblMatriculadosNoAgregados.innerHTML += descri;
+            });
           }
-        })
-        .catch((error) => {
-          console.log("Error:", error);
+          // -------
+          // aca voy a verificar los que fueron actualizados con exito y los que fueron actualizados se mostraran en la tabla
+          if (data.updateExito != undefined) {
+            // -----
+            data.updateExito.forEach((subArray) => {
+              console.log(subArray[0].cedula);
+              let descri = `<tr> <td>${subArray[0].cedula} </td> <td>${subArray[0].nombre} </td> <td>${subArray[0].codigoFicha} </td> <td>${subArray[0].estado} </td> <td>${subArray[0].descripcion} </td> </tr>`;
+              tblMatriculadosAgregados.innerHTML += descri;
+            });
+          }
+          // ------
         });
+    } else {
+      // aca si no a cargado el archivo le envio un Alerta
+      let aler = `
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Hubo un error!</strong> No has subido ningun Archivo.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`;
+      mensajeError.innerHTML = aler;
     }
   });
