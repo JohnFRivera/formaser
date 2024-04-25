@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Instituto Formaser - Cargar Archivos</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Instituto Formaser | Cargar Archivos</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <main class="container-fluid">
         <div class="row">
             <!--? ASIDE -->
-            <aside class="col-12 col-sm-3 col-lg-2 px-0 shadow" id="asideBoard">
+            <aside class="col-12 col-md-auto px-0 shadow" id="asideBoard">
                 <!--? CONTENIDO ASIDE -->
             </aside>
             <!--? SECCIÓN -->
@@ -28,7 +28,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="mb-2" viewBox="0 0 16 16">
                             <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707z" />
                         </svg>
-                        CARGAR ARCHIVOS
+                        Cargar Archivos
                     </h2>
                     <hr>
                     <!--* OPCIONES -->
@@ -88,21 +88,21 @@
                         <div class="row gap-3">
                             <div class="col">
                                 <h1 class="d-flex align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="me-3 mt-1" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="me-2 mt-1" viewBox="0 0 16 16">
                                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                         <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
 
                                     </svg>
-                                    Aprendices Agregados
+                                    Agregados
                                 </h1>
                                 <hr>
                                 <div class="table-responsive pb-5">
                                     <table id="dataTableAgregados" class="table table-hover table-striped" style="width:100%">
                                         <thead class="fs-5">
                                             <tr>
-                                                <th>Cedula</th>
-                                                <th>Numero Ficha</th>
-                                                <th>Codigo Empresa</th>
+                                                <th>Identificación</th>
+                                                <th>Ficha</th>
+                                                <th>Código Empresa</th>
                                                 <th>Descripción</th>
                                             </tr>
                                         </thead>
@@ -114,20 +114,20 @@
                             <div class="vr p-0"></div>
                             <div class="col">
                                 <h1 class="text-danger d-flex align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="me-3 mt-1" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="me-2 mt-1" viewBox="0 0 16 16">
                                         <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
                                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708" />
                                     </svg>
-                                    Aprendices No Agregados
+                                    NO Agregados
                                 </h1>
                                 <hr>
                                 <div class="table-responsive pb-5">
                                     <table id="dataTableNoAgregados" class="table table-hover table-striped" style="width:100%">
                                         <thead class="fs-5">
                                             <tr>
-                                                <th>Cedula</th>
-                                                <th>Numero Ficha</th>
-                                                <th>Codigo Empresa</th>
+                                                <th>Identificación</th>
+                                                <th>Ficha</th>
+                                                <th>Código Empresa</th>
                                                 <th>Descripción</th>
                                             </tr>
                                         </thead>
@@ -150,13 +150,13 @@
     </footer>
     <!--* FIN FOOTER -->
 
+    <script src="./js/pre-inscritos.js"></script>
     <script type="module" src="../assets/js/globals.dashboard.js"></script>
     <script src="../assets/js/jquery-3.7.1.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/pre-inscritos.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
