@@ -156,7 +156,7 @@
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/pre-inscritos.js"></script>
 </body>
 
 </html>
