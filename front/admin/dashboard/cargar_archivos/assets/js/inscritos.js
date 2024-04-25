@@ -30,7 +30,14 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
             // -----
             data.updateDenegado.forEach((subArray) => {
               console.log(subArray[0].cedula);
-              let descri = `<tr> <td>${subArray[0].cedula} </td> <td>${subArray[0].nombre} </td> <td>${subArray[0].codigoFicha} </td> <td>${subArray[0].estado} </td> <td>${subArray[0].descripcion} </td> </tr>`;
+              let descri = `
+              <tr>
+                <td>${subArray[0].cedula}</td>
+                <td>${subArray[0].nombre}</td>
+                <td>${subArray[0].codigoFicha}</td>
+                <td>${subArray[0].estado}</td>
+                <td>${subArray[0].descripcion}</td>
+              </tr>`;
               tblInscritosNoAgregados.innerHTML += descri;
             });
           }
@@ -41,7 +48,14 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
             data.updateExito.forEach((subArray) => {
               console.log(subArray[0].cedula);
 
-              let descri = `<tr> <td>${subArray[0].cedula} </td> <td>${subArray[0].nombre} </td> <td>${subArray[0].codigoFicha} </td> <td>${subArray[0].estado} </td> <td>${subArray[0].descripcion} </td> </tr>`;
+              let descri = `
+              <tr>
+                <td>${subArray[0].cedula}</td>
+                <td>${subArray[0].nombre} </td>
+                <td>${subArray[0].codigoFicha}</td>
+                <td>${subArray[0].estado}</td>
+                <td>${subArray[0].descripcion}</td>
+              </tr>`;
               tblInscritosAgregados.innerHTML += descri;
             });
           }
