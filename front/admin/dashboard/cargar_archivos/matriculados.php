@@ -101,8 +101,9 @@
                                         <thead class="fs-5">
                                             <tr>
                                                 <th>Cedula</th>
-                                                <th>Numero Ficha</th>
-                                                <th>Codigo Empresa</th>
+                                                <th>Nombre</th>
+                                                <th>Ficha</th>
+                                                <th>Estado</th>
                                                 <th>Descripción</th>
                                             </tr>
                                         </thead>
@@ -126,8 +127,9 @@
                                         <thead class="fs-5">
                                             <tr>
                                                 <th>Cedula</th>
-                                                <th>Numero Ficha</th>
-                                                <th>Codigo Empresa</th>
+                                                <th>Nombre</th>
+                                                <th>Ficha</th>
+                                                <th>Estado</th>
                                                 <th>Descripción</th>
                                             </tr>
                                         </thead>
