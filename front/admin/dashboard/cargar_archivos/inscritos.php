@@ -18,7 +18,7 @@
     <main class="container-fluid">
         <div class="row">
             <!--? ASIDE -->
-            <aside class="col-12 col-sm-auto px-0 shadow" id="asideBoard">
+            <aside class="col-12 col-sm-3 col-lg-2 px-0 shadow" id="asideBoard">
                 <!--? CONTENIDO ASIDE -->
             </aside>
             <!--? SECCIÓN -->
@@ -65,9 +65,13 @@
                     <div class="col">
                         <form action="">
                             <div class="row mb-3">
+                                <div class="row">
+                                    <div class="col" id="mensajeError">
+                                    </div>
+                                </div>
                                 <div class="col col-sm-6 col-md-5 col-lg-4 col-xl-3 ms-auto px-0 d-flex flex-column justify-content-start">
-                                    <label for="archivo-inscrito" class="btn btn-azul fw-semibold px-4">
-                                        <input type="file" class="visually-hidden" name="archivo-inscrito" id="archivo-inscrito" accept="application/pdf" required>
+                                    <label for="inpArchivoPreinscrito" class="btn btn-azul fw-semibold px-4">
+                                        <input type="file" class="visually-hidden" name="archivo-inscrito" id="inpArchivoPreinscrito" accept="application/pdf" required>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 me-1" viewBox="0 0 16 16">
                                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
                                             <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
@@ -77,41 +81,61 @@
                                     <span class="small text-black-50 pt-1" id="fileInfo"></span>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="submit" class="btn btn-verde" value="Subir" disabled>
+                                    <input type="button" class="btn btn-verde" id="btnSubirInscritos" value="Subir" disabled>
                                 </div>
                             </div>
                         </form>
-                        <div class="table-responsive pb-5">
-                            <table id="dataTable" class="table table-hover table-striped" style="width:100%">
-                                <thead class="fs-5">
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Fecha</th>
-                                        <th>Tamaño</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--? COMPONENTE FILA DE TABLA -->
-                                    <tr>
-                                        <td>nombre_archivo.pdf</td>
-                                        <td>2024-04-18</td>
-                                        <td>55 KB</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <form action=""> <!--? CONTROLADOR DE ELIMINADO -->
-                                                    <button class="btn btn-sm btn-danger" type="submit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
-                                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-                                                        </svg>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!--? FIN COMPONENTE FILA DE TABLA -->
-                                </tbody>
-                            </table>
+                        <div class="row gap-3">
+                            <div class="col">
+                                <h1 class="d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="me-3 mt-1" viewBox="0 0 16 16">
+                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                        <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+
+                                    </svg>
+                                    Aprendices Agregados
+                                </h1>
+                                <hr>
+                                <div class="table-responsive pb-5">
+                                    <table id="dataTableAgregados" class="table table-hover table-striped" style="width:100%">
+                                        <thead class="fs-5">
+                                            <tr>
+                                                <th>Cedula</th>
+                                                <th>Numero Ficha</th>
+                                                <th>Codigo Empresa</th>
+                                                <th>Descripción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblInscritosAgregados">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="vr p-0"></div>
+                            <div class="col">
+                                <h1 class="text-danger d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="me-3 mt-1" viewBox="0 0 16 16">
+                                        <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708" />
+                                    </svg>
+                                    Aprendices No Agregados
+                                </h1>
+                                <hr>
+                                <div class="table-responsive pb-5">
+                                    <table id="dataTableNoAgregados" class="table table-hover table-striped" style="width:100%">
+                                        <thead class="fs-5">
+                                            <tr>
+                                                <th>Cedula</th>
+                                                <th>Numero Ficha</th>
+                                                <th>Codigo Empresa</th>
+                                                <th>Descripción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblInscritosNoAgregados">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--* FIN CONTENIDO -->
@@ -132,6 +156,7 @@
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/app.js"></script>
 </body>
 
 </html>bobod

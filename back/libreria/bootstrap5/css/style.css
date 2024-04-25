@@ -1,0 +1,13 @@
+.principal {
+  display: flex;
+  justify-content: center;
+}
+
+.primer {
+  display: flex;
+  justify-content: center;
+}
+
+.tituloTabla2 {
+  margin-bottom: 20px;
+}

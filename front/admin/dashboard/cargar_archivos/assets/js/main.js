@@ -1,4 +1,16 @@
-new DataTable("#dataTable", {
+new DataTable("#dataTableAgregados", {
+  language: {
+    entries: {
+      _: "Archivos",
+      1: "Archivo",
+    },
+    info: "Mostrar _START_ a _END_ de _TOTAL_ _ENTRIES_",
+  },
+  lengthMenu: [5, 10, 20, 30],
+  columnDefs: [{ orderable: false, targets: 3 }],
+  order: [[1, "asc"]],
+});
+new DataTable("#dataTableNoAgregados", {
   language: {
     entries: {
       _: "Archivos",
@@ -36,10 +48,6 @@ inputFile.addEventListener("input", () => {
   <br>
   ${fileSize.toFixed()} ${arraySizes[sizesIndex]}
         `;
-  document
-    .querySelector(`label.btn.btn-azul`)
-    .classList.add("active");
-  document
-    .querySelector(`input.btn.btn-verde`)
-    .disabled = false;
+  document.querySelector(`label.btn.btn-azul`).classList.add("active");
+  document.querySelector(`input.btn.btn-verde`).disabled = false;
 });

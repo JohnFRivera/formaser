@@ -1,0 +1,23 @@
+{
+    "name": "rimorsoft/phpcourse",
+    "description": "leer archivo excel",
+    "type": "project",
+    "require": {
+        "illuminate/database": "10.x-dev",
+        "dompdf/dompdf": "dev-master",
+        "phpoffice/phpspreadsheet": "dev-master"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rimorsoft\\Phpcourse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hector restrepo",
+            "email": "hector.soto20034@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
