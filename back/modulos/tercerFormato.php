@@ -56,6 +56,15 @@ function importarDatos($archivoExcel)
     // Obtengo la cantidad de filas o registros que tiene esa hoja Excel
     $filasDeHojaExcel = $hojaExcel->getHighestDataRow();
    // echo "Total de filas: " . $filasDeHojaExcel . "<br>";
+   $formatoValido = false;
+   for ($fila = 7; $fila <= $filasDeHojaExcel; $fila++) {
+    $estado = $hojaExcel->getCell('C'.$fila);
+    if($estado == "Matriculado ")
+    {
+        $formatoValido = true;
+    }
+
+   }
 
 
 // voy a verificar que sea el mismo formato excel por si depronto sube uno que no era
@@ -79,7 +88,7 @@ if($hojaExcel->getCell('A3') != "" && $hojaExcel->getCell('A4') != "" && $hojaEx
 
 if($cedula != "" && $codigoFicha != "" && $nombre != "" && $estado != "")
 {
-    if($estado == "Matriculado")
+    if($formatoValido == true)
     {
     // Dividir la cadena en un array usando la coma como separador
     $arrayResultado = explode('-', $cedula);

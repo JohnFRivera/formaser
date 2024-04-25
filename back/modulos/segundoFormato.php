@@ -56,6 +56,7 @@ function importarDatos($archivoExcel)
     // Obtengo la cantidad de filas o registros que tiene esa hoja Excel
     $filasDeHojaExcel = $hojaExcel->getHighestDataRow();
    // echo "Total de filas: " . $filasDeHojaExcel . "<br>";
+   
 
 
 // voy a verificar que sea el mismo formato excel por si depronto sube uno que no era
@@ -79,7 +80,7 @@ if($hojaExcel->getCell('A3') != "" && $hojaExcel->getCell('A4') != "" && $hojaEx
 
 if($cedula != "" && $codigoFicha != "" && $nombre != "" && $estado != "")
 {
-    if($estado == "Preinscrito")
+    if($estado == "Preinscrito" )
 {
 
    // Dividir la cadena en un array usando la coma como separador
@@ -118,8 +119,7 @@ else{
     // aca lo agrego al array principal
     $arregloActualizados['error'][] = $arregloError;
     
-    // Convertir el array de clientes a JSON
-    $json_clientes = json_encode($arregloActualizados);
+  
     
     $fila =$filasDeHojaExcel;
  

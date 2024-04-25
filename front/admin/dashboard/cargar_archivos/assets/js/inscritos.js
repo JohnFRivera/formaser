@@ -71,6 +71,9 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
           mensajeError.innerHTML = aler;
         }
         // ------
+      })
+      .catch((error) => {
+        console.log(error);
       });
   } else {
     // aca si no a cargado el archivo le envio un Alerta
