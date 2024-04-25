@@ -18,7 +18,7 @@ document
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Enviar el formulario usando Fetch
-      fetch(`${window.location.origin}/back/modulos/leerExcel.php`, {
+      fetch(`${window.location.origin}/formaser/back/modulos/leerExcel.php`, {
         method: "POST",
         body: formData,
       })
@@ -93,7 +93,7 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
     let formData = new FormData();
     formData.append("archivotExcel", file);
     // Enviar el formulario usando Fetch
-    fetch(`${window.location.origin}/back/modulos/leerExcel.php`, {
+    fetch(`${window.location.origin}/formaser/back/modulos/leerExcel.php`, {
       method: "POST",
       body: formData,
     })
@@ -172,7 +172,7 @@ document
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Enviar el formulario usando Fetch
-      fetch(`${window.location.origin}/back/modulos/leerExcel.php`, {
+      fetch(`${window.location.origin}/formaser/back/modulos/leerExcel.php`, {
         method: "POST",
         body: formData,
       })

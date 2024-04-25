@@ -1,4 +1,5 @@
 new DataTable("#dataTableAgregados", {
+  response: true,
   language: {
     entries: {
       _: "Archivos",
@@ -11,6 +12,7 @@ new DataTable("#dataTableAgregados", {
   order: [[1, "asc"]],
 });
 new DataTable("#dataTableNoAgregados", {
+  response: true,
   language: {
     entries: {
       _: "Archivos",
