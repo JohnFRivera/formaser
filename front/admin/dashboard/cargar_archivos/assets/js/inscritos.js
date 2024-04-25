@@ -4,24 +4,13 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
   let tblInscritosNoAgregados = document.getElementById(
     "tblInscritosNoAgregados"
   );
-<<<<<<< HEAD
-  const fileInput = document.getElementById("inpArchivoInscritos");
-  const file = fileInput.files[0]; // Obtener el primer archivo seleccionado
-  console.log(file);
-
-=======
   var inputFile = document.getElementById("inpArchivoInscritos");
   const file = inputFile.files[0]; // Obtener el primer archivo seleccionado
   console.log(file);
->>>>>>> 4aad4db03dc06d15c1ecd5e8f8f292d415668d53
   if (file != undefined) {
     // Crear un objeto FormData y agregar el archivo a él
     let formData = new FormData();
     formData.append("archivotExcel", file);
-<<<<<<< HEAD
-=======
-
->>>>>>> 4aad4db03dc06d15c1ecd5e8f8f292d415668d53
     // Enviar el formulario usando Fetch
     fetch(
       `${window.location.origin}/formaser/back/modulos/segundoFormato.php`,
@@ -32,59 +21,6 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
     )
       .then((response) => response.json())
       .then((data) => {
-<<<<<<< HEAD
-        console.log(data);
-        // verifico primero si en el JSON hay un Objeto llamdos "error" si lo hay es porque hubo un error y no se puede ejecutar
-        if (data.error != undefined) {
-          console.log(data.error);
-          // aca si no a cragado el archivo le envio un Alerta
-          let alerta = `
-                      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                          <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
-                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>`;
-          mensajeError.innerHTML = alerta;
-        } else {
-          if (data.updateExito != undefined) {
-            console.log(data.registrado);
-            // aca voy agregarlos a la tabla registrados
-            data.registrado.forEach((element) => {
-              let descrip = `
-                              <tr>
-                                  <td>${element.tipoDocumento}: ${element.cedula}</td>
-                                  <td>${element.numeroFicha}</td>
-                                  <td>${element.codigoEmpresa}</td>
-                                  <td>${element.razones}</td>
-                              </tr>
-                              `;
-              tblInscritosAgregados.innerHTML += descrip;
-            });
-            // -------------------------
-          }
-          if (data.updateDenegado != undefined) {
-            console.log(data.no_aceptados);
-            // aca voy agregar a la tabla los que no se registraron
-            data.updateDenegado.forEach((element) => {
-              let descrip = `
-                              <tr>
-                                  <td>${element.cedula}</td>
-                                  <td>${element.codigoFicha}</td>
-                                  <td>${element.codigoEmpresa}</td>
-                                  <td>${element.descripcion}</td>
-                              </tr>
-                              `;
-
-              tblInscritosNoAgregados.innerHTML += descrip;
-            });
-            // -------------------------
-          }
-          // -------------------------------
-        }
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
-=======
         if (data.error == undefined) {
           // aca voy a verificar si hay denegados y si hay recorrer los denegados para poner en la tabla
           console.log(data);
@@ -140,6 +76,5 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>`;
     mensajeError.innerHTML = aler;
->>>>>>> 4aad4db03dc06d15c1ecd5e8f8f292d415668d53
   }
 });
