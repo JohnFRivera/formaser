@@ -27,6 +27,8 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
           if (data.updateDenegado != undefined) {
             // aca voy a colocar los titulos de la tabla denegados
             // -----
+            tblInscritosNoAgregados.innerHTML = "";
+
             data.updateDenegado.forEach((subArray) => {
               console.log(subArray[0].cedula);
               let descri = `
@@ -44,6 +46,8 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
           // aca voy a verificar los que fueron actualizados con exito y los que fueron actualizados se mostraran en la tabla
           if (data.updateExito != undefined) {
             // -----
+            tblInscritosAgregados.innerHTML = "";
+
             data.updateExito.forEach((subArray) => {
               console.log(subArray[0].cedula);
 
@@ -61,7 +65,7 @@ document.getElementById("btnSubirInscritos").addEventListener("click", () => {
         } else {
           let aler = `
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hubo un error!</strong>${data.error[0].descripcion}.
+            <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>`;
           mensajeError.innerHTML = aler;
