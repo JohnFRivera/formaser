@@ -2,26 +2,30 @@ new DataTable("#dataTableAgregados", {
   response: true,
   language: {
     entries: {
-      _: "Archivos",
-      1: "Archivo",
+      _: "Aprendices",
+      1: "Aprendices",
     },
-    info: "Mostrar _START_ a _END_ de _TOTAL_ _ENTRIES_",
+    emptyTable: "No hay ningún dato.",
+    info: "_START_ a _END_ de _TOTAL_ _ENTRIES_ Agregados",
+    infoEmpty: "0 Aprendices Agregados",
   },
   lengthMenu: [5, 10, 20, 30],
-  columnDefs: [{ orderable: false, targets: 3 }],
+  columnDefs: [{ orderable: false, targets: 4 }],
   order: [[1, "asc"]],
 });
 new DataTable("#dataTableNoAgregados", {
   response: true,
   language: {
     entries: {
-      _: "Archivos",
-      1: "Archivo",
+      _: "Aprendices",
+      1: "Aprendices",
     },
-    info: "Mostrar _START_ a _END_ de _TOTAL_ _ENTRIES_",
+    emptyTable: "No hay ningún dato.",
+    info: "_START_ a _END_ de _TOTAL_ _ENTRIES_ NO Agregados",
+    infoEmpty: "0 Aprendices NO Agregados",
   },
   lengthMenu: [5, 10, 20, 30],
-  columnDefs: [{ orderable: false, targets: 3 }],
+  columnDefs: [{ orderable: false, targets: 4 }],
   order: [[1, "asc"]],
 });
 

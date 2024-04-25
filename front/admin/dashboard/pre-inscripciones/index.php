@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Instituto Formaser | Usuarios</title>
+    <title>Instituto Formaser | Pre-inscripciones</title>
 </head>
 
 <body>
@@ -26,25 +26,25 @@
                 <div class="row p-3 p-md-4">
                     <h2>
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="mb-2" viewBox="0 0 16 16">
-                            <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
                         </svg>
-                        Usuarios
+                        Matriculas
                     </h2>
-                    <hr>
+                    <hr class="mb-5">
                     <!--* CONTENIDO -->
                     <div class="row">
-                    <div class="col">
+                        <div class="col">
                             <div class="table-responsive pb-5">
                                 <table id="dataTable" class="table table-hover table-striped" style="width:100%">
                                     <thead class="fs-5">
                                         <tr>
                                             <th>Identificación</th>
-                                            <th>Nombres</th>
-                                            <th>Apellidos</th>
-                                            <th>Correo</th>
+                                            <th>Ficha</th>
+                                            <th>Código Empresa</th>
+                                            <th>Descripción</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tblUsuarios">
+                                    <tbody id="tblPreinscritos">
                                     </tbody>
                                 </table>
                             </div>
@@ -68,7 +68,7 @@
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
     <script src="../assets/js/configTables.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
