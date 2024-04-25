@@ -233,16 +233,5 @@ else{
     return $aprendiz_denegado;
 
 }
-
-
-
-   
-
-
 }
-
-
-
-
-
 ?>
