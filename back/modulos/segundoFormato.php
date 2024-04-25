@@ -79,29 +79,53 @@ if($hojaExcel->getCell('A3') != "" && $hojaExcel->getCell('A4') != "" && $hojaEx
 
 if($cedula != "" && $codigoFicha != "" && $nombre != "" && $estado != "")
 {
-    // Dividir la cadena en un array usando la coma como separador
-$arrayResultado = explode('-', $cedula);
-$cedulaEnLimpio = trim($arrayResultado[1]);
-
-
-    // llamo la funcion le envio los datos para que inserte el nombre del programa, nombre Aprendiz y estado
-    // si da true es porque si existe en la base de datos y se Inserte con exito los datos 
-    // si da false es porque no esta en la base de datos 
-
-    $data = array(actulizarDatos($codigoFicha,$cedulaEnLimpio,$prgramaFormacion,$nombre));
-
-if($data[0]["status"])
+    if($estado == "Preinscrito")
 {
-    $arregloActualizados['updateExito'][] = $data;
 
+   // Dividir la cadena en un array usando la coma como separador
+   $arrayResultado = explode('-', $cedula);
+   $cedulaEnLimpio = trim($arrayResultado[1]);
+   
+   
+       // llamo la funcion le envio los datos para que inserte el nombre del programa, nombre Aprendiz y estado
+       // si da true es porque si existe en la base de datos y se Inserte con exito los datos 
+       // si da false es porque no esta en la base de datos 
+   
+       $data = array(actulizarDatos($codigoFicha,$cedulaEnLimpio,$prgramaFormacion,$nombre));
+   
+   if($data[0]["status"])
+   {
+       $arregloActualizados['updateExito'][] = $data;
+   
+   
+   }
+   else{
+       $arregloActualizados['updateDenegado'][] = $data;
+   
+   }
+   
+   
 
 }
 else{
-    $arregloActualizados['updateDenegado'][] = $data;
+
+     // aca voy a guardar el error del tipo de archivo       
+     $arregloError = array(
+        'status' =>"404",
+        'descripcion'=>"formato Equivocado ",
+        
+    );
+    // aca lo agrego al array principal
+    $arregloActualizados['error'][] = $arregloError;
+    
+    // Convertir el array de clientes a JSON
+    $json_clientes = json_encode($arregloActualizados);
+    
+    $fila =$filasDeHojaExcel;
+ 
 
 }
-
-
+ 
 
 
 }

@@ -161,6 +161,18 @@ $arregloYaAgregados['no_aceptados'][] = $aprendiz_no_registrado;
 else
 {
    // echo "este formato no es ";
+
+
+   $arregloError = array(
+    'status' =>"404",
+    'descripcion'=>"formato Equivocado ",
+    
+);
+// aca lo agrego al array principal
+$arregloYaAgregados['error'][] = $arregloError;
+
+
+
 }
 
 // ----------------------------------------------------------

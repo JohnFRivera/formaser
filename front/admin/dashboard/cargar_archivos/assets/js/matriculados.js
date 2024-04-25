@@ -26,33 +26,46 @@ document
         .then((response) => response.json())
         .then((data) => {
           // aca voy a verificar si hay denegados y si hay recorrer los denegados para poner en la tabla
-          console.log(data.updateExito);
-          if (data.updateDenegado != undefined) {
-            // -----
-            data.updateDenegado.forEach((subArray) => {
-              console.log(subArray[0].cedula);
-              let descri = `
-              <tr>
-                <td>${subArray[0].cedula}</td>
-                <td>${subArray[0].nombre}</td>
-                <td>${subArray[0].codigoFicha}</td>
-                <td>${subArray[0].estado}</td>
-                <td>${subArray[0].descripcion}</td>
-              </tr>`;
-              tblMatriculadosNoAgregados.innerHTML += descri;
-            });
+          console.log(data);
+
+          if (data.error == undefined) {
+            if (data.updateDenegado != undefined) {
+              // -----
+              tblMatriculadosNoAgregados.innerHTML = "";
+              data.updateDenegado.forEach((subArray) => {
+                console.log(subArray[0].cedula);
+                let descri = `
+      <tr>
+        <td>${subArray[0].cedula}</td>
+        <td>${subArray[0].nombre}</td>
+        <td>${subArray[0].codigoFicha}</td>
+        <td>${subArray[0].estado}</td>
+        <td>${subArray[0].descripcion}</td>
+      </tr>`;
+                tblMatriculadosNoAgregados.innerHTML += descri;
+              });
+            }
+            // -------
+            // aca voy a verificar los que fueron actualizados con exito y los que fueron actualizados se mostraran en la tabla
+            if (data.updateExito != undefined) {
+              // -----
+              tblMatriculadosAgregados.innerHTML = "";
+
+              data.updateExito.forEach((subArray) => {
+                console.log(subArray[0].cedula);
+                let descri = `<tr> <td>${subArray[0].cedula} </td> <td>${subArray[0].nombre} </td> <td>${subArray[0].codigoFicha} </td> <td>${subArray[0].estado} </td> <td>${subArray[0].descripcion} </td> </tr>`;
+                tblMatriculadosAgregados.innerHTML += descri;
+              });
+            }
+            // ------
+          } else {
+            let aler = `
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>`;
+            mensajeError.innerHTML = aler;
           }
-          // -------
-          // aca voy a verificar los que fueron actualizados con exito y los que fueron actualizados se mostraran en la tabla
-          if (data.updateExito != undefined) {
-            // -----
-            data.updateExito.forEach((subArray) => {
-              console.log(subArray[0].cedula);
-              let descri = `<tr> <td>${subArray[0].cedula} </td> <td>${subArray[0].nombre} </td> <td>${subArray[0].codigoFicha} </td> <td>${subArray[0].estado} </td> <td>${subArray[0].descripcion} </td> </tr>`;
-              tblMatriculadosAgregados.innerHTML += descri;
-            });
-          }
-          // ------
         });
     } else {
       // aca si no a cargado el archivo le envio un Alerta
