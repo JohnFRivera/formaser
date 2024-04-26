@@ -1,5 +1,4 @@
 function getPageName() {
-    console.log(document.title);
     return document.title.split('|')[1].trimStart();
 }
 //* NAVBAR
