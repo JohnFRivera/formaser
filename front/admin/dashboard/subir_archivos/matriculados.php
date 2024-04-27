@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Instituto Formaser | Cargar Archivos</title>
+    <title>Instituto Formaser | Subir Archivos</title>
 </head>
 
 <body>
@@ -66,7 +66,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="inpArchivoPreinscrito"
-                                                    class="btn border rounded-4 text-secondary py-1 mb-2 shadow-sm w-100">
+                                                    class="btn border rounded-4 text-secondary py-1 my-2 shadow-sm w-100">
                                                     <input type="file" class="visually-hidden" name="archivo-inscrito"
                                                         id="inpArchivoPreinscrito"
                                                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -110,6 +110,15 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
+    <script src="../assets/js/dataTables.responsive.js"></script>
+    <script src="../assets/js/responsive.dataTables.js"></script>
+    <script src="../assets/js/dataTables.buttons.js"></script>
+    <script src="../assets/js/buttons.dataTables.js"></script>
+    <script src="../assets/js/jszip.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/buttons.html5.min.js"></script>
+    <script src="../assets/js/buttons.print.min.js"></script>
     <script type="module" src="./js/matriculados.js"></script>
 </body>
 

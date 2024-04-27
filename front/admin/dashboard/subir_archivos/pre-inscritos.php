@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Instituto Formaser | Cargar Archivos</title>
+    <title>Instituto Formaser | Subir Archivos</title>
 </head>
 
 <body>
@@ -17,7 +17,6 @@
         <div class="row bg-body-secondary">
             <!-- ASIDE -->
             <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
-            <!--FIN ASIDE-->
             <!--SECCIÓN-->
             <section class="col">
                 <div class="row p-0 p-md-4 h-main">
