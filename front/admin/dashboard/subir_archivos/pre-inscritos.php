@@ -20,7 +20,7 @@
             <!--FIN ASIDE-->
             <!--SECCIÓN-->
             <section class="col">
-                <div class="row p-4 h-main">
+                <div class="row p-0 p-md-4 h-main">
                     <div class="col">
                         <!--LOGO-->
                         <div class="row bg-body py-3 mb-3 rounded-3 shadow-sm">
@@ -57,7 +57,7 @@
                             <!--FUNCIONES-->
                             <div class="col">
                                 <div class="row bg-body shadow-sm rounded-bottom-4">
-                                    <div class="col p-4">
+                                    <div class="col p-1 p-md-4">
                                         <!--MENSAJE DE ERROR-->
                                         <div class="row">
                                             <span id="lblError"></span>
@@ -66,7 +66,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <label for="inputFile"
-                                                    class="btn border rounded-4 text-secondary py-1 mb-2 shadow-sm w-100">
+                                                    class="btn border rounded-4 text-secondary py-1 my-2 shadow-sm w-100">
                                                     <input type="file" class="visually-hidden" name="archivo-inscrito"
                                                         id="inputFile"
                                                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -110,6 +110,15 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
+    <script src="../assets/js/dataTables.responsive.js"></script>
+    <script src="../assets/js/responsive.dataTables.js"></script>
+    <script src="../assets/js/dataTables.buttons.js"></script>
+    <script src="../assets/js/buttons.dataTables.js"></script>
+    <script src="../assets/js/jszip.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/buttons.html5.min.js"></script>
+    <script src="../assets/js/buttons.print.min.js"></script>
     <script type="module" src="./js/pre-inscritos.js"></script>
 </body>
 

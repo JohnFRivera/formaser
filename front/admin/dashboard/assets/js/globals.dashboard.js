@@ -18,11 +18,11 @@ function setAsideBoard() {
   asideBoard.innerHTML = `
     <ul class="nav nav-fill d-flex flex-nowrap flex-sm-column overflow-x-auto">
         <li class="nav-item">
-            <a class="nav-link bg-body-secondary ps-3 h-100 text-nowrap d-flex align-items-center btn-aside" href="${folderOrigin}/cargar_archivos/pre-inscritos.php">
+            <a class="nav-link bg-body-secondary ps-3 h-100 text-nowrap d-flex align-items-center btn-aside" href="${folderOrigin}/subir_archivos/pre-inscritos.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-3" viewBox="0 0 16 16">
                     <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M6.354 9.854a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 8.707V12.5a.5.5 0 0 1-1 0V8.707z"/>
                 </svg>
-                CARGAR ARCHIVOS
+                SUBIR ARCHIVOS
             </a>
         </li>
         <li class="nav-item">

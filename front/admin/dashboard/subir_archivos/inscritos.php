@@ -105,13 +105,12 @@
     </footer>
     <!--* FIN FOOTER -->
 
-    <script src="./js/pre-inscritos.js"></script>
     <script type="module" src="../assets/js/globals.dashboard.js"></script>
     <script src="../assets/js/jquery-3.7.1.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/inscritos.js"></script>
 </body>
 
 </html>

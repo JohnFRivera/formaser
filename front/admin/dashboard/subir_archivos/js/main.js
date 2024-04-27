@@ -68,8 +68,7 @@ const CreateTableAgregados = () => {
                   </svg>
               </h2>
               <div class="table-responsive mb-2">
-                  <table id="dtAgregados"
-                      class="table table-hover table-striped" style="width:100%">
+                  <table class="table table-hover table-striped" style="width:100%">
                       <thead class="fs-5" id="theadAgregados"></thead>
                       <tbody id="tbodyAgregados"></tbody>
                   </table>
@@ -83,7 +82,7 @@ const CreateTableDenegados = () => {
   document.getElementById("sectionTables").innerHTML += `
   <div class="row mb-2">
       <div class="col">
-          <div class="bg-danger bg-opacity-25 border border-secondary-subtle rounded-4 p-3 shadow">
+          <div class="bg-danger bg-opacity-10 border border-secondary-subtle rounded-4 p-3 shadow">
               <h2
                   class="d-flex align-items-center justify-content-center text-danger opacity-75 fw-bold mb-0">
                   Denegados
@@ -97,8 +96,7 @@ const CreateTableDenegados = () => {
                   </svg>
               </h2>
               <div class="table-responsive mb-2">
-                  <table id="dtDenegados"
-                      class="table table-light table-hover table-striped" style="width:100%">
+                  <table class="table table-hover table-striped" style="width:100%">
                       <thead class="fs-5" id="theadDenegados"></thead>
                       <tbody id="tbodyDenegados">
                       </tbody>
