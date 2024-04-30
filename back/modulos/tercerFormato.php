@@ -175,12 +175,15 @@ if(mysqli_fetch_row($consultaSiExiste) > 0)
 
 if(mysqli_fetch_row($consulta) == 0)
 {
+    
+    
+    $fecha_actual = date("Y-m-d"); // captura la fecha actual 
 
  // aca hago ya la actulizacion del aprendiz
 
  $mysql = new MYSQL();
 
- $mysql->efectuarConsulta("UPDATE bd_formaser.inscripcionaprendiz1 SET nombreCompleto ='$nombreAprendiz', nombrePrograma= '$nombrePrograma', estado='Matriculado' WHERE cedula =$cedulaPaciente AND numeroFicha = $numeroFicha AND estado='Preinscrito' ");
+ $mysql->efectuarConsulta("UPDATE bd_formaser.inscripcionaprendiz1 SET nombreCompleto ='$nombreAprendiz', nombrePrograma= '$nombrePrograma', estado='Matriculado', fechaMatricula ='$fecha_actual'  WHERE cedula =$cedulaPaciente AND numeroFicha = $numeroFicha AND estado='Preinscrito' ");
 // Obtener el número de filas afectadas por la consulta de actualización
 $numFilasAfectadas = $mysql->filasAfectadas();
 $mysql->desconectar();
@@ -207,6 +210,29 @@ $aprendiz_actualizadoExito = array(
 $arregloDatos['updateExito'][] = $aprendiz_actualizadoExito;
 
 return $aprendiz_actualizadoExito;
+}
+else{
+
+
+    $aprendiz_denegado = array(
+        'cedula' =>"$cedulaPaciente",
+        'nombre' => "$nombreAprendiz",
+        'codigoFicha' => "$numeroFicha",
+        'estado'=> "Preinscrito",
+        'nombrePrograma'=> "$nombrePrograma",
+        'descripcion'=> "este Aprendiz No esta Preinscrito",
+        'status'=>false
+    
+    
+    
+        
+    
+    
+    );
+    // aca lo agrego al array principal
+    $arregloDatos['updateDenegado'][] = $aprendiz_denegado;
+    return $aprendiz_denegado;
+
 }
 
 
@@ -250,7 +276,7 @@ else{
         'nombre' => "$nombreAprendiz",
         'codigoFicha' => "$numeroFicha",
         'estado'=> "Null",
-        'nombrePrograma'=> $nombrePrograma,
+        'nombrePrograma'=> "$nombrePrograma",
         'descripcion'=> "este Aprendiz no a pasado por el primer formato",
         'status'=>false
 

@@ -58,6 +58,19 @@ function importarDatos($archivoExcel)
    // echo "Total de filas: " . $filasDeHojaExcel . "<br>";
    
 
+   // aca verifica que si sea el formato de preinscritos
+
+   $formatoValido = false;
+   for ($fila = 7; $fila <= $filasDeHojaExcel; $fila++) {
+    $estado = $hojaExcel->getCell('C'.$fila);
+    $estado= trim($estado);
+    if($estado == "Preinscrito")
+    {
+        $formatoValido = true;
+    }
+
+   }
+
 
 // voy a verificar que sea el mismo formato excel por si depronto sube uno que no era
 if($hojaExcel->getCell('A3') != "" && $hojaExcel->getCell('A4') != "" && $hojaExcel->getCell('A6') != "" && $hojaExcel->getCell('B6') != "" && $hojaExcel->getCell('C6') != "" && $hojaExcel->getCell('B3') != "" && $hojaExcel->getCell('B4') != "")
@@ -80,6 +93,11 @@ if($hojaExcel->getCell('A3') != "" && $hojaExcel->getCell('A4') != "" && $hojaEx
 
 if($cedula != "" && $codigoFicha != "" && $nombre != "" && $estado != "")
 {
+
+    if($formatoValido == true)
+{
+
+
     // aca voy a eliminar los espacios si depronto tiene 
     $estado = trim($estado);
     $arrayResultado = explode('-', $cedula);
@@ -125,7 +143,22 @@ else{
 
 }
  
+}
+else{
+    
+      // aca voy a guardar el error de que no es el tipo de archivo      
+      $arregloError = array(
+        'status' =>"404",
+        'descripcion'=>"TIPO DE FORMATO EQUIVOCADO",
+        
+      );
+    // aca lo agrego al array principal
+    $arregloActualizados['error'][] = $arregloError;
+    
+   
 
+    $fila =$filasDeHojaExcel;
+}
 
 }
 // ----------------------------------------
