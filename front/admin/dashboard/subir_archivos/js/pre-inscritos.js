@@ -25,20 +25,20 @@ const dtOption = {
   },
   lengthMenu: [10, 20, 30, 40],
   columnDefs: [
-    { targets: 0, width: "6%", className: 'text-end' },
-    { targets: 1, width: "13%", className: 'text-start' },
-    { targets: 2, width: "13%", className: 'text-start' },
-    { targets: 3, width: "13%", className: 'text-start' },
-    { targets: 4, className: 'text-center', orderable: false },
+    { targets: 0, width: "6%", className: "text-end" },
+    { targets: 1, width: "13%", className: "text-start" },
+    { targets: 2, width: "13%", className: "text-start" },
+    { targets: 3, width: "13%", className: "text-start" },
+    { targets: 4, className: "text-center", orderable: false },
   ],
   order: [[0, "asc"]],
   layout: {
     topStart: "buttons",
     top2Start: {
       pageLength: {
-        lengthMenu: [10, 25, 50, 75, 100]
-      }
-    }
+        lengthMenu: [10, 25, 50, 75, 100],
+      },
+    },
   },
   buttons: [
     {
@@ -50,7 +50,7 @@ const dtOption = {
       </svg>
       Exportar Excel
       `,
-      },
+    },
     {
       extend: "pdf",
       className: "btn btn-danger",
@@ -60,7 +60,7 @@ const dtOption = {
       </svg>
       Exportar PDF
       `,
-      },
+    },
   ],
 };
 
@@ -165,6 +165,14 @@ document.querySelector('input[type="file"]').addEventListener("input", () => {
         })
         .catch((error) => {
           console.log("Error:", error);
+
+          Swal.fire({
+            title: "Hubo un Error en el Formato",
+            text: "Verificar Formato",
+            icon: "warning",
+          }).then(() => {
+            location.reload();
+          });
         });
     }
   });

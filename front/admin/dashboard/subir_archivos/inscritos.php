@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Instituto Formaser | Subir Archivos</title>
+    <style>
+        .custom-modal-bg {
+            background-color: #F7D8D8;
+        }
+    </style>
 </head>
 
 <body>
@@ -105,6 +110,55 @@
     </footer>
     <!--* FIN FOOTER -->
 
+
+
+
+    <!-- voy a colocar el modal aca -->
+    <div class="modal fade" id="modalRestrincion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content custom-modal-bg"> <!-- Cambia bg-primary por el color que desees -->
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-light text-black" id="tituloModal">Hector Fabio Restrepo Soto</h1>
+        <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div  class="descripcion">
+            <p>Este Aprendiz ya hizo este mismo Curos en el Año 2021</p>
+        </div>
+        <form>
+        <div class="form-floating mb-3">
+            <input id="inputCedulaAprendiz"  type="text" hidden> <!-- este input lo voy a ocultar porque solo es para que guarde la cedula del aprendiz para poderlo actualizar -->
+  <input type="email" class="form-control" id="inputNombrePrograma" placeholder="name@example.com" disabled>
+  <label for="floatingInput">Nombre Programa</label>
+</div>
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="inputNumeroFicha" placeholder="name@example.com" disabled>
+  <label for="floatingInput">Numero De Ficha</label>
+</div>
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="inpuFecha" placeholder="name@example.com" disabled>
+  <label for="floatingInput">Fecha de Matricula</label>
+</div>
+        </form>
+
+        <div class="contenedorConfirmacionDeAceptacion">
+
+
+
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     <script type="module" src="../assets/js/globals.dashboard.js"></script>
     <script src="../assets/js/jquery-3.7.1.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
@@ -120,6 +174,7 @@
     <script src="../assets/js/buttons.html5.min.js"></script>
     <script src="../assets/js/buttons.print.min.js"></script>
     <script type="module" src="./js/inscritos.js"></script>
+    <script src="./js/funcionRestri.js"></script>
 </body>
 
 </html>

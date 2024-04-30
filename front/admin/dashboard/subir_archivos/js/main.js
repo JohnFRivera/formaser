@@ -108,4 +108,9 @@ const CreateTableDenegados = () => {
   `;
 };
 
-export { SetInpFileContent, SetColumns, CreateTableAgregados, CreateTableDenegados };
+export {
+  SetInpFileContent,
+  SetColumns,
+  CreateTableAgregados,
+  CreateTableDenegados,
+};

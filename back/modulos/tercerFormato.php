@@ -191,10 +191,10 @@ if($numFilasAfectadas > 0)
 // aca guardo en un arreglo los aprendices que se actulizo con exito
 $aprendiz_actualizadoExito = array(
     'cedula' =>"$cedulaPaciente",
-    'nombre' => "$nombrePrograma",
+    'nombre' => "$nombreAprendiz",
     'codigoFicha' => "$numeroFicha",
     'estado'=> "Matriculado",
-    'nombrePrograma'=> $nombrePrograma,
+    'nombrePrograma'=> "$nombrePrograma",
     'descripcion'=> "Actualizado con exito",
     'status'=>true
 
@@ -223,7 +223,7 @@ $aprendiz_denegado = array(
     'nombre' => "$nombreAprendiz",
     'codigoFicha' => "$numeroFicha",
     'estado'=> "Preinscrito",
-    'nombrePrograma'=> $nombrePrograma,
+    'nombrePrograma'=> "$nombrePrograma",
     'descripcion'=> "este Aprendiz ya esta Matriculado",
     'status'=>false
 

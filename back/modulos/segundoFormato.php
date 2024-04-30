@@ -80,7 +80,13 @@ if($hojaExcel->getCell('A3') != "" && $hojaExcel->getCell('A4') != "" && $hojaEx
 
 if($cedula != "" && $codigoFicha != "" && $nombre != "" && $estado != "")
 {
-    if($estado == "Preinscrito" )
+    // aca voy a eliminar los espacios si depronto tiene 
+    $estado = trim($estado);
+    $arrayResultado = explode('-', $cedula);
+    $cedulaEnLimpio = trim($arrayResultado[1]);
+    // aca voy a ejecutar la funcion donde va averificar si ese aprendiz se encuentra cursando otro curso en el año vigente 
+    $verificacion = array(verificandoCursoAnoVigente($cedulaEnLimpio,$prgramaFormacion,$estado,$codigoFicha,$nombre));
+    if($verificacion[0] == false)
 {
 
    // Dividir la cadena en un array usando la coma como separador
@@ -110,18 +116,11 @@ if($cedula != "" && $codigoFicha != "" && $nombre != "" && $estado != "")
 }
 else{
 
-     // aca voy a guardar el error del tipo de archivo       
-     $arregloError = array(
-        'status' =>"404",
-        'descripcion'=>"formato Equivocado ",
-        
-    );
-    // aca lo agrego al array principal
-    $arregloActualizados['error'][] = $arregloError;
+    $arregloActualizados['updateDenegado'][] = $verificacion;
+
+
+     
     
-  
-    
-    $fila =$filasDeHojaExcel;
  
 
 }
@@ -183,12 +182,16 @@ if($numFilasAfectadas > 0)
 // aca guardo en un arreglo los aprendices que se actulizo con exito
 $aprendiz_actualizadoExito = array(
     'cedula' =>"$cedulaPaciente",
-    'nombre' => "$nombrePrograma",
+    'nombre' => "$nombreAprendiz",
     'codigoFicha' => "$numeroFicha",
     'estado'=> "Preinscrito",
-    'nombrePrograma'=> $nombrePrograma,
+    'nombrePrograma'=> "$nombrePrograma",
     'descripcion'=> "Actualizado con exito",
-    'status'=>true
+    'status'=>true,
+    'descripcionCursos' => null,
+    'cursoRepetido'=> null
+
+    
 
 
     
@@ -215,9 +218,13 @@ $aprendiz_denegado = array(
     'nombre' => "$nombreAprendiz",
     'codigoFicha' => "$numeroFicha",
     'estado'=> "Preinscrito",
-    'nombrePrograma'=> $nombrePrograma,
+    'nombrePrograma'=> "$nombrePrograma",
     'descripcion'=> "este Aprendiz ya esta Preinscrito",
-    'status'=>false
+    'status'=>false,
+    'descripcionCursos' => null,
+    'cursoRepetido'=> null
+
+
 
 
 
@@ -244,7 +251,11 @@ else{
         'estado'=> "Null",
         'nombrePrograma'=> $nombrePrograma,
         'descripcion'=> "este Aprendiz no a pasado por el primer formato",
-        'status'=>false
+        'status'=>false,
+        'descripcionCursos' => null,
+        'cursoRepetido'=> null
+
+
 
 
 
@@ -258,4 +269,154 @@ else{
 
 }
 }
+
+
+// aca voy hacer la funcion donde va verificar si esta cursando otro curso en este mismo año o si esta en otro curso diferente
+
+function verificandoCursoAnoVigente($cedulaAprendiz,$nombreCurso,$estadoCurso,$fichaAprendi,$nombreAprendiz)
+{
+
+// voy primero a verificar que no alla ya hecho el mismo curso
+
+$sql = new MYSQL();
+
+$programa = trim($nombreCurso);
+    $consultaVerificacion = $sql->efectuarConsulta("SELECT * from inscripcionaprendiz1 WHERE cedula= $cedulaAprendiz AND nombrePrograma ='$programa' AND estado = 'Matriculado';");
+
+    $sql->desconectar();
+    $tamaño1 = mysqli_num_rows($consultaVerificacion);
+    $arregloDatos1 = array();
+    if ($tamaño1 > 0) {
+
+         //  ACA LLAMO LA FUNCION PARA ACTUALIZAR SOLO EL NOMBRE EN LA BASE DE DATOS 
+
+         actualizarDatosAprendiz($nombreCurso,$cedulaAprendiz,$fichaAprendi);
+
+         // -------------------------
+
+        $descripcionCursos = array();
+    
+        while ($fila = mysqli_fetch_array($consultaVerificacion)) {
+            $nombrePrograma = $fila['nombrePrograma'];
+            $fecha = $fila['fechaMatricula'];
+            $ficha = $fila['numeroFicha'];
+    
+            // Agregar datos al array $descripcionCursos
+            $descripcionCursos[] = array(
+                'fichaPrograma' => $ficha,
+                'nombrePrograma' => $nombrePrograma,
+                'fecha' => $fecha
+            );
+        }
+    
+        $arregloDatos1 = array(
+            'cedula' =>"$cedulaAprendiz",
+            'nombre' => "$nombreAprendiz",
+            'codigoFicha' => "$fichaAprendi",
+            'estado'=> null, // aca le voy a colocar Null porque en la base de datos no se actualizo
+            'nombrePrograma'=> "$nombreCurso",
+            'descripcion'=> null,
+            'status'=>false,
+            'descripcionCursos' => null,
+            'cursoRepetido'=> $descripcionCursos
+        );
+    
+        // aca lo agrego al array principal
+        return $arregloDatos1;
+
+
+
+
+
+
+
+
+    }
+    else{
+
+
+// aca voy a verificar que no se encuentre en un curso en el año vigente
+
+
+
+        $mysql = new MYSQL();
+        // obtengo el año actual para verificar si el aprendiz se encuentra inscripto en este mismo programa
+       $ano_actual = date('Y');
+    
+        $consulta = $mysql->efectuarConsulta("SELECT * from inscripcionaprendiz1 WHERE cedula= $cedulaAprendiz AND fechaMatricula LIKE '$ano_actual%' AND estado = 'Matriculado';");
+    
+        $mysql->desconectar();
+        $tamaño = mysqli_num_rows($consulta);
+        $arregloDatos = array();
+        if ($tamaño > 0) {
+
+            //  ACA LLAMO LA FUNCION PARA ACTUALIZAR SOLO EL NOMBRE EN LA BASE DE DATOS 
+
+            actualizarDatosAprendiz($nombreCurso,$cedulaAprendiz,$fichaAprendi);
+
+            // -------------------------
+            $descripcionCursos = array();
+        
+            while ($fila = mysqli_fetch_array($consulta)) {
+                $nombrePrograma = $fila['nombrePrograma'];
+                $fecha = $fila['fechaMatricula'];
+                $ficha = $fila['numeroFicha'];
+        
+                // Agregar datos al array $descripcionCursos
+                $descripcionCursos[] = array(
+                    'fichaPrograma' => $ficha,
+                    'nombrePrograma' => $nombrePrograma,
+                    'fecha' => $fecha
+                );
+            }
+        
+            $arregloDatos = array(
+                'cedula' =>"$cedulaAprendiz",
+                'nombre' => "$nombreAprendiz",
+                'codigoFicha' => "$fichaAprendi",
+                'estado'=> null,
+                'nombrePrograma'=> "$nombreCurso",
+                'descripcion'=> null,
+                'status'=>false,
+                'descripcionCursos' => $descripcionCursos,
+                'cursoRepetido'=> null
+    
+            );
+        
+            // aca lo agrego al array principal
+            return $arregloDatos;
+        
+          
+        }
+        else{
+            return false;
+        }
+        
+
+
+    }
+
+
+
+
+    // ---------------------------------------------
+   
+
+
+}
+
+
+
+
+// funcion para actualizar solo el nombre de la empresa de los que no fueron Aceptados
+function actualizarDatosAprendiz($nombreEmpresa,$cedulaAprendiz,$numeroFicha)
+{
+
+$sql = new MYSQL();
+
+$sql->efectuarConsulta("UPDATE inscripcionaprendiz1 SET nombrePrograma ='$nombreEmpresa' WHERE cedula =$cedulaAprendiz AND numeroFicha = $numeroFicha ");
+$sql->desconectar();
+
+}
+
 ?>

@@ -1,11 +1,17 @@
-import { SetInpFileContent, CreateTableAgregados, CreateTableDenegados, SetColumns } from './main.js';
+import {
+  SetInpFileContent,
+  CreateTableAgregados,
+  CreateTableDenegados,
+  SetColumns,
+} from "./main.js";
 
 const Columns = [
-  'Identificación',
-  'Nombre',
-  'Ficha',
-  'Estado',
-  'Descripción'
+  "Identificación",
+  "Nombre",
+  "Nombre Empresa",
+  "Ficha",
+  "Estado",
+  "Descripción",
 ];
 const dtOption = {
   responsive: true,
@@ -20,20 +26,22 @@ const dtOption = {
   },
   lengthMenu: [10, 20, 30, 40],
   columnDefs: [
-    { targets: 0, width: "13%", className: 'text-start' },
-    { targets: 1, width: "25%", className: 'text-start' },
-    { targets: 2, width: "13%", className: 'text-start' },
-    { targets: 3, width: "8%", className: 'text-center text-primary' },
-    { targets: 4, className: 'text-center', orderable: false },
+    { targets: 0, width: "13%", className: "text-start" },
+    { targets: 1, width: "13%", className: "text-start" },
+
+    { targets: 2, width: "25%", className: "text-start" },
+    { targets: 3, width: "13%", className: "text-start" },
+    { targets: 4, width: "8%", className: "text-center text-primary" },
+    { targets: 5, className: "text-center", orderable: false },
   ],
   order: [[1, "asc"]],
   layout: {
     topStart: "buttons",
     top2Start: {
       pageLength: {
-        lengthMenu: [10, 25, 50, 75, 100]
-      }
-    }
+        lengthMenu: [10, 25, 50, 75, 100],
+      },
+    },
   },
   buttons: [
     {
@@ -45,7 +53,7 @@ const dtOption = {
       </svg>
       Exportar Excel
       `,
-      },
+    },
     {
       extend: "pdf",
       className: "btn btn-danger",
@@ -55,14 +63,14 @@ const dtOption = {
       </svg>
       Exportar PDF
       `,
-      },
+    },
   ],
 };
 
-document.querySelector('input[type="file"]').addEventListener('input', () => {
+document.querySelector('input[type="file"]').addEventListener("input", () => {
   SetInpFileContent();
   let btnSubir = document.getElementById("btnSubir");
-  btnSubir.addEventListener('click', () => {
+  btnSubir.addEventListener("click", () => {
     btnSubir.innerHTML = `
     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
     <span role="status">Cargando...</span>
@@ -74,10 +82,13 @@ document.querySelector('input[type="file"]').addEventListener('input', () => {
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Se envía el formulario usando Fetch
-      fetch(`${window.location.origin}/formaser/back/modulos/segundoFormato.php`, {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        `${window.location.origin}/formaser/back/modulos/segundoFormato.php`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           document.getElementById(`inpFileContent`).innerHTML = `
@@ -116,7 +127,7 @@ document.querySelector('input[type="file"]').addEventListener('input', () => {
               console.log(data.updateExito);
               // Se crea la tabla
               CreateTableAgregados();
-              SetColumns('theadAgregados', Columns);
+              SetColumns("theadAgregados", Columns);
               // Se agregan las filas
               var tbodyAgregados = document.getElementById("tbodyAgregados");
               tbodyAgregados.innerHTML = ""; //? SE VACÍA LA TABLA ANTES DE AGREGAR
@@ -126,13 +137,15 @@ document.querySelector('input[type="file"]').addEventListener('input', () => {
                 <tr>
                   <th scope="row">${subArray[0].cedula}</th>
                   <td>${subArray[0].nombre} </td>
+                  <td>${subArray[0].nombrePrograma} </td>
+
                   <td>${subArray[0].codigoFicha}</td>
                   <th>${subArray[0].estado}</th>
                   <td>${subArray[0].descripcion}</td>
                 </tr>
                 `;
               });
-            };
+            }
             /*
              !  SE AGREGAN LOS USUARIOS DENEGADOS
              */
@@ -140,29 +153,77 @@ document.querySelector('input[type="file"]').addEventListener('input', () => {
               console.log(data.updateDenegado);
               // Se crea la tabla
               CreateTableDenegados();
-              SetColumns('theadDenegados', Columns);
+              SetColumns("theadDenegados", Columns);
               // Se agregan las filas
               var tbodyDenegados = document.getElementById("tbodyDenegados");
               tbodyDenegados.innerHTML = ""; //? SE VACÍA LA TABLA ANTES DE AGREGAR
               data.updateDenegado.forEach((subArray) => {
-                console.log(subArray[0].cedula);
-                tbodyDenegados.innerHTML += `
-                <tr>
+                /*
+               !  VERIFICO SI EL OBJETO "cursoRepetido" Y "descripcionCursos" ESTEN NULL SI LO ESTAN ES PORQUE FUE DENEGADO PERO NO POR LAS RESTRINCIONES
+                */
+                console.log("verificacion de los objetos");
+
+                console.log(subArray[0].cursoRepetido);
+                console.log(subArray[0].descripcionCursos);
+
+                if (
+                  subArray[0].descripcionCursos == null &&
+                  subArray[0].cursoRepetido == null
+                ) {
+                  tbodyDenegados.innerHTML += `
+                  <tr>
                   <th scope="row">${subArray[0].cedula}</th>
-                  <td>${subArray[0].nombre}</td>
-                  <td>${subArray[0].codigoFicha}</td>
-                  <th>${subArray[0].estado}</th>
+                   <td>${subArray[0].nombre}</td>
+                    <td>${subArray[0].nombrePrograma} </td>
+
+                      <td>${subArray[0].codigoFicha}</td>
+                     <th>${subArray[0].estado}</th>
                   <td>${subArray[0].descripcion}</td>
-                </tr>
-                `;
+                     </tr>
+                      `;
+                } else if (
+                  subArray[0].cursoRepetido != null &&
+                  subArray[0].descripcionCursos == null
+                ) {
+                  // aca lo agrego pero con un boton
+                  tbodyDenegados.innerHTML += `
+                    <tr>
+                    <th scope="row">${subArray[0].cedula}</th>
+                     <td>${subArray[0].nombre}</td>
+                      <td>${subArray[0].nombrePrograma} </td>
+  
+                        <td>${subArray[0].codigoFicha}</td>
+                       <th>${subArray[0].estado}</th>
+                    <td><button onclick="func_datosMandarCursoRepetidoModal('${subArray[0].nombre}','${subArray[0].cursoRepetido[0].nombrePrograma}','${subArray[0].cursoRepetido[0].fichaPrograma}','${subArray[0].cursoRepetido[0].fecha}')"  data-bs-toggle="modal" data-bs-target="#modalRestrincion" data-bs-whatever="@getbootstrap" type="button" class="btn btn-danger">Curso Repetido</button></td>
+                       </tr>
+                        `;
+                } else if (
+                  subArray[0].descripcionCursos != null &&
+                  subArray[0].cursoRepetido == null
+                ) {
+                  tbodyDenegados.innerHTML += `
+                    <tr>
+                    <th scope="row">${subArray[0].cedula}</th>
+                     <td>${subArray[0].nombre}</td>
+                      <td>${subArray[0].nombrePrograma} </td>
+  
+                        <td>${subArray[0].codigoFicha}</td>
+                       <th>${subArray[0].estado}</th>
+                       
+                    <td><button onclick="func_datosDescripcionCursosMandarModal('${subArray[0].cedula}','${subArray[0].nombre}','${subArray[0].descripcionCursos[0].nombrePrograma}','${subArray[0].descripcionCursos[0].fichaPrograma}','${subArray[0].descripcionCursos[0].fecha}','${subArray[0].codigoFicha}')" data-bs-toggle="modal" data-bs-target="#modalRestrincion" data-bs-whatever="@getbootstrap" type="button" class="btn btn-warning">Matriculado en Otro Curso</button></td>
+                       </tr>
+                        `; //  ACA SOLO ESTOY MANDANDO UN DATO DE QUE ESTA MATRICULADO EN OTRO PROGRAMA
+                }
               });
-            };
+            }
             new DataTable("table.table", dtOption);
-          };
+          }
         })
         .catch((error) => {
           console.log("Error:", error);
         });
-    };
+    }
   });
 });
+
+// ACA VA IR LA FUNCION DONDE VOY A MANDARLE LOS DATOS DEL APRENDIZ AL MODAL
