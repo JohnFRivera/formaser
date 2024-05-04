@@ -22,7 +22,12 @@
                 <div class="bg-white border rounded-3 p-4 me-5">
                     <h2 class="fw-bold">REGISTRAR<span class="text-verde">SE</span></h2>
                     <hr>
-                    <form action="" method="post">
+                
+            <!--* MENSAJE DE ERROR *-->
+                         <div id="mensajeError" >
+                            
+                        </div>
+                 <!--* FIN MENSAJE DE ERROR *-->
                         <div class="row row-cols-1 row-cols-md-2 mb-2">
                             <div class="col">
                                 <label for="txtNombre" class="text-black-50 fs-5 fw-semibold ms-1">Nombres</label>
@@ -66,8 +71,8 @@
                         </div>
                         <input type="password" class="form-control bg-body-tertiary border-secondary-subtle" placeholder="Confirmar contraseña" id="txtConfirmPass" required>
                         <p class="text-danger mb-0 ms-2" id="lblConfirmErr"></p>
-                        <input type="submit" class="btn btn-verde w-100 mt-4 mb-3" value="Enviar">
-                    </form>
+                        <input type="button" class="btn btn-verde w-100 mt-4 mb-3" id="btnRegistro" value="Enviar">
+                   
                 </div>
             </div>
         </div>
@@ -78,8 +83,12 @@
         <!--? CONTENIDO FOOTER -->
     </footer>
     <!--* FIN FOOTER -->
-
+    <script src="./assets/js/registro.js"></script>
     <script type="module" src="./assets/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
