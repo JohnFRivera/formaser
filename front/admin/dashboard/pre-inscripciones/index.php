@@ -18,9 +18,9 @@
     <main class="container-fluid">
         <div class="row bg-body-secondary">
             <!--? ASIDE -->
-            <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
+            <aside class="col-12 col-md-2 px-0 bg-body shadow-sm" id="asideBoard"></aside>
             <!--? SECCIÓN -->
-            <section class="col">
+            <section class="col-12 col-md-10">
                 <div class="row p-0 p-md-4 h-main">
                     <div class="col">
                         <!--LOGO-->
@@ -78,7 +78,16 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
-    <script src="main.js"></script>
+    <script src="../assets/js/dataTables.responsive.js"></script>
+    <script src="../assets/js/responsive.dataTables.js"></script>
+    <script src="../assets/js/dataTables.buttons.js"></script>
+    <script src="../assets/js/buttons.dataTables.js"></script>
+    <script src="../assets/js/jszip.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/buttons.html5.min.js"></script>
+    <script src="../assets/js/buttons.print.min.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>

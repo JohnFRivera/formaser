@@ -16,9 +16,9 @@
     <main class="container-fluid">
         <div class="row bg-body-secondary">
             <!-- ASIDE -->
-            <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
+            <aside class="col-12 col-md-2 px-0 bg-body shadow-sm" id="asideBoard"></aside>
             <!--SECCIÓN-->
-            <section class="col">
+            <section class="col-12 col-md-10">
                 <div class="row p-0 p-md-4 h-main">
                     <div class="col">
                         <!--LOGO-->

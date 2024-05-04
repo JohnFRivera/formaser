@@ -16,43 +16,52 @@
     <!--* FIN NAVBAR -->
     <!--* CONTENIDO -->
     <main class="container-fluid">
-        <div class="row">
+        <div class="row bg-body-secondary">
             <!--? ASIDE -->
-            <aside class="col-12 col-md-auto px-0 shadow" id="asideBoard">
-                <!--? CONTENIDO ASIDE -->
-            </aside>
+            <aside class="col-12 col-md-2 px-0 bg-body shadow-sm" id="asideBoard"></aside>
             <!--? SECCIÓN -->
-            <section class="col h-main">
-                <div class="row p-3 p-md-4">
-                    <h2>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="mb-2" viewBox="0 0 16 16">
-                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z" />
-                            <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1" />
-                        </svg>
-                        Inscripciones
-                    </h2>
-                    <hr class="mb-5">
-                    <!--* CONTENIDO -->
-                    <div class="row">
-                        <div class="col">
-                            <div class="table-responsive pb-5">
-                                <table id="dataTable" class="table table-hover table-striped" style="width:100%">
-                                    <thead class="fs-5">
-                                        <tr>
-                                            <th>Identificación</th>
-                                            <th>Nombre</th>
-                                            <th>Ficha</th>
-                                            <th>Estado</th>
-                                            <th>Descripción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tblInscritos">
-                                    </tbody>
-                                </table>
+            <section class="col-12 col-md-10">
+                <div class="row p-0 p-md-4 h-main">
+                    <div class="col">
+                        <!--LOGO-->
+                        <div class="row bg-body py-3 mb-4 rounded-3 shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M12.5 9a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7m.354 5.854 1.5-1.5a.5.5 0 0 0-.708-.708l-.646.647V10.5a.5.5 0 0 0-1 0v2.793l-.646-.647a.5.5 0 0 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                            </svg>
+                        </div>
+                        <div class="row">
+                            <!--FUNCIONES-->
+                            <div class="col">
+                                <div class="row bg-body shadow-sm rounded-3">
+                                    <div class="col p-1 p-md-4">
+                                        <div class="row">
+                                            <p class="fs-5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="mb-1 me-1" viewBox="0 0 16 16">
+                                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                                                </svg>
+                                                Aquí podrás visualizar las Pre-Inscripciones almacenadas en la base de datos.
+                                            </p>
+                                            <div class="col">
+                                                <table class="table table-hover table-striped" id="dataTable">
+                                                    <thead id="tblHead">
+                                                        <tr>
+                                                            <th scope="col">Tipo</th>
+                                                            <th scope="col">Identificación</th>
+                                                            <th scope="col">Ficha</th>
+                                                            <th scope="col">Codigo Empresa</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tblBody"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!--* FIN CONTENIDO -->
                 </div>
             </section>
         </div>
@@ -69,8 +78,16 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
-    <script src="../assets/js/configTables.js"></script>
-    <script src="main.js"></script>
+    <script src="../assets/js/dataTables.responsive.js"></script>
+    <script src="../assets/js/responsive.dataTables.js"></script>
+    <script src="../assets/js/dataTables.buttons.js"></script>
+    <script src="../assets/js/buttons.dataTables.js"></script>
+    <script src="../assets/js/jszip.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/buttons.html5.min.js"></script>
+    <script src="../assets/js/buttons.print.min.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>
