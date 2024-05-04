@@ -36,7 +36,7 @@ class MYSQL
         $this->conexion->query("SET NAMES 'utf8'");
 
         // Ejecución de la consulta
-        $resultadoConsulta = $this->conexion->query($consulta);
+        $resultadoConsulta = mysqli_query($this->conexion,$consulta);
 
         // Manejo de errores de consulta
         if (!$resultadoConsulta) {
@@ -51,5 +51,7 @@ class MYSQL
     {
         return $this->conexion->affected_rows;
     }
+
+ 
 }
 ?>

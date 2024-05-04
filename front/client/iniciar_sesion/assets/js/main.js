@@ -27,3 +27,4 @@ setNavBar();
 setFooter();
 
 document.getElementById('showPass').addEventListener('click', ShowPass);
+  
