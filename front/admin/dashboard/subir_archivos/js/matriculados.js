@@ -116,7 +116,7 @@ document.querySelector('input[type="file"]').addEventListener("input", () => {
              */
             document.getElementById("lblError").innerHTML = `
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
+              <strong>Ha ocurrido un error:</strong> ${data.error[0].descripcion}.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>`;
           } else {
@@ -177,6 +177,13 @@ document.querySelector('input[type="file"]').addEventListener("input", () => {
         })
         .catch((error) => {
           console.log("Error:", error);
+          Swal.fire({
+            title: "¡Documento incorrecto!",
+            text: "Porfavor verifica el documento que enviaste.",
+            icon: "warning",
+          }).then(() => {
+            location.reload();
+          });
         });
     }
   });

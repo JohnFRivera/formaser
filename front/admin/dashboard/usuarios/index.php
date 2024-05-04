@@ -18,9 +18,9 @@
     <main class="container-fluid">
         <div class="row bg-body-secondary">
             <!--? ASIDE -->
-            <aside class="col-12 col-md-2 px-0 bg-body shadow-sm" id="asideBoard"></aside>
+            <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
             <!--? SECCIÓN -->
-            <section class="col-12 col-md-10">
+            <section class="col">
                 <div class="row p-0 p-md-4 h-main">
                     <div class="col">
                         <!--LOGO-->
@@ -41,20 +41,22 @@
                                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                                                     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
                                                 </svg>
-                                                Aquí podrás visualizar las Pre-Inscripciones almacenadas en la base de datos.
+                                                Aquí podrás visualizar las Usuarios registrados en el sistema.
                                             </p>
                                             <div class="col">
-                                                <table class="table table-hover table-striped" id="dataTable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">Tipo</th>
-                                                            <th scope="col">Identificación</th>
-                                                            <th scope="col">Ficha</th>
-                                                            <th scope="col">Codigo Empresa</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody></tbody>
-                                                </table>
+                                                <div class="table-responsive mb-2">
+                                                    <table class="table table-hover table-striped" id="dataTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Identificación</th>
+                                                                <th scope="col">Nombre</th>
+                                                                <th scope="col">Apellido</th>
+                                                                <th scope="col">Correo</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody></tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -78,6 +80,15 @@
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
     <script src="../assets/js/dataTables.bootstrap5.js"></script>
+    <script src="../assets/js/dataTables.responsive.js"></script>
+    <script src="../assets/js/responsive.dataTables.js"></script>
+    <script src="../assets/js/dataTables.buttons.js"></script>
+    <script src="../assets/js/buttons.dataTables.js"></script>
+    <script src="../assets/js/jszip.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/buttons.html5.min.js"></script>
+    <script src="../assets/js/buttons.print.min.js"></script>
     <script src="main.js"></script>
 </body>
 

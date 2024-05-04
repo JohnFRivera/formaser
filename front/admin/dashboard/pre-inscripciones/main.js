@@ -1,15 +1,3 @@
-import {
-  CreateTableAgregados,
-  SetColumns
-} from "../subir_archivos/js/main.js";
-
-const Columns = [
-  "Tipo",
-  "Identificación",
-  "Ficha",
-  "Población",
-  "Código Empresa"
-];
 const dtOption = {
   responsive: true,
   language: {
@@ -61,6 +49,10 @@ const dtOption = {
     },
   ],
 };
+new DataTable("table.table", dtOption);
+/*
+* TRAER DATA DE PHP
 fetch(`${window.location.origin}/formaser/back/`)
   .then((response) => response.json())
-  .then((data) => {});
+  .then((data) => {}); 
+*/

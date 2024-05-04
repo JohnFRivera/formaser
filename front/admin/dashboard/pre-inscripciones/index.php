@@ -18,9 +18,9 @@
     <main class="container-fluid">
         <div class="row bg-body-secondary">
             <!--? ASIDE -->
-            <aside class="col-12 col-md-2 px-0 bg-body shadow-sm" id="asideBoard"></aside>
+            <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
             <!--? SECCIÓN -->
-            <section class="col-12 col-md-10">
+            <section class="col">
                 <div class="row p-0 p-md-4 h-main">
                     <div class="col">
                         <!--LOGO-->
@@ -44,17 +44,20 @@
                                                 Aquí podrás visualizar las Pre-Inscripciones almacenadas en la base de datos.
                                             </p>
                                             <div class="col">
+                                            <div class="table-responsive mb-2">
                                                 <table class="table table-hover table-striped" id="dataTable">
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">Tipo</th>
                                                             <th scope="col">Identificación</th>
                                                             <th scope="col">Ficha</th>
+                                                            <th scope="col">Población</th>
                                                             <th scope="col">Codigo Empresa</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody></tbody>
                                                 </table>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>

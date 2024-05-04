@@ -1,15 +1,3 @@
-import {
-    CreateTableAgregados,
-    SetColumns
-} from "../subir_archivos/js/main.js";
-
-const Columns = [
-"Identificación",
-"Nombre",
-"Ficha",
-"Nombre Programa",
-"Estado",
-];
 const dtOption = {
 responsive: true,
 language: {
@@ -24,10 +12,9 @@ language: {
 lengthMenu: [10, 20, 30, 40],
 columnDefs: [
     { targets: 0, width: "13%", className: "text-start" },
-    { targets: 1, width: "13%", className: "text-start" },
-
-    { targets: 2, width: "25%", className: "text-start" },
-    { targets: 3, className: "text-start" },
+    { targets: 1, width: "33%", className: "text-start" },
+    { targets: 2, width: "13%", className: "text-start" },
+    { targets: 3, width: "33%", className: "text-start" },
     { targets: 4, width: "8%", className: "text-center text-primary" }
 ],
 order: [[1, "asc"]],
@@ -62,8 +49,10 @@ buttons: [
     },
 ],
 };
+new DataTable("table.table", dtOption);
+/*
+* TRAER DATA DE PHP
 fetch(`${window.location.origin}/formaser/back/`)
-.then(response => response.json())
-.then(data => {
-    
-})
+  .then((response) => response.json())
+  .then((data) => {}); 
+*/

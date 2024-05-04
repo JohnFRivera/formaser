@@ -16,10 +16,10 @@
     <main class="container-fluid">
         <div class="row bg-body-secondary">
             <!-- ASIDE -->
-            <aside class="col-12 col-md-2 px-0 bg-body shadow-sm" id="asideBoard"></aside>
+            <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
             <!--FIN ASIDE-->
             <!--SECCIÓN-->
-            <section class="col-12 col-md-10">
+            <section class="col">
                 <div class="row p-4 h-main">
                     <div class="col">
                         <!--LOGO-->
@@ -120,6 +120,7 @@
     <script src="../assets/js/buttons.html5.min.js"></script>
     <script src="../assets/js/buttons.print.min.js"></script>
     <script type="module" src="./js/matriculados.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

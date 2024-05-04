@@ -116,7 +116,7 @@ document.querySelector('input[type="file"]').addEventListener("input", () => {
              */
             document.getElementById("lblError").innerHTML = `
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Hubo un error!</strong> No has subido ningun Archivo.
+              <strong>Ha ocurrido un error:</strong> No has subido ningun Archivo.
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>`;
           } else {
@@ -204,14 +204,13 @@ document.querySelector('input[type="file"]').addEventListener("input", () => {
                   tbodyDenegados.innerHTML += `
                     <tr>
                     <th scope="row">${subArray[0].cedula}</th>
-                     <td>${subArray[0].nombre}</td>
-                      <td>${subArray[0].nombrePrograma} </td>
-  
-                        <td>${subArray[0].codigoFicha}</td>
-                       <th>${subArray[0].estado}</th>
-                       
-                    <td><button onclick="func_datosDescripcionCursosMandarModal('${subArray[0].cedula}','${subArray[0].nombre}','${subArray[0].descripcionCursos[0].nombrePrograma}','${subArray[0].descripcionCursos[0].fichaPrograma}','${subArray[0].descripcionCursos[0].fecha}','${subArray[0].codigoFicha}')" data-bs-toggle="modal" data-bs-target="#modalRestrincion" data-bs-whatever="@getbootstrap" type="button" class="btn btn-warning">Matriculado en Otro Curso</button></td>
-                       </tr>
+                    <td>${subArray[0].nombre}</td>
+                    <td>${subArray[0].nombrePrograma}</td>
+                    <td>${subArray[0].codigoFicha}</td>
+                    <th>${subArray[0].estado}</th>
+                    <td>
+                      <button onclick="func_datosDescripcionCursosMandarModal('${subArray[0].cedula}','${subArray[0].nombre}','${subArray[0].descripcionCursos[0].nombrePrograma}','${subArray[0].descripcionCursos[0].fichaPrograma}','${subArray[0].descripcionCursos[0].fecha}','${subArray[0].codigoFicha}')" data-bs-toggle="modal" data-bs-target="#modalRestrincion" data-bs-whatever="@getbootstrap" type="button" class="btn btn-warning">Matriculado en Otro Curso</button></td>
+                    </tr>
                         `; //  ACA SOLO ESTOY MANDANDO UN DATO DE QUE ESTA MATRICULADO EN OTRO PROGRAMA
                 }
               });
@@ -221,29 +220,13 @@ document.querySelector('input[type="file"]').addEventListener("input", () => {
         })
         .catch((error) => {
           console.log("Error:", error);
-          document.getElementById("mensajeError").innerHTML = `
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hubo un error!</strong>Tipo de Formato Equivocado.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>`;
-
-          document.getElementById(`inpFileContent`).innerHTML = `
-          <div class="fs-5 py-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                  height="16" fill="currentColor" class="mb-1 me-1"
-                  viewBox="0 0 16 16">
-                  <path
-                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                      d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-              </svg>
-              Seleccionar Archivo
-          </div>
-          `;
-          document.getElementById("sectionTables").innerHTML = `
-          <hr>
-          <!--TABLA-->
-          `;
+          Swal.fire({
+            title: "¡Documento incorrecto!",
+            text: "Porfavor verifica el documento que enviaste.",
+            icon: "warning",
+          }).then(() => {
+            location.reload();
+          });
         });
     }
   });
