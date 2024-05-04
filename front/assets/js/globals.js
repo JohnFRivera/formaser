@@ -74,7 +74,11 @@ function setNavBar() {
         </li>
         <!--? DASHBOARD -->
         <li class="nav-item">
-            <a class="nav-link link-dark nav-option" href="${window.location.origin}/formaser/front/admin/dashboard/">DASHBOARD</a>
+            <a class="nav-link link-dark nav-option" href="${window.location.origin}/formaser/front/admin/subir_archivos/">SUBIR ARCHIVOS</a>
+        </li>
+        <!--? DASHBOARD -->
+        <li class="nav-item">
+            <a class="nav-link link-dark nav-option" href="${window.location.origin}/formaser/front/admin/gestiones/">GESTIONES</a>
         </li>
         <!--? INICIAR SESIÓN -->
         <li class="nav-item ms-auto me-3">

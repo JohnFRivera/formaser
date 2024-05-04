@@ -1,3 +1,5 @@
+import { setNavBar, setFooter } from '../../../assets/js/globals.js';
+setNavBar();
 //* INPUT FILE
 let inputFile = document.querySelector('input[type="file"]');
 let arraySizes = ["Bytes", "KB", "MB", "GB"];
@@ -107,7 +109,7 @@ const CreateTableDenegados = () => {
   </div>
   `;
 };
-
+setFooter();
 export {
   SetInpFileContent,
   SetColumns,

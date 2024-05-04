@@ -6,11 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
     <title>Instituto Formaser | Subir Archivos</title>
-    <style>
-        .custom-modal-bg {
-            background-color: #F7D8D8;
-        }
-    </style>
 </head>
 
 <body>
@@ -22,10 +17,9 @@
         <div class="row bg-body-secondary">
             <!-- ASIDE -->
             <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
-            <!--FIN ASIDE-->
             <!--SECCIÓN-->
             <section class="col">
-                <div class="row p-4 h-main">
+                <div class="row p-0 p-md-4 h-main">
                     <div class="col">
                         <!--LOGO-->
                         <div class="row bg-body py-3 mb-3 rounded-3 shadow-sm">
@@ -37,14 +31,14 @@
                         <div class="row">
                             <ul class="nav px-0 nav-underline gap-1 d-flex flex-nowrap overflow-x-auto">
                                 <!--PRE-INSCRITOS-->
-                                <li class="nav-item text-nowrap">
-                                    <a class="nav-link fs-5 py-2 px-4 border-2 fw-semibold text-black-50" href="./pre-inscritos.php">
+                                <li class="nav-item text-nowrap bg-body rounded-top-3 shadow-sm">
+                                    <a class="nav-link fs-5 py-2 px-4 border-2 active" href="./pre-inscritos.php">
                                         Pre-Inscritos
                                     </a>
                                 </li>
                                 <!--INSCRITOS-->
-                                <li class="nav-item text-nowrap bg-body rounded-top-3 shadow-sm">
-                                    <a class="nav-link fs-5 py-2 px-4 border-2 active" href="./inscritos.php">
+                                <li class="nav-item text-nowrap">
+                                    <a class="nav-link fs-5 py-2 px-4 border-2 fw-semibold text-black-50" href="./inscritos.php">
                                         Inscritos
                                     </a>
                                 </li>
@@ -58,16 +52,16 @@
                             <!--FUNCIONES-->
                             <div class="col">
                                 <div class="row bg-body shadow-sm rounded-bottom-4">
-                                    <div class="col p-4">
+                                    <div class="col p-1 p-md-4">
                                         <!--MENSAJE DE ERROR-->
                                         <div class="row">
-                                            <span id="mensajeError"></span>
+                                            <span id="lblError"></span>
                                         </div>
                                         <!--BOTÓN SUBIR-->
                                         <div class="row">
                                             <div class="col">
-                                                <label for="inpArchivoPreinscrito" class="btn border rounded-4 text-secondary py-1 my-2 shadow-sm w-100">
-                                                    <input type="file" class="visually-hidden" name="archivo-inscrito" id="inpArchivoPreinscrito" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                                                <label for="inputFile" class="btn border rounded-4 text-secondary py-1 my-2 shadow-sm w-100">
+                                                    <input type="file" class="visually-hidden" name="archivo-inscrito" id="inputFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                                                     <span class="d-flex flex-column" id="inpFileContent">
                                                         <div class="fs-5 py-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mb-1 me-1" viewBox="0 0 16 16">
@@ -97,46 +91,6 @@
         <!--? CONTENIDO FOOTER -->
     </footer>
     <!--* FIN FOOTER -->
-
-    <!-- voy a colocar el modal aca -->
-    <div class="modal fade" id="modalRestrincion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content custom-modal-bg"> <!-- Cambia bg-primary por el color que desees -->
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 text-light text-black" id="tituloModal">Hector Fabio Restrepo Soto</h1>
-                    <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="descripcion">
-                        <p>Este Aprendiz ya hizo este mismo Curos en el Año 2021</p>
-                    </div>
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input id="inputCedulaAprendiz" type="text" hidden> <!-- este input lo voy a ocultar porque solo es para que guarde la cedula del aprendiz para poderlo actualizar -->
-                            <input type="email" class="form-control" id="inputNombrePrograma" placeholder="name@example.com" disabled>
-                            <label for="floatingInput">Nombre Programa</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="inputNumeroFicha" placeholder="name@example.com" disabled>
-                            <label for="floatingInput">Numero De Ficha</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="inpuFecha" placeholder="name@example.com" disabled>
-                            <label for="floatingInput">Fecha de Matricula</label>
-                        </div>
-                    </form>
-                    <div class="contenedorConfirmacionDeAceptacion"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script type="module" src="../assets/js/globals.dashboard.js"></script>
     <script src="../assets/js/jquery-3.7.1.js"></script>
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/dataTables.js"></script>
@@ -150,8 +104,7 @@
     <script src="../assets/js/vfs_fonts.js"></script>
     <script src="../assets/js/buttons.html5.min.js"></script>
     <script src="../assets/js/buttons.print.min.js"></script>
-    <script type="module" src="./js/inscritos.js"></script>
-    <script src="./js/funcionRestri.js"></script>
+    <script type="module" src="./js/pre-inscritos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
