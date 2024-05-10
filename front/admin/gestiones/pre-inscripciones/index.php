@@ -55,7 +55,9 @@
                                                             <th scope="col">Codigo Empresa</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody></tbody>
+                                                    <tbody id="datos">
+                                                        
+                                                    </tbody>
                                                 </table>
                                             </div>
                                             </div>

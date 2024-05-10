@@ -50,9 +50,18 @@ const dtOption = {
   ],
 };
 new DataTable("table.table", dtOption);
-/*
-* TRAER DATA DE PHP
-fetch(`${window.location.origin}/formaser/back/`)
+
+fetch(`${window.location.origin}/formaser/back/modulos/gestionar_inscripciones.php`)
   .then((response) => response.json())
-  .then((data) => {}); 
-*/
+  .then((data) => {
+    let datos = document.getElementById('datos') ;
+    let fila = `
+    <tr>
+    <td> ${data.tipoCedula}</td>
+    <td> ${data.cedula}</td>
+    <td> ${data.numeroFicha}</td>
+    <td> ${data.tipoPoblacion}</td>
+    <td> ${data.codigoEmpresa}</td>
+    </tr>` ;
+    datos.innerHTML = fila
+  }); 

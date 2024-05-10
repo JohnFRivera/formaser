@@ -44,7 +44,7 @@
     </footer>
     <!--* FIN FOOTER -->
 
-    <script type="module" src="../../assets/js/globals.admin.js"></script>
+    <script type="module" src="../assets/js/globals.admin.js"></script>
 </body>
 
 </html>
