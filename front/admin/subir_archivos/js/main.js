@@ -1,7 +1,7 @@
-import { setNavBar, setFooter } from '../../../assets/js/globals.js';
+import { Hosting, setNavBar, setFooter } from '../../../assets/js/globals.js';
 setNavBar();
 //* INPUT FILE
-let inputFile = document.querySelector('input[type="file"]');
+let inputFile = document.getElementById('inputFile');
 let arraySizes = ["Bytes", "KB", "MB", "GB"];
 const SetInpFileContent = () => {
   var whileIndex = true;
@@ -110,7 +110,9 @@ const CreateTableDenegados = () => {
   `;
 };
 setFooter();
+
 export {
+  Hosting,
   SetInpFileContent,
   SetColumns,
   CreateTableAgregados,

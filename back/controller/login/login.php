@@ -1,7 +1,7 @@
 <?php
-    require_once '../../../back/modulos/MYSQL.php';
+    require_once '../../modulos/MYSQL.php';
     $email = $_POST['correo'];
-    $pass = $_POST['contra'];
+    $pass = $_POST['password'];
     // ? Creo una variable que va almacenar el password enviada por el el usuario 
     // ? y lo convierte en hash
     $passStr = '';
@@ -33,23 +33,23 @@
         case ($email == $bd_correo && $validarPass == true):
         $Mensaje = array( 
             'Code' => "200",
-            'Des'=>"Exitoso",
+            'Route'=> "/front/admin/",
              ) ;
-        $arregloErrores['mes'][] = $Mensaje ;
+        $arregloErrores = $Mensaje ;
         break;
         case ($email == $bd_correo && $validarPass == false):
         $Mensaje = array( 
             'Code' => "404",
-            'Des'=>"Password Incorrect!!!",
+            'Error'=> "Contraseña incorrecta"
              ) ;
-        $arregloErrores['mes'][] = $Mensaje ;
+        $arregloErrores = $Mensaje ;
         break;
         case ($email != $bd_correo && $pass != $bd_pass):
         $Mensaje = array(
             'Code' => "404",
-            'Des' => "El correo no se encuentra registrado."
+            'Error' => "El correo no existe"
         );
-        $arregloErrores['mes'][] = $Mensaje ;
+        $arregloErrores = $Mensaje ;
         break;
     }
     // ? Envio los mensajes como json para capturarlos en JavaScript

@@ -1,4 +1,5 @@
 import {
+  Hosting,
   SetInpFileContent,
   CreateTableAgregados,
   CreateTableDenegados,
@@ -64,7 +65,7 @@ const dtOption = {
   ],
 };
 
-document.querySelector('input[type="file"]').addEventListener("change", () => {
+document.getElementById('inputFile').addEventListener("change", () => {
   SetInpFileContent();
   let btnSubir = document.getElementById("btnSubir");
   btnSubir.addEventListener("click", () => {
@@ -72,14 +73,13 @@ document.querySelector('input[type="file"]').addEventListener("change", () => {
     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
     <span role="status">Cargando...</span>
     `;
-    const file = document.querySelector('input[type="file"]').files[0]; //? Obtener el primer archivo seleccionado
-    console.log(file);
+    const file = document.getElementById('inputFile').files[0]; //? Obtener el primer archivo seleccionado
     if (file != undefined) {
       // Se crea un objeto FormData y le agrega archivo
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Se envía el formulario usando Fetch
-      fetch(`${window.location.origin}/formaser/back/modulos/leerExcel.php`, {
+      fetch(`${Hosting}/back/modulos/leerExcel.php`, {
         method: "POST",
         body: formData,
       })
@@ -108,11 +108,12 @@ document.querySelector('input[type="file"]').addEventListener("change", () => {
             /*
              ! MENSAJE DE ERROR POR SI OCURRE UN FALLO CON EL ARCHIVO
              */
-            document.getElementById("lblError").innerHTML = `
-            <div class="alert alert-danger alert-dismissible fade show rounded-4" role="alert">
-              <strong>Ha ocurrido un error:</strong> ${data.error[0].descripcion}.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>`;
+             document.getElementById('lblErr').innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="mb-1 me-1" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+              </svg>
+              ${data.error[0].descripcion}
+              `;
           } else {
             /*
              *  SE AGREGAN LOS USUARIOS REGISTRADOS
@@ -163,15 +164,41 @@ document.querySelector('input[type="file"]').addEventListener("change", () => {
             new DataTable("table.table", dtOption);
           }
         })
-        .catch((error) => {
-          console.log("Error:", error);
-          Swal.fire({
-            title: "¡Documento incorrecto!",
-            text: "Porfavor verifica el documento que enviaste.",
-            icon: "warning",
-          }).then(() => {
-            location.reload();
+        .catch((err) => {
+          document.getElementById(`inpFileContent`).innerHTML = `
+          <div class="fs-5 py-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                  height="16" fill="currentColor" class="mb-1 me-1"
+                  viewBox="0 0 16 16">
+                  <path
+                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                  <path
+                      d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+              </svg>
+              Seleccionar Archivo
+          </div>
+          `;
+          document.getElementById('staticBackdrop').innerHTML = `
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5 text-danger" id="staticBackdropLabel">Formato Incorrecto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <b>Los parametros no coinciden</b>, por favor <b>verifica el archivo</b> que subiste
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnReload">Aceptar</button>
+              </div>
+            </div>
+          </div>
+          `;
+          document.getElementById('btnReload').addEventListener('click', ()=>{
+            window.location.reload();
           });
+          const modal = new bootstrap.Modal('#staticBackdrop');
+          modal.show();
         });
     }
   });

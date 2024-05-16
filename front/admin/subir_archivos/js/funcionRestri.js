@@ -66,7 +66,7 @@ const func_AprobarAprendiz = (cedula, ficha) => {
   formData.append("ficha", ficha);
 
   fetch(
-    `${window.location.origin}/formaser/back/modulos/aprendizAprovado.php`,
+    `${window.location.origin}/back/modulos/aprendizAprovado.php`,
     {
       method: "POST",
       body: formData,

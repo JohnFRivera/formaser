@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header class="container-fluid shadow"></header>
+    <!--* CONTENIDO -->
+    <main class="container-fluid">
+        <div class="row bg-body-secondary">
+            <!--? ASIDE -->
+            <aside class="col-12 col-md-auto px-0 bg-body shadow-sm" id="asideBoard"></aside>
+            <!--? SECCIÓN -->
+            <section class="col">
+                <div class="row p-0 p-md-4 h-main">
+                    <div class="col">
+                        <!--LOGO-->
+                        <div class="row">
+                            <div class="col">
+                                <div class="bg-verde text-light py-3 mb-4 rounded-3 shadow-sm d-flex justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="bg-body rounded-3 p-4">
+                                    <div class="row">
+                                        <div class="col col-md-4 ms-auto">
+                                            <div class="input-group">
+                                                <input class="form-control" type="search" name="buscar" id="buscar">
+                                                <div class="input-group-text p-0">
+                                                    <button class="btn rounded-start-0" type="button">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped" id="dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Identificación</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col">Correo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>hola</td>
+                                                    <td>jaja</td>
+                                                    <td>kevin caco</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!--* FIN CONTENIDO -->
+    <footer class="container-fluid cursor-default"></footer>
+
+    <script type="module" src="../../assets/js/globals.admin.js"></script>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,24 @@
 @import url("./bootstrap.min.css");
 
+/* IMAGES */
+.bg-img-formaser {
+  position: relative;
+  min-height: 94.1vh;
+  background-image: url(../pic/INSTITUTO-FORMASER-INICIAR-SESION.jpg);
+  background-size: cover;
+  z-index: 1;
+}
+.bg-img-formaser::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to top, #85C12D, transparent);
+  z-index: -1;
+}
+
 /** COLORS */
 .bg-verde {
   background-color: #85c12d !important;
@@ -92,7 +111,7 @@
 }
 
 .h-main {
-  min-height: 76vh;
+  min-height: 90vh;
 }
 
 /** CURSORS */
