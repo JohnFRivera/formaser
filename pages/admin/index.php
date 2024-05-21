@@ -7,16 +7,22 @@
     <title>Document</title>
 </head>
 
-<body>
+<body class="bg-body-secondary">
     <header class="container-fluid shadow"></header>
     <!-- CONTENIDO -->
-    <main class="container-fluid bg-body-secondary">
-        <div class="row p-5">
+    <main class="container">
+        <div class="row p-5 pb-2">
             <div class="col">
                 <h1 class="display-5 fw-bold">Bienvenido a Forma<span class="text-verde">ser</span></h1>
             </div>
             <div class="col-auto">
-                <h2 class="display-6 fs-4">Fecha<br><span id="dateNow"></span></h2>
+                <h2 class="display-6 fs-4"><b>Fecha</b><br><span id="dateNow"></span></h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                
             </div>
         </div>
     </main>

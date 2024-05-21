@@ -1,5 +1,5 @@
-import { Hosting, setFooter } from './front/assets/js/globals.js';
-setFooter();
+document.title += ' | Iniciar Sesión';
+//
 document.getElementById('showPass').addEventListener('click', (ev)=>{
     let pass = document.getElementById('password');
     let icon = '';
