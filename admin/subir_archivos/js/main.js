@@ -1,32 +1,23 @@
-import { Hosting, setNavBar, setFooter } from '../../../assets/js/globals.js';
-setNavBar();
-//* INPUT FILE
-let inputFile = document.getElementById('inputFile');
-let arraySizes = ["Bytes", "KB", "MB", "GB"];
+import { SetHeader } from '../../assets/js/globals.functions.admin.js';
+SetHeader('header');
+//input archivo
 const SetInpFileContent = () => {
+  let inputFile = document.getElementById('inputFile');
+  let arraySizes = ["Bytes", "KB", "MB", "GB"];
   var whileIndex = true;
   var fileSize = inputFile.files[0].size;
   var sizesIndex = 0;
-  //? CALCULAR TAMAÑO
   while (whileIndex) {
     if (fileSize > 1000) {
       sizesIndex++;
       fileSize = fileSize / 1024;
     } else {
       whileIndex = false;
-    }
-  }
-  //? PINTAR
+    };
+  };
   document.getElementById(`inpFileContent`).innerHTML = `
   <div class="fs-5 py-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16"
-          height="16" fill="currentColor" class="mb-1 me-1"
-          viewBox="0 0 16 16">
-          <path
-              d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-          <path
-              d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-      </svg>
+      <i class="bi bi-upload me-2"></i>
       Seleccionar Archivo
   </div>
   <div class="d-flex justify-content-center border-top py-2">
@@ -42,18 +33,7 @@ const SetInpFileContent = () => {
   </div>
   `;
 };
-//* BTN SUBIR
-const SetColumns = (thead, arrayColumns) => {
-  var tableHead = document.getElementById(thead);
-  let row = document.createElement("tr");
-  arrayColumns.forEach((Column) => {
-    var col = document.createElement("th");
-    col.textContent = Column;
-    row.appendChild(col);
-  });
-  tableHead.append(row);
-};
-const CreateTableAgregados = () => {
+const CreateAgregadosSection = () => {
   document.getElementById("sectionTables").innerHTML += `
   <div class="row pt-2 mb-4">
       <div class="col">
@@ -70,9 +50,9 @@ const CreateTableAgregados = () => {
                   </svg>
               </h2>
               <div class="table-responsive mb-2">
-                  <table class="table table-hover table-striped" style="width:100%">
-                      <thead class="fs-5" id="theadAgregados"></thead>
-                      <tbody id="tbodyAgregados"></tbody>
+                  <table class="table table-hover table-striped" id="dtAgregados">
+                      <thead class="fs-5"></thead>
+                      <tbody></tbody>
                   </table>
               </div>
           </div>
@@ -80,7 +60,7 @@ const CreateTableAgregados = () => {
   </div>
   `;
 };
-const CreateTableDenegados = () => {
+const CreateDenegadosSection = () => {
   document.getElementById("sectionTables").innerHTML += `
   <div class="row mb-2">
       <div class="col">
@@ -109,12 +89,8 @@ const CreateTableDenegados = () => {
   </div>
   `;
 };
-setFooter();
-
 export {
-  Hosting,
   SetInpFileContent,
-  SetColumns,
-  CreateTableAgregados,
-  CreateTableDenegados,
+  CreateAgregadosSection,
+  CreateDenegadosSection
 };

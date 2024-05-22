@@ -1,18 +1,14 @@
-import {
-  Hosting,
-  SetInpFileContent,
-  CreateTableAgregados,
-  CreateTableDenegados,
-  SetColumns,
-} from "./main.js";
+import { GetLoading, GetHost, SetError } from '../../../assets/js/globals.functions.js';
+import { SetInpFileContent, CreateAgregadosSection, CreateDenegadosSection } from "./main.js";
+import { SetColumns, FillTable, CreateDataTable } from '../../assets/js/globals.functions.admin.js';
 
 const Columns = [
-  "Identificación",
-  "Nombre",
-  "Nombre Programa",
-  "Ficha",
-  "Estado",
-  "Descripción",
+  'Identificación',
+  'Nombre',
+  'Nombre Programa',
+  'Ficha',
+  'Estado',
+  'Descripción',
 ];
 const dtOption = {
   responsive: true,
@@ -67,23 +63,18 @@ const dtOption = {
     },
   ],
 };
-
-document.getElementById("inputFile").addEventListener("input", () => {
+document.getElementById('inputFile').addEventListener('input', () => {
   SetInpFileContent();
   let btnSubir = document.getElementById("btnSubir");
   btnSubir.addEventListener("click", () => {
-    btnSubir.innerHTML = `
-    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-    <span role="status">Cargando...</span>
-    `;
+    btnSubir.innerHTML = GetLoading();
     const file = document.getElementById("inputFile").files[0]; //? Obtener el primer archivo seleccionado
-    console.log(file);
     if (file != undefined) {
       // Se crea un objeto FormData y le agrega archivo
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Se envía el formulario usando Fetch
-      fetch(`${Hosting}/back/modulos/tercerFormato.php`, {
+      fetch(`${GetHost()}/back/modulos/tercerFormato.php`, {
         method: "POST",
         body: formData,
       })
@@ -91,14 +82,7 @@ document.getElementById("inputFile").addEventListener("input", () => {
         .then((data) => {
           document.getElementById(`inpFileContent`).innerHTML = `
           <div class="fs-5 py-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                  height="16" fill="currentColor" class="mb-1 me-1"
-                  viewBox="0 0 16 16">
-                  <path
-                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                      d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-              </svg>
+              <i class="bi bi-upload me-2"></i>
               Seleccionar Archivo
           </div>
           `;
@@ -108,83 +92,51 @@ document.getElementById("inputFile").addEventListener("input", () => {
           `;
           // Verifico primero si en el JSON hay un Objeto llamdos "error" si lo hay es porque hubo un error y no se puede ejecutar
           if (data.error != undefined) {
-            console.log(data.error);
             /*
              ! MENSAJE DE ERROR POR SI OCURRE UN FALLO CON EL ARCHIVO
              */
-            document.getElementById("lblErr").innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="mb-1 me-1" viewBox="0 0 16 16">
-              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-            </svg>
-            ${data.error[0].descripcion}
-            `;
+            SetError('lblErr', data.error[0].descripcion)
           } else {
             /*
              *  SE AGREGAN LOS USUARIOS REGISTRADOS
              */
             if (data.updateExito != undefined) {
-              console.log(data.updateExito);
               // Se crea la tabla
-              CreateTableAgregados();
-              SetColumns("theadAgregados", Columns);
+              CreateAgregadosSection();
+              let dtAgregados = document.getElementById('dtAgregados');
+              SetColumns(dtAgregados, Columns);
               // Se agregan las filas
-              var tbodyAgregados = document.getElementById("tbodyAgregados");
-              tbodyAgregados.innerHTML = ""; //? SE VACÍA LA TABLA ANTES DE AGREGAR
+              let matrizData = new Array();
               data.updateExito.forEach((subArray) => {
-                console.log(subArray[0].cedula);
-                tbodyAgregados.innerHTML += `
-                <tr>
-                  <th scope="row">${subArray[0].cedula}</th>
-                  <td>${subArray[0].nombre}</td>
-                  <td>${subArray[0].nombrePrograma}</td>
-
-                  <td>${subArray[0].codigoFicha}</td>
-                  <th>${subArray[0].estado}</th>
-                  <td>${subArray[0].descripcion}</td>
-                </tr>
-                `;
+                var arrayData = [ subArray[0].cedula, subArray[0].nombre, subArray[0].nombrePrograma, subArray[0].codigoFicha, subArray[0].estado, subArray[0].descripcion ];
+                matrizData.push(arrayData);
               });
+              FillTable(dtAgregados, matrizData);
+              CreateDataTable('dtAgregados');
             }
             /*
              !  SE AGREGAN LOS USUARIOS DENEGADOS
              */
             if (data.updateDenegado != undefined) {
-              console.log(data.updateDenegado);
               // Se crea la tabla
-              CreateTableDenegados();
-              SetColumns("theadDenegados", Columns);
+              CreateDenegadosSection();
+              let dtDenegados = document.getElementById('dtDenegados');
+              SetColumns(dtDenegados, Columns);
               // Se agregan las filas
-              var tbodyDenegados = document.getElementById("tbodyDenegados");
-              tbodyDenegados.innerHTML = ""; //? SE VACÍA LA TABLA ANTES DE AGREGAR
-              data.updateDenegado.forEach((subArray) => {
-                console.log(subArray[0].cedula);
-                tbodyDenegados.innerHTML += `
-                <tr>
-                  <th scope="row">${subArray[0].cedula}</th>
-                  <td>${subArray[0].nombre}</td>
-                  <td>${subArray[0].nombrePrograma}</td>
-
-                  <td>${subArray[0].codigoFicha}</td>
-                  <th>${subArray[0].estado}</th>
-                  <td>${subArray[0].descripcion}</td>
-                </tr>
-                `;
+              let matrizData = new Array();
+              data.updateExito.forEach((subArray) => {
+                var arrayData = [ subArray[0].cedula, subArray[0].nombre, subArray[0].nombrePrograma, subArray[0].codigoFicha, subArray[0].estado, subArray[0].descripcion ];
+                matrizData.push(arrayData);
               });
+              FillTable(dtDenegados, matrizData);
+              CreateDataTable('dtDenegados');
             }
-            new DataTable("table.table", dtOption);
           }
         })
         .catch((error) => {
           document.getElementById(`inpFileContent`).innerHTML = `
           <div class="fs-5 py-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                  height="16" fill="currentColor" class="mb-1 me-1"
-                  viewBox="0 0 16 16">
-                  <path
-                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                      d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-              </svg>
+              <i class="bi bi-upload me-2"></i>
               Seleccionar Archivo
           </div>
           `;
