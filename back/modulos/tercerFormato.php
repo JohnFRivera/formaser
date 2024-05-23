@@ -275,7 +275,7 @@ else{
         'cedula' =>"$cedulaPaciente",
         'nombre' => "$nombreAprendiz",
         'codigoFicha' => "$numeroFicha",
-        'estado'=> "Null",
+        'estado'=> "Denegado",
         'nombrePrograma'=> "$nombrePrograma",
         'descripcion'=> "este Aprendiz no a pasado por el primer formato",
         'status'=>false

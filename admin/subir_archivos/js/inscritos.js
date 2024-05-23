@@ -7,8 +7,8 @@ import { GetHost, SetError, GetLoading, SetModal } from '../../../assets/js/glob
 import { SetColumns, GetDefaultOpt, FillTable } from '../../assets/js/globals.functions.admin.js';
 const Columns = [
   "Identificación",
-  "Nombre",
-  "Nombre Empresa",
+  "Aprendiz",
+  "Programa",
   "Ficha",
   "Estado",
   "Descripción",
@@ -101,12 +101,12 @@ document.getElementById("inputFile").addEventListener("input", () => {
                   //  ACA SOLO ESTOY MANDANDO UN DATO DE QUE ESTA MATRICULADO EN OTRO PROGRAMA
                 }
               });
-              FillTable(dtAgregados, matrizAgregados);
-              new DataTable('#dtAgregados', GetDefaultOpt([]));
+              FillTable(dtDenegados, matrizDenegados);
+              new DataTable('#dtDenegados', GetDefaultOpt([]));
             }
           }
         })
-        .catch((error) => {
+        .catch((err) => {
           document.getElementById(`inpFileContent`).innerHTML = `
           <div class="fs-5 py-3">
             <i class="bi bi-upload me-2"></i>
@@ -121,7 +121,7 @@ document.getElementById("inputFile").addEventListener("input", () => {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <b>Los parametros no coinciden</b>, por favor <b>verifica el archivo</b> que subiste
+                <b>Los parametros no coinciden</b>, por favor <b>verifica el archivo</b> que subiste<br>${err}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnReload">Aceptar</button>

@@ -14,7 +14,6 @@ $.ajax({
     contentType: 'application/json; charset=utf-8',
     method: 'GET',
     success: function (data) {
-        console.log(data);
         let dataTable = document.getElementById('dataTable');
         SetColumns(dataTable, Columns);
         let matrizData = new Array();

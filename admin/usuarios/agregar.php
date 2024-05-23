@@ -42,7 +42,12 @@
                                 <div class="col col-md-6 col-lg-4">
                                     <form>
                                         <label class="text-dark fs-5" for="identificacion">Identificación</label>
-                                        <input class="form-control mb-3" type="text" name="identificacion" id="identificacion" pattern="^[0-9]*$" required>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">
+                                                <i class="bi bi-person-vcard"></i>
+                                            </span>
+                                            <input class="form-control" type="text" name="identificacion" id="identificacion" pattern="^[0-9]*$" required>
+                                        </div>
                                         <div class="row row-cols-1 row-cols-md-2">
                                             <div class="col mb-3">
                                                 <label class="text-dark fs-5" for="nombre">Nombres</label>
@@ -54,11 +59,21 @@
                                             </div>
                                         </div>
                                         <label class="text-dark fs-5" for="correo">Correo Electronico</label>
-                                        <input class="form-control mb-3" type="email" name="correo" id="correo" required>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">
+                                                <i class="bi bi-envelope-at"></i>
+                                            </span>
+                                            <input class="form-control" type="email" name="correo" id="correo" required>
+                                        </div>
                                         <label class="text-dark fs-5" for="password">Contraseña</label>
-                                        <input class="form-control mb-3" type="password" name="password" id="password" minlength="8" required>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">
+                                                <i class="bi bi-key"></i>
+                                            </span>
+                                            <input class="form-control" type="password" name="password" id="password" minlength="8" required>
+                                        </div>
                                         <p class="text-danger fs-5 mb-0 pb-2" id="lblErr"></p>
-                                        <button class="btn btn-primary" type="button" id="btnAgregar">Agregar</button>
+                                        <button class="btn btn-primary w-100" type="button" id="btnAgregar">Agregar</button>
                                     </form>
                                 </div>
                             </div>

@@ -1,6 +1,9 @@
 const GetHost = () => {
     return window.location.origin + '/formaser';
-}
+};
+document.head.innerHTML += `
+<link rel="icon" type="image/png" href="${GetHost()}/assets/img/sena-logo.png">
+`;
 const SetTitle = (title) => {
     document.title = title;
 };
