@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/datatables.min.css">
 </head>
 
 <body class="container-fluid bg-body-secondary">
@@ -25,15 +26,13 @@
                 </li>
                 <!--INSCRITOS-->
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link fs-5 py-2 px-4 border-2 fw-semibold text-black-50"
-                        href="./inscritos.php">
+                    <a class="nav-link fs-5 py-2 px-4 border-2 fw-semibold text-black-50" href="./inscritos.php">
                         Inscritos
                     </a>
                 </li>
                 <!--MATRICULADOS-->
                 <li class="nav-item text-nowrap bg-body rounded-top-3 shadow-sm">
-                    <a class="nav-link fs-5 py-2 px-3 border-2 active"
-                        href="./matriculados.php">
+                    <a class="nav-link fs-5 py-2 px-3 border-2 active" href="./matriculados.php">
                         Matriculados
                     </a>
                 </li>
@@ -44,12 +43,8 @@
                 <!--BOTÓN SUBIR-->
                 <div class="row">
                     <div class="col">
-                        <label for="inpArchivoPreinscrito"
-                            class="btn border rounded-4 text-secondary py-1 my-2 shadow-sm w-100">
-                            <input type="file" class="visually-hidden" name="archivo-inscrito"
-                                id="inpArchivoPreinscrito"
-                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                                required>
+                        <label for="inputFile" class="btn border rounded-4 text-secondary py-1 my-2 shadow-sm w-100">
+                            <input type="file" class="visually-hidden" name="archivo-inscrito" id="inputFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                             <span class="d-flex flex-column" id="inpFileContent">
                                 <div class="fs-5 py-3">
                                     <i class="bi bi-upload me-2"></i>
@@ -59,17 +54,19 @@
                         </label>
                     </div>
                 </div>
-                <table id="table">
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
                 <div id="sectionTables"></div>
             </div>
         </div>
     </main>
     <!--FIN CONTENIDO-->
     <footer class="row cursor-default" id="footer"></footer>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"></div>
 
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/pdfmake.min.js"></script>
+    <script src="../assets/js/vfs_fonts.js"></script>
+    <script src="../assets/js/datatables.min.js"></script>
     <script type="module" src="./js/matriculados.js"></script>
 </body>
 

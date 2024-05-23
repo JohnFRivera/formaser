@@ -1,7 +1,16 @@
-<?php 
-    require_once '../modulos/MYSQL.php' ;
-    $mysql = new MYSQL();
-    $resultadoConsulta = $mysql -> efectuarConsulta("SELECT tipoCedula, cedula, numeroFicha, tipoPoblacion, codigoEmpresa FROM inscripcionaprendiz1 WHERE estado = 'Preinscrito' ") ;
-    $mysql->desconectar() ;
-    echo json_encode($resultadoConsulta) ;
+<?php
+require_once 'MYSQL.php' ;
+$mysql = new MYSQL();
+$resultadoConsulta = $mysql -> efectuarConsulta("SELECT cedula as cedula,
+nombreCompleto as nombre,
+numeroFicha as ficha,
+nombrePrograma as programa,
+estado as estado
+FROM inscripcionaprendiz1 WHERE estado like '%Inscrito%' ") ;
+$mysql->desconectar() ;
+$data = array() ;
+foreach ($resultadoConsulta as $row){
+    $data[] = $row ; 
+}
+echo json_encode($data) ;
 ?>

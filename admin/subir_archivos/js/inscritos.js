@@ -1,11 +1,10 @@
 import {
-  Hosting,
   SetInpFileContent,
-  CreateTableAgregados,
-  CreateTableDenegados,
-  SetColumns,
+  CreateAgregadosSection,
+  CreateDenegadosSection
 } from "./main.js";
-
+import { GetHost, SetError, GetLoading, SetModal } from '../../../assets/js/globals.functions.js';
+import { SetColumns, GetDefaultOpt, FillTable } from '../../assets/js/globals.functions.admin.js';
 const Columns = [
   "Identificación",
   "Nombre",
@@ -14,68 +13,11 @@ const Columns = [
   "Estado",
   "Descripción",
 ];
-const dtOption = {
-  responsive: true,
-  language: {
-    entries: {
-      _: "Aprendices",
-      1: "Aprendices",
-    },
-    emptyTable: "No hay ningún dato",
-    info: "_START_ a _END_ de _TOTAL_ _ENTRIES_",
-    infoEmpty: "0 Aprendices",
-  },
-  lengthMenu: [10, 20, 30, 40],
-  columnDefs: [
-    { targets: 0, width: "13%", className: "text-start" },
-    { targets: 1, width: "13%", className: "text-start" },
-
-    { targets: 2, width: "25%", className: "text-start" },
-    { targets: 3, width: "13%", className: "text-start" },
-    { targets: 4, width: "8%", className: "text-center text-primary" },
-    { targets: 5, className: "text-center", orderable: false },
-  ],
-  order: [[1, "asc"]],
-  layout: {
-    topStart: "buttons",
-    top2Start: {
-      pageLength: {
-        lengthMenu: [10, 25, 50, 75, 100],
-      },
-    },
-  },
-  buttons: [
-    {
-      extend: "excel",
-      className: "btn btn-success bg-opacity-50",
-      text: `
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mb-1 me-1" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V9H3V2a1 1 0 0 1 1-1h5.5zM3 12v-2h2v2zm0 1h2v2H4a1 1 0 0 1-1-1zm3 2v-2h3v2zm4 0v-2h3v1a1 1 0 0 1-1 1zm3-3h-3v-2h3zm-7 0v-2h3v2z"/>
-      </svg>
-      Exportar Excel
-      `,
-    },
-    {
-      extend: "pdf",
-      className: "btn btn-danger",
-      text: `
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="mb-1 me-1" fill="currentColor" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z"/>
-      </svg>
-      Exportar PDF
-      `,
-    },
-  ],
-};
-
 document.getElementById("inputFile").addEventListener("input", () => {
   SetInpFileContent();
   let btnSubir = document.getElementById("btnSubir");
   btnSubir.addEventListener("click", () => {
-    btnSubir.innerHTML = `
-    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-    <span role="status">Cargando...</span>
-    `;
+    btnSubir.innerHTML = GetLoading();
     const file = document.getElementById("inputFile").files[0]; //? Obtener el primer archivo seleccionado
     console.log(file);
     if (file != undefined) {
@@ -83,7 +25,7 @@ document.getElementById("inputFile").addEventListener("input", () => {
       let formData = new FormData();
       formData.append("archivotExcel", file);
       // Se envía el formulario usando Fetch
-      fetch(`${Hosting}/back/modulos/segundoFormato.php`, {
+      fetch(`${GetHost()}/back/modulos/segundoFormato.php`, {
         method: "POST",
         body: formData,
       })
@@ -91,15 +33,8 @@ document.getElementById("inputFile").addEventListener("input", () => {
         .then((data) => {
           document.getElementById(`inpFileContent`).innerHTML = `
           <div class="fs-5 py-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                  height="16" fill="currentColor" class="mb-1 me-1"
-                  viewBox="0 0 16 16">
-                  <path
-                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                      d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-              </svg>
-              Seleccionar Archivo
+            <i class="bi bi-upload me-2"></i>
+            Seleccionar Archivo
           </div>
           `;
           document.getElementById("sectionTables").innerHTML = `
@@ -112,12 +47,7 @@ document.getElementById("inputFile").addEventListener("input", () => {
             /*
              ! MENSAJE DE ERROR POR SI OCURRE UN FALLO CON EL ARCHIVO
              */
-            document.getElementById("lblErr").innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="mb-1 me-1" viewBox="0 0 16 16">
-              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-            </svg>
-            ${data.error[0].descripcion}
-            `;
+            SetError('lblErr', data.error[0].descripcion);
           } else {
             /*
              *  SE AGREGAN LOS USUARIOS REGISTRADOS
@@ -125,25 +55,17 @@ document.getElementById("inputFile").addEventListener("input", () => {
             if (data.updateExito != undefined) {
               console.log(data.updateExito);
               // Se crea la tabla
-              CreateTableAgregados();
-              SetColumns("theadAgregados", Columns);
+              CreateAgregadosSection();
+              let dtAgregados = document.getElementById('dtAgregados');
+              SetColumns(dtAgregados, Columns);
               // Se agregan las filas
-              var tbodyAgregados = document.getElementById("tbodyAgregados");
-              tbodyAgregados.innerHTML = ""; //? SE VACÍA LA TABLA ANTES DE AGREGAR
+              let matrizAgregados = new Array();
               data.updateExito.forEach((subArray) => {
                 console.log(subArray[0].cedula);
-                tbodyAgregados.innerHTML += `
-                <tr>
-                  <th scope="row">${subArray[0].cedula}</th>
-                  <td>${subArray[0].nombre} </td>
-                  <td>${subArray[0].nombrePrograma} </td>
-
-                  <td>${subArray[0].codigoFicha}</td>
-                  <th>${subArray[0].estado}</th>
-                  <td>${subArray[0].descripcion}</td>
-                </tr>
-                `;
+                matrizAgregados.push([subArray[0].cedula, subArray[0].nombre, subArray[0].nombrePrograma, subArray[0].codigoFicha, subArray[0].estado, subArray[0].descripcion]);
               });
+              FillTable(dtAgregados, matrizAgregados);
+              new DataTable('#dtAgregados', GetDefaultOpt([]));
             }
             /*
              !  SE AGREGAN LOS USUARIOS DENEGADOS
@@ -151,87 +73,47 @@ document.getElementById("inputFile").addEventListener("input", () => {
             if (data.updateDenegado != undefined) {
               console.log(data.updateDenegado);
               // Se crea la tabla
-              CreateTableDenegados();
-              SetColumns("theadDenegados", Columns);
+              CreateDenegadosSection();
+              let dtDenegados = document.getElementById('dtDenegados');
+              SetColumns(dtDenegados, Columns);
               // Se agregan las filas
-              var tbodyDenegados = document.getElementById("tbodyDenegados");
-              tbodyDenegados.innerHTML = ""; //? SE VACÍA LA TABLA ANTES DE AGREGAR
+              let matrizDenegados = new Array();
               data.updateDenegado.forEach((subArray) => {
                 /*
                !  VERIFICO SI EL OBJETO "cursoRepetido" Y "descripcionCursos" ESTEN NULL SI LO ESTAN ES PORQUE FUE DENEGADO PERO NO POR LAS RESTRINCIONES
                 */
-                console.log("verificacion de los objetos");
-
-                console.log(subArray[0].cursoRepetido);
-                console.log(subArray[0].descripcionCursos);
-
                 if (
                   subArray[0].descripcionCursos == null &&
                   subArray[0].cursoRepetido == null
                 ) {
-                  tbodyDenegados.innerHTML += `
-                  <tr>
-                    <th scope="row">${subArray[0].cedula}</th>
-                    <td>${subArray[0].nombre}</td>
-                    <td>${subArray[0].nombrePrograma} </td>
-                    <td>${subArray[0].codigoFicha}</td>
-                    <th>${subArray[0].estado}</th>
-                    <td>${subArray[0].descripcion}</td>
-                  </tr>
-                  `;
+                  matrizDenegados.push([subArray[0].cedula, subArray[0].nombre, subArray[0].nombrePrograma, subArray[0].codigoFicha, subArray[0].estado, subArray[0].descripcion]);
                 } else if (
                   subArray[0].cursoRepetido != null &&
                   subArray[0].descripcionCursos == null
                 ) {
                   // aca lo agrego pero con un boton
-                  tbodyDenegados.innerHTML += `
-                    <tr>
-                      <th scope="row">${subArray[0].cedula}</th>
-                      <td>${subArray[0].nombre}</td>
-                      <td>${subArray[0].nombrePrograma}</td>
-                      <td>${subArray[0].codigoFicha}</td>
-                      <th>${subArray[0].estado}</th>
-                      <td>
-                        <button onclick="func_datosMandarCursoRepetidoModal('${subArray[0].nombre}','${subArray[0].cursoRepetido[0].nombrePrograma}','${subArray[0].cursoRepetido[0].fichaPrograma}','${subArray[0].cursoRepetido[0].fecha}')"  data-bs-toggle="modal" data-bs-target="#modalRestrincion" data-bs-whatever="@getbootstrap" type="button" class="btn btn-danger">Curso Repetido</button>
-                      </td>
-                    </tr>
-                    `;
+                  matrizDenegados.push([subArray[0].cedula, subArray[0].nombre, subArray[0].nombrePrograma, subArray[0].codigoFicha, subArray[0].estado, subArray[0].descripcion]);
                 } else if (
                   subArray[0].descripcionCursos != null &&
                   subArray[0].cursoRepetido == null
                 ) {
-                  tbodyDenegados.innerHTML += `
-                    <tr>
-                    <th scope="row">${subArray[0].cedula}</th>
-                    <td>${subArray[0].nombre}</td>
-                    <td>${subArray[0].nombrePrograma}</td>
-                    <td>${subArray[0].codigoFicha}</td>
-                    <th>${subArray[0].estado}</th>
-                    <td>
-                      <button onclick="func_datosDescripcionCursosMandarModal('${subArray[0].cedula}','${subArray[0].nombre}','${subArray[0].descripcionCursos[0].nombrePrograma}','${subArray[0].descripcionCursos[0].fichaPrograma}','${subArray[0].descripcionCursos[0].fecha}','${subArray[0].codigoFicha}')" data-bs-toggle="modal" data-bs-target="#modalRestrincion" data-bs-whatever="@getbootstrap" type="button" class="btn btn-warning">Matriculado en Otro Curso</button></td>
-                    </tr>
-                        `; //  ACA SOLO ESTOY MANDANDO UN DATO DE QUE ESTA MATRICULADO EN OTRO PROGRAMA
+                  matrizDenegados.push([subArray[0].cedula, subArray[0].nombre, subArray[0].nombrePrograma, subArray[0].codigoFicha, subArray[0].estado, subArray[0].descripcion]);
+                  //  ACA SOLO ESTOY MANDANDO UN DATO DE QUE ESTA MATRICULADO EN OTRO PROGRAMA
                 }
               });
+              FillTable(dtAgregados, matrizAgregados);
+              new DataTable('#dtAgregados', GetDefaultOpt([]));
             }
-            new DataTable("table.table", dtOption);
           }
         })
         .catch((error) => {
           document.getElementById(`inpFileContent`).innerHTML = `
           <div class="fs-5 py-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                  height="16" fill="currentColor" class="mb-1 me-1"
-                  viewBox="0 0 16 16">
-                  <path
-                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                      d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
-              </svg>
-              Seleccionar Archivo
+            <i class="bi bi-upload me-2"></i>
+            Seleccionar Archivo
           </div>
           `;
-          document.getElementById("staticBackdrop").innerHTML = `
+          SetModal(`
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -246,7 +128,7 @@ document.getElementById("inputFile").addEventListener("input", () => {
               </div>
             </div>
           </div>
-          `;
+          `);
           document.getElementById("btnReload").addEventListener("click", () => {
             window.location.reload();
           });
@@ -256,5 +138,3 @@ document.getElementById("inputFile").addEventListener("input", () => {
     }
   });
 });
-
-// ACA VA IR LA FUNCION DONDE VOY A MANDARLE LOS DATOS DEL APRENDIZ AL MODAL

@@ -1,37 +1,35 @@
-@import url('../../../assets/css/styles.css');
-@import url('./dataTables.bootstrap5.css');
-@import url('./responsive.dataTables.css');
+@import url("../../../assets/css/styles.css");
 
 .nav-link.bg-body-secondary {
-    font-weight: 600;
-    color: #0A3943;
-    margin-bottom: 2px;
-    filter: brightness(1);
-    transition: filter 0.2s ease-in-out 0s;
+  font-weight: 600;
+  color: #0a3943;
+  margin-bottom: 2px;
+  filter: brightness(1);
+  transition: filter 0.2s ease-in-out 0s;
 }
 .nav-link.bg-body-secondary:hover {
-    filter: brightness(0.9);
+  filter: brightness(0.9);
 }
 
 .nav-link.bg-body-secondary.active {
-    color: #0A3943 !important;
-    filter: brightness(0.9);
+  color: #0a3943 !important;
+  filter: brightness(0.9);
 }
 
 .page-link {
-    color: #0A3943;
-    filter: brightness(1);
-    transition: filter 0.2s ease-in-out 0s;
+  color: #0a3943;
+  filter: brightness(1);
+  transition: filter 0.2s ease-in-out 0s;
 }
 .page-link:hover {
-    color: #0A3943;
-    filter: brightness(0.9);
+  color: #0a3943;
+  filter: brightness(0.9);
 }
 .page-link.active {
-    background-color: #0A3943;
-    border: 1px solid #0A3943;
+  background-color: #0a3943;
+  border: 1px solid #0a3943;
 }
 .page-link.active:hover {
-    filter: brightness(1);
-    color: white;
+  filter: brightness(1);
+  color: white;
 }

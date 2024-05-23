@@ -1,4 +1,6 @@
+import { SetTitle } from '../../../assets/js/globals.functions.js';
 import { SetHeader } from '../../assets/js/globals.functions.admin.js';
+SetTitle('Formaser | Subir Archivos');
 SetHeader('header');
 //input archivo
 const SetInpFileContent = () => {
@@ -78,9 +80,9 @@ const CreateDenegadosSection = () => {
                   </svg>
               </h2>
               <div class="table-responsive mb-2">
-                  <table class="table table-hover table-striped" style="width:100%">
-                      <thead class="fs-5" id="theadDenegados"></thead>
-                      <tbody id="tbodyDenegados">
+                  <table class="table table-hover table-striped" id="dtDenegados">
+                      <thead class="fs-5"></thead>
+                      <tbody>
                       </tbody>
                   </table>
               </div>

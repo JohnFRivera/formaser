@@ -17,15 +17,9 @@ const SetHeader = (id) => {
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav gap-3">
                   <li class="nav-item">
-                      <a class="nav-link fs-4 fw-semibold d-flex align-items-center" aria-current="page" href="${GetHost()}/admin/subir_archivos/pre-inscritos.html">
+                      <a class="nav-link fs-4 fw-semibold d-flex align-items-center" aria-current="page" href="${GetHost()}/admin/subir_archivos/pre-inscritos.php">
                           <i class="bi bi-cloud-arrow-up-fill fs-3 me-2"></i>
                           Subir Archivos
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link fs-4 fw-semibold d-flex align-items-center" href="${GetHost()}/admin/consultas/pre-inscritos.html">
-                          <i class="bi bi-table fs-3 me-2"></i>
-                          Consultas
                       </a>
                   </li>
                   <li class="nav-item">
@@ -34,11 +28,35 @@ const SetHeader = (id) => {
                           Usuarios
                       </a>
                   </li>
+                  <li class="nav-item">
+                      <a class="nav-link fs-4 fw-semibold d-flex align-items-center" href="${GetHost()}/admin/pre-inscripciones/">
+                          <i class="bi bi-person-fill-down fs-3 me-2"></i>
+                          Pre-Inscripciones
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link fs-4 fw-semibold d-flex align-items-center" href="${GetHost()}/admin/inscripciones/">
+                          <i class="bi bi-person-fill-up fs-3 me-2"></i>
+                          Inscripciones
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link fs-4 fw-semibold d-flex align-items-center" href="${GetHost()}/admin/matriculados/">
+                          <i class="bi bi-person-fill-check fs-3 me-2"></i>
+                          Matriculados
+                      </a>
+                  </li>
               </ul>
           </div>
       </div>
   </nav>
   `;
+  let navLinks = document.querySelectorAll('.nav-link.fs-4');
+  navLinks.forEach(navLink => {
+    if (navLink.innerText == document.title.replace("Formaser | ", "")) {
+      navLink.classList.add("active");
+    }
+  });
 };
 //table
 const SetColumns = (dataTable, arrayColumns) => {
@@ -51,20 +69,67 @@ const SetColumns = (dataTable, arrayColumns) => {
   dataTable.firstElementChild.appendChild(row);
 };
 const FillTable = (dataTable, dataMatriz) => {
-  let row = document.createElement('tr');
   dataMatriz.forEach(Row => {
+    let row = document.createElement('tr');
     Row.forEach(Col => {
       let col = document.createElement('td');
       col.textContent = Col;
       row.appendChild(col);
     });
+    dataTable.lastElementChild.appendChild(row);
   });
-  dataTable.lastElementChild.appendChild(row);
 };
-const CreateDataTable = (id) => {
-  new DataTable(id, {
-
-  });
+const GetDefaultOpt = (columnsDefs) => {
+  return {
+    responsive: true,
+    language: {
+      "decimal": "",
+      "emptyTable": "No hay datos disponibles en la tabla",
+      "info": "Mostrando _START_ a _END_ de _TOTAL_ usuarios",
+      "infoEmpty": "Mostrando 0 a 0 de 0 usuarios",
+      "infoFiltered": "(filtrado de _MAX_ usuarios totales)",
+      "infoPostFix": "",
+      "thousands": ",",
+      "lengthMenu": "Mostrar _MENU_ usuarios",
+      "loadingRecords": "Cargando...",
+      "processing": "",
+      "search": "Buscar:",
+      "zeroRecords": "No se encontraron registros coincidentes",
+      "paginate": {
+        "first": "Primero",
+        "last": "Ultimo",
+        "next": "Siguiente",
+        "previous": "Anterior"
+      },
+      "aria": {
+        "orderable": "Ordenar por esta columna",
+        "orderableReverse": "Ordenar esta columna en orden inverso"
+      }
+    },
+    columnDefs: columnsDefs,
+    layout: {
+      top2Start: 'buttons'
+    },
+    buttons: [
+      {
+        extend: 'excel',
+        text: `
+            <i class="bi bi-file-earmark-spreadsheet"></i>
+            Excel
+            `,
+        className: 'btn-success'
+      },
+      {
+        extend: 'pdf',
+        text: `
+            <i class="bi bi-filetype-pdf"></i>
+            PDF
+            `,
+        className: 'btn-danger'
+      }
+    ],
+    order: [[0, "asc"]]
+  };
 };
 SetFooter('footer');
 CreateScript(`${GetHost()}/assets/js/bootstrap.bundle.min.js`);
@@ -72,5 +137,5 @@ export {
   SetHeader,
   SetColumns,
   FillTable,
-  CreateDataTable
+  GetDefaultOpt
 };

@@ -1,5 +1,5 @@
 const GetHost = () => {
-    return window.location.origin;
+    return window.location.origin + '/formaser';
 }
 const SetTitle = (title) => {
     document.title = title;
@@ -55,6 +55,9 @@ const SetError = (id, err) => {
 const GetLoading = () => {
     return `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Cargando...</span>`;
 };
+const SetModal = (modalContent) => {
+    document.getElementById('staticBackdrop').innerHTML = modalContent;
+};
 
 export {
     GetHost,
@@ -63,5 +66,6 @@ export {
     CreateScript,
     SetFooter,
     SetError,
-    GetLoading
+    GetLoading,
+    SetModal
 };
