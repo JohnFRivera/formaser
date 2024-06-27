@@ -4,4 +4,3 @@ FROM php:7.4-apache
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Copia el contenido del directorio actual en el contenedor
 COPY . /var/www/html/
-
