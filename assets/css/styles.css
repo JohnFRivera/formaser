@@ -3,7 +3,7 @@
 /*IMAGES*/
 .bg-img-formaser {
   position: relative;
-  min-height: 94vh;
+  min-height: 94.5vh;
   background-image: url(../img/cta-sena-cartago-vista-aerea.webp);
   background-size: cover;
   background-position-y: bottom;
@@ -16,7 +16,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  background-image: linear-gradient(to top, #85C12D, transparent);
+  background-image: linear-gradient(to top, #85c12d, transparent);
   z-index: -1;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .h-main {
-  min-height: 90vh;
+  min-height: 84.5vh;
 }
 
 /** CURSORS */
