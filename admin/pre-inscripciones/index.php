@@ -89,14 +89,14 @@ $preinscritos = [
                     <div class="row">
                         <div class="col">
                             <div class="table-responsive">
-                                <table id="dataTable" class="table table-hover table-striped w-100 fs-5 mb-0">
-                                    <thead>
+                                <table id="dataTable" class="table table-hover w-100 fs-5 mb-0">
+                                    <thead class="table-secondary">
                                         <tr>
-                                            <th>Tipo</th>
                                             <th>Población</th>
-                                            <th>Empresa</th>
                                             <th>Identificación</th>
+                                            <th>Empresa</th>
                                             <th>Ficha</th>
+                                            <th>Tipo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,15 +104,22 @@ $preinscritos = [
                                         foreach ($preinscritos as $preinscrito) {
                                         ?>
                                             <tr>
-                                                <td><?php echo $preinscrito["tipo"] ?></td>
+                                                <td class="fw-semibold">
+                                                    <i class="bi bi-caret-right-fill"></i>
+                                                    <?php echo $preinscrito["poblacion"] ?>
+                                                </td>
                                                 <td>
-                                                    <div class="badge text-bg-primary">
-                                                        <?php echo $preinscrito["poblacion"] ?>
+                                                    <div class="badge text-bg-success shadow-sm">
+                                                        <?php echo $preinscrito["identificacion"] ?>
                                                     </div>
                                                 </td>
                                                 <td><?php echo $preinscrito["empresa"] ?></td>
-                                                <td><?php echo $preinscrito["identificacion"] ?></td>
-                                                <td class="fw-bold"><?php echo $preinscrito["ficha"] ?></td>
+                                                <td>
+                                                    <div class="badge text-bg-primary shadow-sm">
+                                                        <?php echo $preinscrito["ficha"] ?>
+                                                    </div>
+                                                </td>
+                                                <td><?php echo $preinscrito["tipo"] ?></td>
                                             </tr>
                                         <?php
                                         }

@@ -103,13 +103,14 @@ $usuarios = [
                     <div class="row">
                         <div class="col">
                             <div class="table-responsive">
-                                <table id="dataTable" class="table table-hover table-striped w-100 mb-0">
-                                    <thead>
+                                <table id="dataTable" class="table table-hover w-100 fs-5 mb-0">
+                                    <thead class="table-secondary">
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
-                                            <th>Correo electrónico</th>
                                             <th>Identificación</th>
+                                            <th>Correo electrónico</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -119,8 +120,17 @@ $usuarios = [
                                             <tr>
                                                 <td><?php echo $usuario["nombre"] ?></td>
                                                 <td><?php echo $usuario["apellido"] ?></td>
+                                                <td>
+                                                    <div class="badge text-bg-success shadow-sm">
+                                                        <?php echo $usuario["identificacion"] ?>
+                                                    </div>
+                                                </td>
                                                 <td><?php echo $usuario["correo"] ?></td>
-                                                <td><?php echo $usuario["identificacion"] ?></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill small"></i></button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php
                                         }
