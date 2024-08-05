@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../assets/img/sena-logo.png" type="image/png">
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="shortcut icon" href="./front/assets/img/sena-logo.png" type="image/png">
+    <link rel="stylesheet" href="./front/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./front/assets/css/styles.css">
     <title>Formaser | Iniciar sesión</title>
 </head>
 
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-control border-dark-subtle p-0 border-end-0">
                         <div class="form-floating">
-                            <input type="password" name="password" id="password" class="form-control border-0 rounded-start-0 rounded-end-0" placeholder="Contraseña" minlength="8" required>
+                            <input type="password" name="password" class="form-control border-0 rounded-start-0 rounded-end-0" placeholder="Contraseña" minlength="8" required>
                             <label for="password">Contraseña</label>
                         </div>
                     </div>
@@ -78,6 +78,19 @@
             </p>
         </div>
     </footer>
+    <script>
+        document.getElementById("showPass").addEventListener("click", (e) => {
+            console.log(e.target.className);
+            var inpPassword = document.getElementsByName("password")[0];
+            if (inpPassword.type == "password") {
+                e.target.className = "bi bi-eye-slash fs-4";
+                inpPassword.type = "text";
+            } else {
+                e.target.className = "bi bi-eye fs-4";
+                inpPassword.type = "password";
+            }
+        });
+    </script>
 </body>
 
 </html>

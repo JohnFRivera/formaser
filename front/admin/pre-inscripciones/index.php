@@ -1,18 +1,18 @@
 <?php
-$inscritos = [
+$preinscritos = [
     [
         "identificacion" => "12345678",
-        "aprendiz" => "John Rivera",
         "ficha" => "2671333",
-        "programa" => "Analisis y Desarrollo",
-        "estado" => 0,
+        "tipo" => "CC",
+        "poblacion" => "Desplazado",
+        "empresa" => "2334578",
     ],
     [
-        "identificacion" => "2133213",
-        "aprendiz" => "Kevin Alzate",
-        "ficha" => "2671333",
-        "programa" => "Gestion Contable",
-        "estado" => 1,
+        "identificacion" => "23234556",
+        "ficha" => "2334578",
+        "tipo" => "CC",
+        "poblacion" => "Minoria",
+        "empresa" => "2334578",
     ],
 ]
 ?>
@@ -26,7 +26,7 @@ $inscritos = [
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/datatables.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Formaser | Inscripciones</title>
+    <title>Formaser | Pre-inscripciones</title>
 </head>
 
 <body class="bg-body-secondary">
@@ -47,19 +47,13 @@ $inscritos = [
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
-                                    <i class="bi bi-people-fill fs-3 me-2"></i>
-                                    Usuarios
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../pre-inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
+                                <a href="../pre-inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center active">
                                     <i class="bi bi-person-fill-down fs-3 me-2"></i>
                                     Pre-Inscripciones
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center active">
+                                <a href="../inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
                                     <i class="bi bi-person-fill-up fs-3 me-2"></i>
                                     Inscripciones
                                 </a>
@@ -68,6 +62,12 @@ $inscritos = [
                                 <a href="../matriculados/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
                                     <i class="bi bi-person-fill-check fs-3 me-2"></i>
                                     Matriculados
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
+                                    <i class="bi bi-people-fill fs-3 me-2"></i>
+                                    Usuarios
                                 </a>
                             </li>
                         </ul>
@@ -81,50 +81,42 @@ $inscritos = [
         <section class="row flex-column py-3 px-0 py-md-4 px-md-4">
             <div class="col">
                 <div class="bg-verde rounded-4 d-flex justify-content-center shadow-sm py-3 py-md-4 mb-4">
-                    <i class="bi bi-person-fill-up display-5 text-light"></i>
+                    <i class="bi bi-person-fill-down display-5 text-light"></i>
                 </div>
             </div>
             <div class="col">
-                <div class="bg-body rounded-4 p-4 p-md-5">
+                <div class="bg-body rounded-4 shadow-sm p-4 p-md-5">
                     <div class="row">
                         <div class="col">
                             <div class="table-responsive">
                                 <table id="dataTable" class="table table-hover w-100 fs-5 mb-0">
                                     <thead class="table-secondary">
                                         <tr>
-                                            <th>Estado</th>
-                                            <th>Identificación</th>
-                                            <th>Aprendiz</th>
+                                            <th>Tipo</th>
+                                            <th class="text-start">Identificación</th>
+                                            <th>Población</th>
                                             <th>Ficha</th>
-                                            <th>Programa</th>
+                                            <th>Empresa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach ($inscritos as $inscrito) {
+                                        foreach ($preinscritos as $preinscrito) {
                                         ?>
                                             <tr>
-                                                <td>
-                                                    <?php
-                                                    if ($inscrito["estado"] == 1) {
-                                                        echo "<div class='badge text-bg-info text-white shadow-sm'>Activo</div>";
-                                                    } else {
-                                                        echo "<div class='badge text-bg-danger shadow-sm'>Inactivo</div>";
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <div class="badge text-bg-success shadow-sm">
-                                                        <?php echo $inscrito["identificacion"] ?>
-                                                    </div>
-                                                </td>
-                                                <td><?php echo $inscrito["aprendiz"] ?></td>
+                                                <td><?php echo $preinscrito["tipo"] ?></td>
+                                                <td class="text-start"><?php echo $preinscrito["identificacion"] ?></td>
+                                                <td><?php echo $preinscrito["poblacion"] ?></td>
                                                 <td>
                                                     <div class="badge text-bg-primary shadow-sm">
-                                                        <?php echo $inscrito["ficha"] ?>
+                                                        <?php echo $preinscrito["ficha"] ?>
                                                     </div>
                                                 </td>
-                                                <td><?php echo $inscrito["programa"] ?></td>
+                                                <td>
+                                                    <div class="badge text-bg-secondary shadow-sm">
+                                                        <?php echo $preinscrito["empresa"] ?>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php
                                         }
@@ -169,13 +161,29 @@ $inscritos = [
         let table = new DataTable('#dataTable', {
             language: {
                 "emptyTable": "No hay datos disponibles en la tabla",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ inscritos",
-                "infoEmpty": "Mostrando 0 a 0 de 0 inscritos",
-                "infoFiltered": "(filtrado de _MAX_ inscritos totales)",
-                "lengthMenu": "Mostrar _MENU_ inscritos",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ pre-inscritos",
+                "infoEmpty": "Mostrando 0 a 0 de 0 pre-inscritos",
+                "infoFiltered": "(filtrado de _MAX_ pre-inscritos totales)",
+                "lengthMenu": "Mostrar _MENU_ pre-inscritos",
                 "loadingRecords": "Cargando...",
                 "search": "Buscar:",
                 "zeroRecords": "No se encontraron registros coincidentes",
+            },
+            layout: {
+                top2End: {
+                    buttons: [
+                        {
+                            extend: "excel",
+                            text: "<i class='bi bi-filetype-xls'></i> EXCEL",
+                            className: "btn-success"
+                        },
+                        {
+                            extend: "pdf",
+                            text: "<i class='bi bi-filetype-pdf'></i> PDF",
+                            className: "btn-danger"
+                        }
+                    ]
+                }
             }
         });
     </script>

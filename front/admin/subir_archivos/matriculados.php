@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/datatables.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Formaser | Subir Archivo Inscritos</title>
+    <title>Formaser | Subir Archivo Matriculados</title>
 </head>
 
 <body class="bg-body-secondary">
@@ -29,12 +29,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
-                                    <i class="bi bi-people-fill fs-3 me-2"></i>
-                                    Usuarios
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../pre-inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
                                     <i class="bi bi-person-fill-down fs-3 me-2"></i>
                                     Pre-Inscripciones
@@ -50,6 +44,12 @@
                                 <a href="../matriculados/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
                                     <i class="bi bi-person-fill-check fs-3 me-2"></i>
                                     Matriculados
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
+                                    <i class="bi bi-people-fill fs-3 me-2"></i>
+                                    Usuarios
                                 </a>
                             </li>
                         </ul>
@@ -76,21 +76,21 @@
                         </a>
                     </li>
                     <!--INSCRITOS-->
-                    <li class="nav-item text-nowrap bg-body rounded-top-3 shadow-sm">
-                        <a href="./inscritos.php" class="nav-link border-2 fs-5 py-2 px-4 active">
+                    <li class="nav-item text-nowrap">
+                        <a href="./inscritos.php" class="nav-link border-2 fs-5 py-2 px-4 fw-bold text-black-50">
                             Inscritos
                         </a>
                     </li>
                     <!--MATRICULADOS-->
-                    <li class="nav-item text-nowrap">
-                        <a href="./matriculados.php" class="nav-link border-2 fs-5 py-2 px-3 fw-bold text-black-50">
+                    <li class="nav-item text-nowrap bg-body rounded-top-3 shadow-sm">
+                        <a href="./matriculados.php" class="nav-link border-2 fs-5 py-2 px-3 active">
                             Matriculados
                         </a>
                     </li>
                 </ul>
                 <!-- BOTÓN SUBIR ARCHIVO -->
                 <div class="bg-body rounded-4 shadow-sm p-4 p-md-5">
-                    <label for="archivo" class="btn btn-lg btn-outline-light border-secondary-subtle text-dark w-100 py-3 mb-4">
+                    <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3 mb-4">
                         <input type="file" name="" id="archivo" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                         <i class="bi bi-upload"></i> Seleccionar Archivo
                     </label>
@@ -134,7 +134,7 @@
     <script src="../assets/js/pdfmake.min.js"></script>
     <script src="../assets/js/vfs_fonts.js"></script>
     <script src="../assets/js/datatables.min.js"></script>
-    <script type="module" src="./js/inscritos.js"></script>
+    <script type="module" src="./js/matriculados.js"></script>
 </body>
 
 </html>

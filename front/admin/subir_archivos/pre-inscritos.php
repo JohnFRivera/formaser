@@ -1,21 +1,3 @@
-<?php
-$preinscritos = [
-    [
-        "identificacion" => "12345678",
-        "ficha" => "2671333",
-        "tipo" => "Analisis y Desarrollo",
-        "poblacion" => "Desplazado",
-        "empresa" => "Ara S.A.S",
-    ],
-    [
-        "identificacion" => "23234556",
-        "ficha" => "2334578",
-        "tipo" => "Gestion Contable",
-        "poblacion" => "Minoria",
-        "empresa" => "Tiendas D1",
-    ],
-]
-?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -26,7 +8,7 @@ $preinscritos = [
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/datatables.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Formaser | Pre-inscripciones</title>
+    <title>Formaser | Subir Archivo Pre-inscritos</title>
 </head>
 
 <body class="bg-body-secondary">
@@ -41,19 +23,13 @@ $preinscritos = [
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav gap-1 gap-md-3">
                             <li class="nav-item">
-                                <a href="../subir_archivos/pre-inscritos.php" class="nav-link fs-4 fw-semibold d-flex align-items-center">
+                                <a href="../subir_archivos/pre-inscritos.php" class="nav-link fs-4 fw-semibold d-flex align-items-center active">
                                     <i class="bi bi-cloud-arrow-up-fill fs-3 me-2"></i>
                                     Subir Archivos
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
-                                    <i class="bi bi-people-fill fs-3 me-2"></i>
-                                    Usuarios
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../pre-inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center active">
+                                <a href="../pre-inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
                                     <i class="bi bi-person-fill-down fs-3 me-2"></i>
                                     Pre-Inscripciones
                                 </a>
@@ -70,62 +46,60 @@ $preinscritos = [
                                     Matriculados
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
+                                    <i class="bi bi-people-fill fs-3 me-2"></i>
+                                    Usuarios
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
     </header>
-    <!--* CONTENIDO -->
+    <!--CONTENIDO-->
     <main class="container-fluid h-main">
         <section class="row flex-column py-3 px-0 py-md-4 px-md-4">
             <div class="col">
                 <div class="bg-verde rounded-4 d-flex justify-content-center shadow-sm py-3 py-md-4 mb-4">
-                    <i class="bi bi-person-fill-down display-5 text-light"></i>
+                    <i class="bi bi-cloud-arrow-up-fill display-5 text-light"></i>
                 </div>
             </div>
             <div class="col">
-                <div class="bg-body rounded-4 p-4 p-md-5">
+                <!-- NAVBAR -->
+                <ul class="nav nav-underline d-flex flex-nowrap overflow-x-auto gap-1 px-0">
+                    <!--PRE-INSCRITOS-->
+                    <li class="nav-item text-nowrap bg-body rounded-top-3 shadow-sm">
+                        <a href="./pre-inscritos.php" class="nav-link border-2 fs-5 py-2 px-4 active">
+                            Pre-Inscritos
+                        </a>
+                    </li>
+                    <!--INSCRITOS-->
+                    <li class="nav-item text-nowrap">
+                        <a href="./inscritos.php" class="nav-link border-2 fs-5 py-2 px-4 fw-bold text-black-50">
+                            Inscritos
+                        </a>
+                    </li>
+                    <!--MATRICULADOS-->
+                    <li class="nav-item text-nowrap">
+                        <a href="./matriculados.php" class="nav-link border-2 fs-5 py-2 px-3 fw-bold text-black-50">
+                            Matriculados
+                        </a>
+                    </li>
+                </ul>
+                <!-- BOTÓN SUBIR ARCHIVO -->
+                <div class="bg-body rounded-bottom-4 rounded-end-4 shadow-sm p-4 p-md-5">
+                    <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3 mb-4">
+                        <input type="file" name="" id="archivo" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                        <i class="bi bi-upload"></i> Seleccionar Archivo
+                    </label>
                     <div class="row">
                         <div class="col">
-                            <div class="table-responsive">
-                                <table id="dataTable" class="table table-hover w-100 fs-5 mb-0">
-                                    <thead class="table-secondary">
-                                        <tr>
-                                            <th>Población</th>
-                                            <th>Identificación</th>
-                                            <th>Empresa</th>
-                                            <th>Ficha</th>
-                                            <th>Tipo</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        foreach ($preinscritos as $preinscrito) {
-                                        ?>
-                                            <tr>
-                                                <td class="fw-semibold">
-                                                    <i class="bi bi-caret-right-fill"></i>
-                                                    <?php echo $preinscrito["poblacion"] ?>
-                                                </td>
-                                                <td>
-                                                    <div class="badge text-bg-success shadow-sm">
-                                                        <?php echo $preinscrito["identificacion"] ?>
-                                                    </div>
-                                                </td>
-                                                <td><?php echo $preinscrito["empresa"] ?></td>
-                                                <td>
-                                                    <div class="badge text-bg-primary shadow-sm">
-                                                        <?php echo $preinscrito["ficha"] ?>
-                                                    </div>
-                                                </td>
-                                                <td><?php echo $preinscrito["tipo"] ?></td>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                    </tbody>
-                                </table>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <strong>¡Error!</strong> No es el archivo correcto.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         </div>
                     </div>
@@ -133,7 +107,7 @@ $preinscritos = [
             </div>
         </section>
     </main>
-    <!--* FIN CONTENIDO -->
+    <!--FIN CONTENIDO-->
     <footer class="container-fluid">
         <div class="row bg-verde d-flex flex-column flex-md-row justify-content-between py-3 px-4">
             <div class="col-auto">
@@ -160,20 +134,7 @@ $preinscritos = [
     <script src="../assets/js/pdfmake.min.js"></script>
     <script src="../assets/js/vfs_fonts.js"></script>
     <script src="../assets/js/datatables.min.js"></script>
-    <script>
-        let table = new DataTable('#dataTable', {
-            language: {
-                "emptyTable": "No hay datos disponibles en la tabla",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ pre-inscritos",
-                "infoEmpty": "Mostrando 0 a 0 de 0 pre-inscritos",
-                "infoFiltered": "(filtrado de _MAX_ pre-inscritos totales)",
-                "lengthMenu": "Mostrar _MENU_ pre-inscritos",
-                "loadingRecords": "Cargando...",
-                "search": "Buscar:",
-                "zeroRecords": "No se encontraron registros coincidentes",
-            }
-        });
-    </script>
+    <script type="module" src="./js/pre-inscritos.js"></script>
 </body>
 
 </html>

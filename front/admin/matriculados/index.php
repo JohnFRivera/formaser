@@ -1,18 +1,18 @@
 <?php
 $matriculados = [
     [
-        "identificacion" => "12345678",
-        "aprendiz" => "John Rivera",
-        "ficha" => "2671333",
-        "programa" => "Analisis y Desarrollo",
-        "estado" => 0,
+        "identificacion" => "CC - 1234567890",
+        "aprendiz" => "JUAN CAMILO VANEGAS GONZÁLEZ",
+        "ficha" => "2941210",
+        "programa" => "COMPORTAMIENTO EMPRENDEDOR",
+        "estado" => "Matriculado",
     ],
     [
-        "identificacion" => "2133213",
-        "aprendiz" => "Kevin Alzate",
-        "ficha" => "2671333",
-        "programa" => "Gestion Contable",
-        "estado" => 1,
+        "identificacion" => "CC - 1007577575",
+        "aprendiz" => "ADELAIDA AGUDELO VALENCIA",
+        "ficha" => "2952573",
+        "programa" => "COMPORTAMIENTO EMPRENDEDOR",
+        "estado" => "Anulado",
     ],
 ]
 ?>
@@ -47,12 +47,6 @@ $matriculados = [
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
-                                    <i class="bi bi-people-fill fs-3 me-2"></i>
-                                    Usuarios
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="../pre-inscripciones/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
                                     <i class="bi bi-person-fill-down fs-3 me-2"></i>
                                     Pre-Inscripciones
@@ -68,6 +62,12 @@ $matriculados = [
                                 <a href="../matriculados/" class="nav-link fs-4 fw-semibold d-flex align-items-center active">
                                     <i class="bi bi-person-fill-check fs-3 me-2"></i>
                                     Matriculados
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../usuarios/" class="nav-link fs-4 fw-semibold d-flex align-items-center">
+                                    <i class="bi bi-people-fill fs-3 me-2"></i>
+                                    Usuarios
                                 </a>
                             </li>
                         </ul>
@@ -89,14 +89,14 @@ $matriculados = [
                     <div class="row">
                         <div class="col">
                             <div class="table-responsive">
-                                <table id="dataTable" class="table table-hover w-100 fs-5 mb-0">
+                            <table id="dataTable" class="table table-hover w-100 fs-5 mb-0">
                                     <thead class="table-secondary">
                                         <tr>
-                                            <th>Estado</th>
-                                            <th>Identificación</th>
-                                            <th>Aprendiz</th>
+                                            <th class="text-start">Identificación</th>
+                                            <th>Nombre</th>
                                             <th>Ficha</th>
                                             <th>Programa</th>
+                                            <th>Estado</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -104,20 +104,7 @@ $matriculados = [
                                         foreach ($matriculados as $matriculado) {
                                         ?>
                                             <tr>
-                                                <td>
-                                                    <?php
-                                                    if ($matriculado["estado"] == 1) {
-                                                        echo "<div class='badge text-bg-info text-white shadow-sm'>Activo</div>";
-                                                    } else {
-                                                        echo "<div class='badge text-bg-danger shadow-sm'>Inactivo</div>";
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <div class="badge text-bg-success shadow-sm">
-                                                        <?php echo $matriculado["identificacion"] ?>
-                                                    </div>
-                                                </td>
+                                                <td class="text-start"><?php echo $matriculado["identificacion"] ?></td>
                                                 <td><?php echo $matriculado["aprendiz"] ?></td>
                                                 <td>
                                                     <div class="badge text-bg-primary shadow-sm">
@@ -125,6 +112,11 @@ $matriculados = [
                                                     </div>
                                                 </td>
                                                 <td><?php echo $matriculado["programa"] ?></td>
+                                                <td>
+                                                    <div class="badge text-bg-danger shadow-sm">
+                                                        <?php echo $matriculado["estado"] ?>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php
                                         }
@@ -176,6 +168,22 @@ $matriculados = [
                 "loadingRecords": "Cargando...",
                 "search": "Buscar:",
                 "zeroRecords": "No se encontraron registros coincidentes",
+            },
+            layout: {
+                top2End: {
+                    buttons: [
+                        {
+                            extend: "excel",
+                            text: "<i class='bi bi-filetype-xls'></i> EXCEL",
+                            className: "btn-success"
+                        },
+                        {
+                            extend: "pdf",
+                            text: "<i class='bi bi-filetype-pdf'></i> PDF",
+                            className: "btn-danger"
+                        }
+                    ]
+                }
             }
         });
     </script>
