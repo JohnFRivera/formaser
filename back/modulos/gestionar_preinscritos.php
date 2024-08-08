@@ -1,17 +1,33 @@
-<?php 
-    require_once 'MYSQL.php' ;
+<?php
+require_once 'MYSQL.php';
+
+try {
     $mysql = new MYSQL();
-    $resultadoConsulta = $mysql -> efectuarConsulta("SELECT tipoCedula as tipo,
-    cedula as cedula,
-    numeroFicha as ficha ,
-    tipoPoblacion as poblacion ,
-    codigoEmpresa as empresa
-    FROM inscripcionaprendiz1 WHERE estado like '%Preinscrito%' ") ;
-    $mysql->desconectar() ;
+    // Ejecuta la consulta
+    $resultadoConsulta = $mysql->efectuarConsulta("SELECT tipoCedula AS tipo,
+      cedula AS cedula,
+      numeroFicha AS ficha,
+      tipoPoblacion AS poblacion,
+      codigoEmpresa AS empresa
+      FROM inscripcionaprendiz1
+      WHERE estado LIKE '%Preinscrito%'");
+    
+    // Desconecta la base de datos
+    $mysql->desconectar();
+
+    // Inicializa el arreglo de datos
     $data = array();
-    foreach ($resultadoConsulta as $row) 
-    {
-        $data[] = $row; 
+
+    // Recorre los resultados y los agrega al arreglo
+    while ($row = mysqli_fetch_assoc($resultadoConsulta)) {
+        $data[] = $row;
     }
-    echo json_encode($data) ;
+
+    // Codifica los datos a formato JSON y los devuelve
+    echo json_encode($data);
+
+} catch (Exception $e) {
+    // Manejo de errores en caso de problemas con la conexión o consulta
+    echo json_encode(array('error' => 'Ocurrió un error: ' . $e->getMessage()));
+}
 ?>

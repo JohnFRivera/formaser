@@ -97,18 +97,7 @@ primerFormato.addEventListener("click", () => {
   }
 });
 
-/*   
-  // Enviar el formulario usando AJAX
-  $.ajax({
-    data: formData,
-    url: "leerExcel.php",
-    type: "POST",
-    processData: false, // Importante: desactivar la procesamiento de datos para que jQuery no convierta el objeto FormData en una cadena
-    contentType: false, // Importante: desactivar el tipo de contenido para que jQuery configure el encabezado correctamente
-  }).done(function (res) {
-    var datos = JSON.parse(res);
-    console.log(datos[0]);
-  }); */
+
 
 // aca voy hacer el codigo para enviar el segundo formato
 let btnEnviarSegundoFormato = document.getElementById(

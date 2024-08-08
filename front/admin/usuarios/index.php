@@ -1,18 +1,8 @@
 <?php
-$usuarios = [
-    [
-        "identificacion" => "12345678",
-        "nombre" => "Jaimito",
-        "apellido" => "Alimaña",
-        "correo" => "jaimito12@gmail.com"
-    ],
-    [
-        "identificacion" => "100232223",
-        "nombre" => "Pepito",
-        "apellido" => "Martinez",
-        "correo" => "pepe23@gmail.com"
-    ]
-]
+ require_once '../../../back/modulos/usuarios.php';
+
+ $usuario = new Usuario();
+ $usuarios = $usuario->obtenerTodos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -118,10 +108,10 @@ $usuarios = [
                                         foreach ($usuarios as $usuario) {
                                         ?>
                                             <tr>
-                                                <td class="text-start"><?php echo $usuario["identificacion"] ?></td>
-                                                <td><?php echo $usuario["nombre"] ?></td>
-                                                <td><?php echo $usuario["apellido"] ?></td>
-                                                <td><?php echo $usuario["correo"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["Identificacion"]; ?></td>
+                                                <td><?php echo $usuario["Nombre"]; ?></td>
+                                                <td><?php echo $usuario["Apellido"] ?></td>
+                                                <td><?php echo $usuario["Correo"] ?></td>
                                                 <td>
                                                     <div class="btn-group shadow-sm">
                                                         <button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square small"></i></button>
