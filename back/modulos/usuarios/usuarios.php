@@ -1,5 +1,7 @@
 <?php
-require_once 'MYSQL.php';
+
+require_once __DIR__ . '/../MYSQL.php';
+
 
 class Usuario {
     private $db;
@@ -10,8 +12,9 @@ class Usuario {
     }
 
     // Método para agregar un nuevo usuario
-    public function crear($identificacion, $nombre, $apellido, $correo) {
-        $sql = "INSERT INTO usuarios (Identificacion, Nombre, Apellido, Correo) VALUES ('$identificacion', '$nombre', '$apellido', '$correo')";
+    public function crear($identificacion, $nombre, $apellido, $correo, $contrasena) {
+        $contrasenaEncriptada = password_hash($contrasena, PASSWORD_BCRYPT);
+        $sql = "INSERT INTO usuarios (Identificacion, Nombre, Apellido, Correo, password) VALUES ('$identificacion', '$nombre', '$apellido', '$correo', '$contrasenaEncriptada')";
         
         try {
             $this->db->efectuarConsulta($sql);
@@ -20,6 +23,7 @@ class Usuario {
             return $e->getMessage();
         }
     }
+    
 
     // Método para obtener todos los usuarios
     public function obtenerTodos() {

@@ -1,20 +1,5 @@
 <?php
-$preinscritos = [
-    [
-        "identificacion" => "12345678",
-        "ficha" => "2671333",
-        "tipo" => "CC",
-        "poblacion" => "Desplazado",
-        "empresa" => "2334578",
-    ],
-    [
-        "identificacion" => "23234556",
-        "ficha" => "2334578",
-        "tipo" => "CC",
-        "poblacion" => "Minoria",
-        "empresa" => "2334578",
-    ],
-]
+$preinscritos = require_once '../../../back/modulos/gestionar_preinscritos.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">

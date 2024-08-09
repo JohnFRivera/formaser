@@ -1,5 +1,5 @@
 <?php
- require_once '../../../back/modulos/usuarios.php';
+ require_once '../../../back/modulos/usuarios/usuarios.php';
 
  $usuario = new Usuario();
  $usuarios = $usuario->obtenerTodos();

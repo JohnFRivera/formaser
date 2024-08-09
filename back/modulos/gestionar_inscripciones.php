@@ -26,7 +26,7 @@ try {
     }
 
     // Codificar los datos a formato JSON y devolverlos
-    echo json_encode($data);
+    return $data;
 
 } catch (Exception $e) {
     // Manejo de errores en caso de problemas con la conexión o consulta

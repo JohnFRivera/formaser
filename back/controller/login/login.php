@@ -1,56 +1,46 @@
 <?php
 require_once '../../modulos/MYSQL.php';
-$email = $_POST['correo'];
-$pass = $_POST['password'];
-// ? Creo una variable que va almacenar el password enviada por el el usuario 
-// ? y lo convierte en hash
-$passStr = '';
-$passStr = md5($pass);
+
+// Captura los datos de entrada de manera segura
+$email = filter_input(INPUT_POST, 'correo', FILTER_SANITIZE_EMAIL);
+$pass = $_POST['password'] ?? '';
+
+// Hash de la contraseña ingresada por el usuario
+$hashedPass = md5($pass);
+
 $mysql = new MYSQL();
-$Traer_info = $mysql->efectuarConsulta("SELECT usuarios.Correo as correo, usuarios.password as pass FROM bd_formaser.usuarios WHERE usuarios.Correo = '" . $email . "'");
+$query = "SELECT Correo as correo, password as pass FROM bd_formaser.usuarios WHERE Correo = ?";
+$Traer_info = $mysql->efectuarConsulta($query, 's', [$email]);
 $mysql->desconectar();
+
 $arregloErrores = array();
-// ? Variables que capturan los datos de la base
-$bd_correo = "";
-$bd_pass = '';
-// ? Validador de password
 $validarPass = false;
-while ($row = $Traer_info->fetch_assoc()) {
+
+if ($Traer_info->num_rows > 0) {
+    $row = $Traer_info->fetch_assoc();
     $bd_correo = $row['correo'];
     $bd_pass = $row['pass'];
-}
-// ? Valido si las passwords son iguales, 
-// ? toca convertir la password que envia el usuario en hash 
-// ? para validar con el hash que trae la consulta
-if (hash_equals($passStr, $bd_pass)) {
-    $validarPass = true;
-} else {
-    $validarPass = false;
-}
-// ? Valido los diferentes casos cuando el usuario inicie sesion
-switch (true) {
-    case ($email == $bd_correo && $validarPass == true):
-        $Mensaje = array(
+
+    // Validación de contraseña
+    $validarPass = hash_equals($hashedPass, $bd_pass);
+
+    if ($validarPass) {
+        $arregloErrores = array(
             'Code' => "200",
             'Route' => "/admin/usuarios/",
         );
-        $arregloErrores = $Mensaje;
-        break;
-    case ($email == $bd_correo && $validarPass == false):
-        $Mensaje = array(
+    } else {
+        $arregloErrores = array(
             'Code' => "404",
             'Error' => "Contraseña incorrecta"
         );
-        $arregloErrores = $Mensaje;
-        break;
-    case ($email != $bd_correo && $pass != $bd_pass):
-        $Mensaje = array(
-            'Code' => "404",
-            'Error' => "El correo no existe"
-        );
-        $arregloErrores = $Mensaje;
-        break;
+    }
+} else {
+    $arregloErrores = array(
+        'Code' => "404",
+        'Error' => "El correo no existe"
+    );
 }
-// ? Envio los mensajes como json para capturarlos en JavaScript
-// ?  y mostrar alguna respuesta
+
+// Enviar los mensajes como JSON para ser capturados en JavaScript
 echo json_encode($arregloErrores);

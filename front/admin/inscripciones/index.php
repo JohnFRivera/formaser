@@ -1,20 +1,5 @@
 <?php
-$inscritos = [
-    [
-        "identificacion" => "CC - 1234567890",
-        "aprendiz" => "JUAN CAMILO VANEGAS GONZÁLEZ",
-        "ficha" => "2941210",
-        "programa" => "COMPORTAMIENTO EMPRENDEDOR",
-        "estado" => "Preinscrito",
-    ],
-    [
-        "identificacion" => "CC - 1007577575",
-        "aprendiz" => "ADELAIDA AGUDELO VALENCIA",
-        "ficha" => "2952573",
-        "programa" => "COMPORTAMIENTO EMPRENDEDOR",
-        "estado" => "Preinscrito",
-    ],
-]
+$inscritos = require_once '../../../back/modulos/gestionar_inscripciones.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">

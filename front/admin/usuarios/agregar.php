@@ -85,7 +85,7 @@
                 <div class="bg-body rounded-4 shadow-sm p-4 p-md-5">
                     <div class="row">
                         <div class="col col-md-7 col-lg-6 col-xl-5 col-xxl-4">
-                            <form action="" method="post">
+                            <form action="../../../back/modulos/usuarios/usuarios_create.php" method="post">
                                 <label for="identificacion" class="text-dark fs-5">Identificación</label>
                                 <div class="input-group mb-2">
                                     <span class="input-group-text">

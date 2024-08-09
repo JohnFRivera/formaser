@@ -1,20 +1,5 @@
 <?php
-$matriculados = [
-    [
-        "identificacion" => "CC - 1234567890",
-        "aprendiz" => "JUAN CAMILO VANEGAS GONZÁLEZ",
-        "ficha" => "2941210",
-        "programa" => "COMPORTAMIENTO EMPRENDEDOR",
-        "estado" => "Matriculado",
-    ],
-    [
-        "identificacion" => "CC - 1007577575",
-        "aprendiz" => "ADELAIDA AGUDELO VALENCIA",
-        "ficha" => "2952573",
-        "programa" => "COMPORTAMIENTO EMPRENDEDOR",
-        "estado" => "Anulado",
-    ],
-]
+$matriculados = require_once '../../../back/modulos/gestionar_matriculados.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -104,8 +89,8 @@ $matriculados = [
                                         foreach ($matriculados as $matriculado) {
                                         ?>
                                             <tr>
-                                                <td class="text-start"><?php echo $matriculado["identificacion"] ?></td>
-                                                <td><?php echo $matriculado["aprendiz"] ?></td>
+                                                <td class="text-start"><?php echo $matriculado["cedula"] ?></td>
+                                                <td><?php echo $matriculado["nombre"] ?></td>
                                                 <td>
                                                     <div class="badge text-bg-primary shadow-sm">
                                                         <?php echo $matriculado["ficha"] ?>
