@@ -13,8 +13,7 @@ $query = "SELECT Correo as correo, password as pass FROM bd_formaser.usuarios WH
 $Traer_info = $mysql->efectuarConsulta($query, 's', [$email]);
 $mysql->desconectar();
 
-$arregloErrores = array();
-$validarPass = false;
+$loginError = "";
 
 if ($Traer_info->num_rows > 0) {
     $row = $Traer_info->fetch_assoc();
@@ -22,25 +21,14 @@ if ($Traer_info->num_rows > 0) {
     $bd_pass = $row['pass'];
 
     // Validación de contraseña
-    $validarPass = hash_equals($hashedPass, $bd_pass);
-
-    if ($validarPass) {
-        $arregloErrores = array(
-            'Code' => "200",
-            'Route' => "/admin/usuarios/",
-        );
+    if (hash_equals($hashedPass, $bd_pass)) {
+        // Inicio de sesión exitoso, redirigir al área de administración
+        header("Location: /admin/usuarios/");
+        exit();
     } else {
-        $arregloErrores = array(
-            'Code' => "404",
-            'Error' => "Contraseña incorrecta"
-        );
+        $loginError = "Contraseña incorrecta";
     }
 } else {
-    $arregloErrores = array(
-        'Code' => "404",
-        'Error' => "El correo no existe"
-    );
+    $loginError = "El correo no existe";
 }
-
-// Enviar los mensajes como JSON para ser capturados en JavaScript
-echo json_encode($arregloErrores);
+?>
