@@ -22,17 +22,26 @@ class MYSQL
         $this->conexion->close();
     }
 
-    public function efectuarConsulta($consulta)
+    public function efectuarConsulta($consulta, $types = "", $params = [])
     {
-        $this->conexion->query("SET lc_time_names = 'es_ES'; SET NAMES 'utf8'");
+        $stmt = $this->conexion->prepare($consulta);
 
-        $resultadoConsulta = $this->conexion->query($consulta);
-
-        if (!$resultadoConsulta) {
-            throw new Exception("Error en la consulta: " . $this->conexion->error);
+        if ($stmt === false) {
+            throw new Exception("Error en la preparación de la consulta: " . $this->conexion->error);
         }
 
-        return $resultadoConsulta;
+        // Si hay parámetros, los enlazamos
+        if (!empty($types) && !empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+
+        if (!$stmt->execute()) {
+            throw new Exception("Error en la ejecución de la consulta: " . $stmt->error);
+        }
+
+        $resultado = $stmt->get_result();
+
+        return $resultado;
     }
 
     public function filasAfectadas()
@@ -45,4 +54,4 @@ class MYSQL
         $this->desconectar();
     }
 }
-?>
+
