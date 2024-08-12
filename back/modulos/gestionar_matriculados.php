@@ -11,8 +11,8 @@ try {
                                                         numeroFicha AS ficha,
                                                         nombrePrograma AS programa,
                                                         estado AS estado
-                                                 FROM inscripcionaprendiz1
-                                                 WHERE estado LIKE '%Matriculado%'");
+                                                        FROM inscripcionaprendiz1
+                                                        WHERE estado LIKE '%Matriculado%'");
     
     // Desconectar la base de datos
     $mysql->desconectar();
