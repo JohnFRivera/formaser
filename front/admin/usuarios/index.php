@@ -1,8 +1,8 @@
 <?php
- require_once '../../../back/modulos/usuarios/usuarios.php';
+require_once '../../../back/modulos/usuarios/usuarios.php';
 
- $usuario = new Usuario();
- $usuarios = $usuario->obtenerTodos();
+$usuario = new Usuario();
+$usuarios = $usuario->obtenerTodos();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -97,8 +97,8 @@
                                     <thead class="table-secondary">
                                         <tr>
                                             <th class="text-start">Identificación</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
+                                            <th class="text-start">Nombre</th>
+                                            <th class="text-start">Apellido</th>
                                             <th>Correo electrónico</th>
                                             <th></th>
                                         </tr>
@@ -107,15 +107,15 @@
                                         <?php
                                         foreach ($usuarios as $usuario) {
                                         ?>
-                                            <tr>
-                                                <td class="text-start"><?php echo $usuario["Identificacion"]; ?></td>
-                                                <td><?php echo $usuario["Nombre"]; ?></td>
-                                                <td><?php echo $usuario["Apellido"] ?></td>
-                                                <td><?php echo $usuario["Correo"] ?></td>
+                                            <tr id="row-<?php echo $usuario["Identificacion"] ?>">
+                                                <td class="text-start"><?php echo $usuario["Identificacion"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["Nombre"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["Apellido"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["Correo"] ?></td>
                                                 <td>
                                                     <div class="btn-group shadow-sm">
-                                                        <button type="button" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square small"></i></button>
-                                                        <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill small"></i></button>
+                                                        <button type="button" onclick="putOnClick(<?php echo $usuario['Identificacion'] ?>)" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square small"></i></button>
+                                                        <button type="button" onclick="deleteOnClick(<?php echo $usuario['Identificacion'] ?>)" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill small"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -124,6 +124,70 @@
                                         ?>
                                     </tbody>
                                 </table>
+                                <div class="modal fade" id="putModal" tabindex="-1" aria-labelledby="putModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <form action="../../../back/modulos/usuarios/usuarios_edit.php" method="post" class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-4 text-primary" id="putModalLabel">Modificar Usuario</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="identificacion" class="text-dark fs-5">Identificación</label>
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text">
+                                                        <i class="bi bi-person-vcard fs-5"></i>
+                                                    </span>
+                                                    <input type="text" name="identificacion" id="identificacion" class="form-control form-control-lg" pattern="^[0-9]*$" required>
+                                                </div>
+                                                <div class="row row-cols-1 row-cols-md-2">
+                                                    <div class="col mb-2">
+                                                        <label for="nombre" class="text-dark fs-5">Nombres</label>
+                                                        <input type="text" name="nombre" id="nombre" class="form-control form-control-lg" required>
+                                                    </div>
+                                                    <div class="col mb-2">
+                                                        <label for="apellido" class="text-dark fs-5">Apellidos</label>
+                                                        <input type="text" name="apellido" id="apellido" class="form-control form-control-lg" required>
+                                                    </div>
+                                                </div>
+                                                <label for="correo" class="text-dark fs-5">Correo electrónico</label>
+                                                <div class="input-group mb-2">
+                                                    <span class="input-group-text">
+                                                        <i class="bi bi-envelope-at fs-5"></i>
+                                                    </span>
+                                                    <input type="email" name="correo" id="correo" class="form-control form-control-lg" required>
+                                                </div>
+                                                <label for="password" class="text-dark fs-5">Contraseña</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">
+                                                        <i class="bi bi-key fs-5"></i>
+                                                    </span>
+                                                    <input type="password" name="password" id="password" class="form-control form-control-lg" minlength="8" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary">Modificar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <form action="../../../back/modulos/usuarios/usuarios_delet.php" method="post" id="frmDelete" class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-4 text-danger" id="deleteModalLabel">¡Advertencia!</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="fs-5 mb-0">¿Seguro que deseas eliminar al usuario <b id="lblNombre"></b>?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-danger">Eliminar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -171,6 +235,30 @@
                 "zeroRecords": "No se encontraron registros coincidentes",
             }
         });
+        const getCols = (id) => {
+            var arrayResult = [];
+            var cols = document.getElementById(`row-${id}`).children;
+            for (let i = 0; i < (cols.length - 1); i++) {
+                arrayResult.push(cols.item(i).innerText);
+            };
+            return arrayResult;
+        };
+        const putModal = new bootstrap.Modal('#putModal');
+        const deleteModal = new bootstrap.Modal('#deleteModal');
+        const putOnClick = (id) => {
+            var arrayCols = getCols(id);
+            document.getElementById("identificacion").value = arrayCols[0];
+            document.getElementById("nombre").value = arrayCols[1];
+            document.getElementById("apellido").value = arrayCols[2];
+            document.getElementById("correo").value = arrayCols[3];
+            putModal.show();
+        };
+        const deleteOnClick = (id) => {
+            var arrayCols = getCols(id);
+            document.getElementById("frmDelete").action += `?id=${arrayCols[0]}`;
+            document.getElementById("lblNombre").innerText = `${arrayCols[1]} ${arrayCols[2]}`;
+            deleteModal.show();
+        };
     </script>
 </body>
 
