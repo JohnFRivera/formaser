@@ -28,6 +28,6 @@ try {
 
 } catch (Exception $e) {
     // Manejo de errores en caso de problemas con la conexión o consulta
-    echo json_encode(array('error' => 'Ocurrió un error: ' . $e->getMessage()));
+    array('error' => 'Ocurrió un error: ' . $e->getMessage());
 }
 ?>

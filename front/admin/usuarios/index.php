@@ -161,12 +161,12 @@ $usuarios = $usuario->obtenerTodos();
                                                     <span class="input-group-text">
                                                         <i class="bi bi-key fs-5"></i>
                                                     </span>
-                                                    <input type="password" name="password" id="password" class="form-control form-control-lg" minlength="8" required>
+                                                    <input type="password" name="password" id="password" class="form-control form-control-lg" minlength="8" >
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-primary">Modificar</button>
+                                                <button type="submit" class="btn btn-primary">Modificar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -183,7 +183,7 @@ $usuarios = $usuario->obtenerTodos();
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-danger">Eliminar</button>
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -255,7 +255,7 @@ $usuarios = $usuario->obtenerTodos();
         };
         const deleteOnClick = (id) => {
             var arrayCols = getCols(id);
-            document.getElementById("frmDelete").action += `?id=${arrayCols[0]}`;
+            document.getElementById("frmDelete").action += `?identificacion=${arrayCols[0]}`;
             document.getElementById("lblNombre").innerText = `${arrayCols[1]} ${arrayCols[2]}`;
             deleteModal.show();
         };

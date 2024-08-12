@@ -6,7 +6,7 @@ $usuario = new Usuario();
 
 // Verificar si se ha enviado el formulario para eliminar
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $identificacion = $_POST['identificacion'];
+    $identificacion = $_GET['identificacion'];
     
     $resultado = $usuario->eliminar($identificacion);
 
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: http://localhost/formaser/front/admin/usuarios/');
         exit;
     } else {
-        $error = $resultado;
+        $error = $resultado; 
     }
 }
 

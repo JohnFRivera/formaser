@@ -90,20 +90,24 @@
                 </ul>
                 <!-- BOTÓN SUBIR ARCHIVO -->
                 <div class="bg-body rounded-bottom-4 rounded-end-4 shadow-sm p-4 p-md-5">
-                    <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3 mb-4">
-                        <input type="file" name="" id="archivo" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
-                        <i class="bi bi-upload"></i> Seleccionar Archivo
-                    </label>
-                    <div class="row">
-                        <div class="col">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                <strong>¡Error!</strong> No es el archivo correcto.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <form id="uploadForm" method="post" enctype="multipart/form-data">
+                        <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3 mb-4">
+                            <input type="file" name="archivo" id="archivo" class="d-none" accept=".xlsx, .xls" required>
+                            <i class="bi bi-upload"></i> Seleccionar Archivo
+                        </label>
+                        <button type="submit" class="btn btn-primary">Subir Archivo</button>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                    <strong>¡Error!</strong> No es el archivo correcto.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
+
             </div>
         </section>
     </main>

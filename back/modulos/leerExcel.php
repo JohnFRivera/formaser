@@ -21,7 +21,7 @@ if ($_FILES['archivotExcel']['size'] > 0) {
     } else {
         $arregloYaAgregados['error'][] = [
             'status' => "404",
-            'descripcion' => "Sólo se pueden subir archivos de tipo Excel. Tipo de archivo subido: " . $tipo_archivo,
+            'descripcion' => "Sólo se pueden subir archivos de tipo Excel. Tipo de archivo subido:" . $tipo_archivo,
         ];
         echo json_encode($arregloYaAgregados);
     }

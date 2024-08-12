@@ -37,9 +37,9 @@ primerFormato.addEventListener("click", () => {
           // aca si no a cragado el archivo le envio un Alerta
 
           let alerta = `  <div class="alert alert-warning alert-dismissible fade show" role="alert">
- <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>`;
+                          <strong>Hubo un error!</strong> ${data.error[0].descripcion}.
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>`;
           mensajeError.innerHTML = alerta;
         } else {
           // aca ya comparo los otros objetos
@@ -60,8 +60,8 @@ primerFormato.addEventListener("click", () => {
             // -------------------------
           } else {
             mensajeError1.innerHTML = `<div class="alert alert-secondary" role="alert">
-  No hay datos Por mostrar
-</div>`;
+                                  No hay datos Por mostrar
+                                </div>`;
           }
           if (data.no_aceptados != undefined) {
             console.log(data.no_aceptados);
