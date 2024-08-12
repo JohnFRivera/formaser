@@ -90,19 +90,27 @@
                 </ul>
                 <!-- BOTÓN SUBIR ARCHIVO -->
                 <div class="bg-body rounded-bottom-4 rounded-end-4 shadow-sm p-4 p-md-5">
-                    <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3 mb-4">
-                        <input type="file" name="" id="archivo" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
-                        <i class="bi bi-upload"></i> Seleccionar Archivo
-                    </label>
-                    <div class="row">
-                        <div class="col">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                <strong>¡Error!</strong> No es el archivo correcto.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <form action="../../../back/modulos/gestionar_preinscritos.php" method="post" id="frmArchivo">
+                        <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3">
+                            <input type="file" name="archivo" id="archivo" onchange="inpOnChange()" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                            <i class="bi bi-upload"></i> Seleccionar Archivo
+                        </label>
+                    </form>
+                    <?php
+                    if (isset($error)) {
+                    ?>
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                    <strong>¡Error!</strong> <?php echo $error ?>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -134,7 +142,17 @@
     <script src="../assets/js/pdfmake.min.js"></script>
     <script src="../assets/js/vfs_fonts.js"></script>
     <script src="../assets/js/datatables.min.js"></script>
-    <script type="module" src="./js/pre-inscritos.js"></script>
+    <script>
+        var frmArchivo = document.getElementById("frmArchivo");
+        const inpOnChange = () => {
+            var archivo = document.getElementById("archivo").files[0];
+            console.log(archivo);
+            frmArchivo.innerHTML += `
+            <p class="text-black-50 mb-3 lh-sm text-center"><b>Archivo: </b>${archivo.name}<br /><b>Peso: </b>${Math.floor((archivo.size / 1024))} Kb</p>
+            <button type="submit" class="btn btn-lg btn-primary w-100">Subir</button>
+            `;
+        };
+    </script>
 </body>
 
 </html>
