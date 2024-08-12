@@ -1,56 +1,109 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require "../libreria/vendor/autoload.php";
 use PhpOffice\PhpSpreadsheet\IOFactory;
-
 require 'MYSQL.php';
 
 $mysql = new MYSQL();
 $arregloYaAgregados = array();
 
-// Verifico si se subió el archivo
-if ($_FILES['archivotExcel']['size'] > 0) {
-    $archivoExcel_temporal = $_FILES['archivotExcel']['tmp_name'];
-    $tipo_archivo = mime_content_type($archivoExcel_temporal);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    
+    if (isset($_FILES['archivo'])) {
+        echo "hola";
+        if ($_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
+            $archivoExcel_temporal = $_FILES['archivo']['tmp_name'];
+            $tipo_archivo = mime_content_type($archivoExcel_temporal);
 
-    // Valido que se haya subido un tipo de archivo Excel 
-    if (in_array($tipo_archivo, [
-        "application/vnd.ms-excel", 
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    ])) {
-        importarDatos($archivoExcel_temporal, $mysql, $arregloYaAgregados);
+            if (in_array($tipo_archivo, [
+                "application/vnd.ms-excel", 
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            ])) {
+                importarDatos($archivoExcel_temporal, $mysql, $arregloYaAgregados);
+            } else {
+                $arregloYaAgregados['error'][] = [
+                    'status' => "404",
+                    'descripcion' => "Sólo se pueden subir archivos de tipo Excel. Tipo de archivo subido: " . $tipo_archivo,
+                ];
+                echo json_encode($arregloYaAgregados);
+            }
+        } else {
+            $errorMsg = "Error desconocido";
+            switch ($_FILES['archivo']['error']) {
+                case UPLOAD_ERR_INI_SIZE:
+                case UPLOAD_ERR_FORM_SIZE:
+                    $errorMsg = "El archivo es demasiado grande.";
+                    break;
+                case UPLOAD_ERR_PARTIAL:
+                    $errorMsg = "El archivo se cargó parcialmente.";
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    $errorMsg = "No se subio ningun archivo.";
+                    break;
+                case UPLOAD_ERR_NO_TMP_DIR:
+                    $errorMsg = "Falta el directorio temporal.";
+                    break;
+                case UPLOAD_ERR_CANT_WRITE:
+                    $errorMsg = "Error al escribir el archivo en el disco.";
+                    break;
+                case UPLOAD_ERR_EXTENSION:
+                    $errorMsg = "Se detuvo la carga del archivo por una extensión.";
+                    break;
+            }
+            $arregloYaAgregados['error'][] = [
+                'status' => "404",
+                'descripcion' => "Error en la carga del archivo. Código de error: " . $_FILES['archivo']['error'] . " - " . $errorMsg,
+            ];
+            echo json_encode($arregloYaAgregados);
+        }
     } else {
         $arregloYaAgregados['error'][] = [
             'status' => "404",
-            'descripcion' => "Sólo se pueden subir archivos de tipo Excel. Tipo de archivo subido:" . $tipo_archivo,
+            'descripcion' => "No se subió ningún archivo.",
         ];
         echo json_encode($arregloYaAgregados);
     }
+} else {
+    $arregloYaAgregados['error'][] = [
+        'status' => "405",
+        'descripcion' => "Método de solicitud no permitido.",
+    ];
+    echo json_encode($arregloYaAgregados);
 }
 
 // Función para importar datos
 function importarDatos($archivoExcel, $mysql, &$arregloYaAgregados)
 {
-    $documento = IOFactory::load($archivoExcel); // Cargo el archivo Excel
-    $hojaExcel = $documento->getActiveSheet();
-    $filasDeHojaExcel = $hojaExcel->getHighestDataRow();
+    try {
+        $documento = IOFactory::load($archivoExcel); 
+        $hojaExcel = $documento->getActiveSheet();
+        $filasDeHojaExcel = $hojaExcel->getHighestDataRow();
+        
+        if (validarFormato($hojaExcel)) { 
+            for ($fila = 3; $fila <= $filasDeHojaExcel; $fila++) {
+                $cedula = $hojaExcel->getCell('C' . $fila)->getValue();
+                $tipoDocumento = $hojaExcel->getCell('B' . $fila)->getValue();
+                $codigoFicha = $hojaExcel->getCell('D' . $fila)->getValue();
+                $tipoPoblacion = $hojaExcel->getCell('E' . $fila)->getValue();
+                $codigoEmpresa = $hojaExcel->getCell('G' . $fila)->getValue() ?: 0;
 
-    // Verificación del formato del archivo
-    if (validarFormato($hojaExcel)) {
-        for ($fila = 3; $fila <= $filasDeHojaExcel; $fila++) {
-            $cedula = $hojaExcel->getCell('C' . $fila)->getValue();
-            $tipoDocumento = $hojaExcel->getCell('B' . $fila)->getValue();
-            $codigoFicha = $hojaExcel->getCell('D' . $fila)->getValue();
-            $tipoPoblacion = $hojaExcel->getCell('E' . $fila)->getValue();
-            $codigoEmpresa = $hojaExcel->getCell('G' . $fila)->getValue() ?: 0;
-
-            if ($cedula && $codigoFicha && $tipoDocumento && $tipoPoblacion) {
-                procesarRegistro($mysql, $arregloYaAgregados, $cedula, $tipoDocumento, $codigoFicha, $tipoPoblacion, $codigoEmpresa);
+                if ($cedula && $codigoFicha && $tipoDocumento && $tipoPoblacion) {
+                    procesarRegistro($mysql, $arregloYaAgregados, $cedula, $tipoDocumento, $codigoFicha, $tipoPoblacion, $codigoEmpresa);
+                }
             }
+        } else {
+            $arregloYaAgregados['error'][] = [
+                'status' => "404",
+                'descripcion' => "Formato Equivocado",
+            ];
         }
-    } else {
+    } catch (Exception $e) {
         $arregloYaAgregados['error'][] = [
-            'status' => "404",
-            'descripcion' => "Formato Equivocado",
+            'status' => "500",
+            'descripcion' => "Error al procesar el archivo: " . $e->getMessage(),
         ];
     }
 

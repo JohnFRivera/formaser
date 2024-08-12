@@ -90,12 +90,14 @@
                 </ul>
                 <!-- BOTÓN SUBIR ARCHIVO -->
                 <div class="bg-body rounded-bottom-4 rounded-end-4 shadow-sm p-4 p-md-5">
-                    <form action="../../../back/modulos/gestionar_preinscritos.php" method="post" id="frmArchivo">
+                    <form action="../../../back/modulos/leerExcel.php" method="post" id="frmArchivo" enctype="multipart/form-data">
                         <label for="archivo" class="btn btn-lg btn-outline-secondary w-100 py-3">
-                            <input type="file" name="archivo" id="archivo" onchange="inpOnChange()" class="d-none" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
+                            <input type="file" name="archivo" id="archivo" onchange="inpOnChange()" class="visually-hidden" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" >
                             <i class="bi bi-upload"></i> Seleccionar Archivo
                         </label>
                     </form>
+                    
+
                     <?php
                     if (isset($error)) {
                     ?>
@@ -147,7 +149,7 @@
         var frmArchivo = document.getElementById("frmArchivo");
         const inpOnChange = () => {
             var archivo = document.getElementById("archivo").files[0];
-            console.log(archivo);
+            
             frmArchivo.innerHTML += `
             <p class="text-black-50 mb-3 lh-sm text-center"><b>Archivo: </b>${archivo.name}<br /><b>Peso: </b>${Math.floor((archivo.size / 1024))} Kb</p>
             <button type="submit" class="btn btn-lg btn-primary w-100">Subir</button>
