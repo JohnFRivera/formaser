@@ -4,7 +4,7 @@ class MYSQL
     private $ipServidor = "localhost";
     private $usuarioBase = 'root';
     private $contrasena = '';
-    private $basededatos = 'bd_formaser';
+    private $basededatos = 'formaserv2';
     
     private $conexion;
 

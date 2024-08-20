@@ -1,16 +1,12 @@
 <?php
-require_once 'MYSQL.php';
+
+require_once 'C:/xampp/htdocs/formaser/back/modulos/MYSQL.php';
+
 
 try {
     $mysql = new MYSQL();
     // Ejecuta la consulta
-    $resultadoConsulta = $mysql->efectuarConsulta("SELECT tipoCedula AS tipo,
-      cedula AS cedula,
-      numeroFicha AS ficha,
-      tipoPoblacion AS poblacion,
-      codigoEmpresa AS empresa
-      FROM inscripcionaprendiz1
-      WHERE estado LIKE '%Preinscrito%'");
+    $resultadoConsulta = $mysql->efectuarConsulta("SELECT * FROM pre_inscrito");
     
     // Desconecta la base de datos
     $mysql->desconectar();

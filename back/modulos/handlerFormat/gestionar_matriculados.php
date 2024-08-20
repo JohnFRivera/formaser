@@ -1,18 +1,13 @@
 <?php
-require_once 'MYSQL.php';
+require_once 'C:/xampp/htdocs/formaser/back/modulos/MYSQL.php';
+
 
 try {
     // Crear una instancia de la clase MYSQL
     $mysql = new MYSQL();
     
     // Ejecutar la consulta para obtener datos de matriculados
-    $resultadoConsulta = $mysql->efectuarConsulta("SELECT cedula AS cedula,
-                                                        nombreCompleto AS nombre,
-                                                        numeroFicha AS ficha,
-                                                        nombrePrograma AS programa,
-                                                        estado AS estado
-                                                        FROM inscripcionaprendiz1
-                                                        WHERE estado LIKE '%Matriculado%'");
+    $resultadoConsulta = $mysql->efectuarConsulta("SELECT * FROM matriculado");
     
     // Desconectar la base de datos
     $mysql->desconectar();

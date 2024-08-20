@@ -14,7 +14,7 @@ class Usuario {
     // Método para agregar un nuevo usuario
     public function crear($identificacion, $nombre, $apellido, $correo, $contrasena) {
         $contrasenaEncriptada = password_hash($contrasena, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO usuarios (Identificacion, Nombre, Apellido, Correo, password) VALUES ('$identificacion', '$nombre', '$apellido', '$correo', '$contrasenaEncriptada')";
+        $sql = "INSERT INTO usuarios (identidad, Nombre, Apellido, Correo, password) VALUES ('$identificacion', '$nombre', '$apellido', '$correo', '$contrasenaEncriptada')";
         
         try {
             $this->db->efectuarConsulta($sql);
@@ -27,7 +27,7 @@ class Usuario {
 
     // Método para obtener todos los usuarios
     public function obtenerTodos() {
-        $sql = "SELECT Identificacion, Nombre, Apellido, Correo FROM usuarios";
+        $sql = "SELECT identidad, nombre, apellido, correo FROM usuarios";
         
         try {
             $result = $this->db->efectuarConsulta($sql);
@@ -44,7 +44,7 @@ class Usuario {
 
     // Método para obtener un usuario por ID
     public function obtenerPorId($identificacion) {
-        $sql = "SELECT Identificacion, Nombre, Apellido, Correo FROM usuarios WHERE Identificacion = '$identificacion'";
+        $sql = "SELECT identidad, nombre, apellido, correo FROM usuarios WHERE identidad = '$identificacion'";
         
         try {
             $result = $this->db->efectuarConsulta($sql);
@@ -56,7 +56,7 @@ class Usuario {
 
     // Método para actualizar un usuario
     public function actualizar($identificacion, $nombre, $apellido, $correo) {
-        $sql = "UPDATE usuarios SET Nombre = '$nombre', Apellido = '$apellido', Correo = '$correo' WHERE Identificacion = '$identificacion'";
+        $sql = "UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', correo = '$correo' WHERE identidad = '$identificacion'";
         
         try {
             $this->db->efectuarConsulta($sql);

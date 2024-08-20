@@ -1,5 +1,8 @@
 <?php
-$preinscritos = require_once '../../../back/modulos/gestionar_preinscritos.php'
+
+$preinscritos = require_once '../../../back/modulos/handlerFormat/gestionar_preinscritos.php';
+require_once '../../../back/controller/login/verificarAcceso.php';
+verificar_acceso();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -90,7 +93,7 @@ $preinscritos = require_once '../../../back/modulos/gestionar_preinscritos.php'
                                         ?>
                                             <tr>
                                                 <td><?php echo $preinscrito["tipo"] ?></td>
-                                                <td class="text-start"><?php echo $preinscrito["identificacion"] ?></td>
+                                                <td class="text-start"><?php echo $preinscrito["identidad"] ?></td>
                                                 <td><?php echo $preinscrito["poblacion"] ?></td>
                                                 <td>
                                                     <div class="badge text-bg-primary shadow-sm">

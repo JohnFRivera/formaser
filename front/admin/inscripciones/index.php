@@ -1,5 +1,5 @@
 <?php
-$inscritos = require_once '../../../back/modulos/gestionar_inscripciones.php'
+$inscritos = require_once '../../../back/modulos/handlerFormat/gestionar_inscripciones.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -89,8 +89,8 @@ $inscritos = require_once '../../../back/modulos/gestionar_inscripciones.php'
                                         foreach ($inscritos as $inscrito) {
                                         ?>
                                             <tr>
-                                                <td class="text-start"><?php echo $inscrito["identificacion"] ?></td>
-                                                <td><?php echo $inscrito["aprendiz"] ?></td>
+                                                <td class="text-start"><?php echo $inscrito["identidad"] ?></td>
+                                                <td><?php echo $inscrito["nombre"] ?></td>
                                                 <td>
                                                     <div class="badge text-bg-primary shadow-sm">
                                                         <?php echo $inscrito["ficha"] ?>

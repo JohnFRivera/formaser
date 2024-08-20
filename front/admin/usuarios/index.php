@@ -1,5 +1,5 @@
 <?php
-require_once '../../../back/modulos/usuarios/usuarios.php';
+require_once '../../../back/modulos/usuarios/usuarios.php'; 
 
 $usuario = new Usuario();
 $usuarios = $usuario->obtenerTodos();
@@ -107,15 +107,15 @@ $usuarios = $usuario->obtenerTodos();
                                         <?php
                                         foreach ($usuarios as $usuario) {
                                         ?>
-                                            <tr id="row-<?php echo $usuario["Identificacion"] ?>">
-                                                <td class="text-start"><?php echo $usuario["Identificacion"] ?></td>
-                                                <td class="text-start"><?php echo $usuario["Nombre"] ?></td>
-                                                <td class="text-start"><?php echo $usuario["Apellido"] ?></td>
-                                                <td class="text-start"><?php echo $usuario["Correo"] ?></td>
+                                            <tr id="row-<?php echo $usuario["identidad"] ?>">
+                                                <td class="text-start"><?php echo $usuario["identidad"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["nombre"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["apellido"] ?></td>
+                                                <td class="text-start"><?php echo $usuario["correo"] ?></td>
                                                 <td>
                                                     <div class="btn-group shadow-sm">
-                                                        <button type="button" onclick="putOnClick(<?php echo $usuario['Identificacion'] ?>)" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square small"></i></button>
-                                                        <button type="button" onclick="deleteOnClick(<?php echo $usuario['Identificacion'] ?>)" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill small"></i></button>
+                                                        <button type="button" onclick="putOnClick(<?php echo $usuario['identidad'] ?>)" class="btn btn-sm btn-outline-info"><i class="bi bi-pencil-square small"></i></button>
+                                                        <button type="button" onclick="deleteOnClick(<?php echo $usuario['identidad'] ?>)" class="btn btn-sm btn-danger"><i class="bi bi-trash-fill small"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>

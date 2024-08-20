@@ -1,5 +1,5 @@
 <?php
-$matriculados = require_once '../../../back/modulos/gestionar_matriculados.php'
+$matriculados = require_once '../../../back/modulos/handlerFormat/gestionar_matriculados.php'
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -89,7 +89,7 @@ $matriculados = require_once '../../../back/modulos/gestionar_matriculados.php'
                                         foreach ($matriculados as $matriculado) {
                                         ?>
                                             <tr>
-                                                <td class="text-start"><?php echo $matriculado["cedula"] ?></td>
+                                                <td class="text-start"><?php echo $matriculado["identidad"] ?></td>
                                                 <td><?php echo $matriculado["nombre"] ?></td>
                                                 <td>
                                                     <div class="badge text-bg-primary shadow-sm">
