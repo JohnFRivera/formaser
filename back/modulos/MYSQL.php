@@ -49,9 +49,6 @@ class MYSQL
         return $this->conexion->affected_rows;
     }
 
-    public function __destruct()
-    {
-        $this->desconectar();
-    }
+  
 }
 

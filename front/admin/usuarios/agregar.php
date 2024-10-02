@@ -1,3 +1,7 @@
+<?php
+require_once "../../../back/controller/login/verificarAcceso.php";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,6 +56,9 @@
                                 </a>
                             </li>
                         </ul>
+                        <form action="/formaser/back/controller/login/logout.php" class="d-flex ms-auto">
+                            <button type="submit" class="btn btn-lg btn-danger rounded-pill fw-semibold">Cerrar sesión</>
+                        </form>
                     </div>
                 </div>
             </nav>

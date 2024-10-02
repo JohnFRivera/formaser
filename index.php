@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,6 +17,14 @@
     <!--* CONTENIDO -->
     <main class="row bg-img-formaser justify-content-center align-content-center">
         <div class="col-auto">
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="alert alert-danger">
+                <?php 
+                echo $_SESSION['error']; 
+                unset($_SESSION['error']); // Limpiar el error después de mostrarlo
+                ?>
+            </div>
+        <?php endif; ?>
             <!--* INICIO DE SESIÓN -->
             <form action="./back/controller/login/login.php" method="post" class="bg-body rounded-4 p-5 shadow-sm">
                 <h1 class="fw-bold text-center mb-4">INICIAR<i class="fst-normal text-verde">SESIÓN</i></h1>

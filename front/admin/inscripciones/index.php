@@ -1,4 +1,6 @@
 <?php
+require_once "../../../back/controller/login/verificarAcceso.php";
+
 $inscritos = require_once '../../../back/modulos/handlerFormat/gestionar_inscripciones.php'
 ?>
 <!DOCTYPE html>
@@ -56,6 +58,9 @@ $inscritos = require_once '../../../back/modulos/handlerFormat/gestionar_inscrip
                                 </a>
                             </li>
                         </ul>
+                        <form action="/formaser/back/controller/login/logout.php" class="d-flex ms-auto">
+                            <button type="submit" class="btn btn-lg btn-danger rounded-pill fw-semibold">Cerrar sesión</>
+                        </form>
                     </div>
                 </div>
             </nav>

@@ -1,8 +1,7 @@
 <?php
-
+require_once "../../../back/controller/login/verificarAcceso.php";
 $preinscritos = require_once '../../../back/modulos/handlerFormat/gestionar_preinscritos.php';
-require_once '../../../back/controller/login/verificarAcceso.php';
-verificar_acceso();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,6 +58,9 @@ verificar_acceso();
                                 </a>
                             </li>
                         </ul>
+                        <form action="/formaser/back/controller/login/logout.php" class="d-flex ms-auto">
+                            <button type="submit" class="btn btn-lg btn-danger rounded-pill fw-semibold">Cerrar sesión</>
+                        </form>
                     </div>
                 </div>
             </nav>

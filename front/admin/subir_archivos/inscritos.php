@@ -1,3 +1,7 @@
+<?php
+require_once "../../../back/controller/login/verificarAcceso.php";
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -53,6 +57,9 @@
                                 </a>
                             </li>
                         </ul>
+                        <form action="/formaser/back/controller/login/logout.php" class="d-flex ms-auto">
+                            <button type="submit" class="btn btn-lg btn-danger rounded-pill fw-semibold">Cerrar sesión</>
+                        </form>
                     </div>
                 </div>
             </nav>
@@ -99,18 +106,19 @@
                     <button type="submit" class="btn btn-lg btn-primary w-100" id="btnSubmit" style="display: none;">Subir</button>
                     </form>
                     <?php
-                    if (isset($error)) {
-                    ?>
+                    if (isset($_SESSION['error'])) {
+                        ?>
                         <div class="row">
                             <div class="col">
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                                    <strong>¡Error!</strong> <?php echo $error ?>
+                                    <strong>¡Error!</strong> <?php echo $_SESSION['error']; ?>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             </div>
                         </div>
-                    <?php
+                        <?php
+                        unset($_SESSION['error']); // Limpia el mensaje de error después de mostrarlo
                     }
                     ?>
                 </div>
